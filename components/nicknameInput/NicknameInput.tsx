@@ -6,8 +6,12 @@ import {
 
 import { useState } from 'react';
 
-export default function NicknameInput() {
-  const [nickname, setNickname] = useState<string>('');
+type Props = {
+  nickname: string;
+  setNickname: (nickname: string) => void;
+};
+
+export default function NicknameInput({ nickname, setNickname }: Props) {
   const [error, setError] = useState<string>('');
 
   const validateNickname = (value: string) => {
