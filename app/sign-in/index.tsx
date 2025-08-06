@@ -1,57 +1,42 @@
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  Container,
+  GoogleLoginImg,
+  IconContainer,
+  KakaoLoginImg,
+  TitleImg,
+} from './Signin.styles';
 
 import { Link } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import TitleSvg from '../../assets/images/title.svg';
 
 export default function SigninScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <TitleSvg style={styles.titleImg} />
-      <View style={styles.iconContainer}>
+    <Container>
+      <TitleImg>
+        <TitleSvg width='100%' />
+      </TitleImg>
+
+      <IconContainer>
         <Link href='/nickname' asChild>
           <TouchableOpacity>
-            <Image
-              style={styles.kakaoLoginImg}
+            <KakaoLoginImg
               source={require('../../assets/images/kakao_login.png')}
+              resizeMode='contain'
             />
           </TouchableOpacity>
         </Link>
 
         <Link href='/nickname' asChild>
           <TouchableOpacity>
-            <Image
-              style={styles.googleLoginImg}
+            <GoogleLoginImg
               source={require('../../assets/images/google_login.png')}
+              resizeMode='contain'
             />
           </TouchableOpacity>
         </Link>
-      </View>
-    </SafeAreaView>
+      </IconContainer>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#30DB5B',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 180,
-  },
-  iconContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-  },
-  titleImg: {
-    width: '80%',
-  },
-  kakaoLoginImg: {},
-  googleLoginImg: {},
-});
