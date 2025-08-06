@@ -1,5 +1,6 @@
 import { SplashScreen, Stack } from 'expo-router';
 
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 
@@ -14,10 +15,12 @@ export default function Layout() {
 
   if (!fontsLoaded) return null;
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    />
+    <SafeAreaProvider>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
+    </SafeAreaProvider>
   );
 }

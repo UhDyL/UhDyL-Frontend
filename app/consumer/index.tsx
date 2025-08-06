@@ -1,12 +1,11 @@
 import { Container } from './ConsumerMainScreen.styled';
-import { Stack } from 'expo-router';
-import { Text } from 'react-native';
+import MainHeader from '@/components/mainHeader/MainHeader';
 
 export default function ConsumerMainScreen() {
   return (
     <Container>
-      <Stack.Screen options={{ title: '어글리 딜리셔스' }} />
-      <Text>hi</Text>
+      <MainHeader />
+      {/* <Text>hi</Text> */}
     </Container>
   );
 }
