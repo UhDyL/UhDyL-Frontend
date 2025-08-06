@@ -17,8 +17,13 @@ export const InputBar = styled.View`
   border-width: 1px;
   border-style: solid;
   border-color: #30db5b;
+  background-color: #fff;
   border-radius: 10px;
   padding: 15px;
+  shadow-color: #000;
+  shadow-offset: 0px 2px;
+  shadow-opacity: 0.2;
+  shadow-radius: 3px;
 `;
 
 export const SearchIcon = styled(Search)`
