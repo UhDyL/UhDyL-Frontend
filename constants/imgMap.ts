@@ -1,4 +1,4 @@
-export const imgMap = {
+export const imgMap: Record<string, any> = {
   fruit: require('../assets/images/consumermain/fruit_img.png'),
   vegetable: require('../assets/images/consumermain/vegetable_img.png'),
   rootVegetable: require('../assets/images/consumermain/root_vegetable_img.png'),
