@@ -5,7 +5,7 @@ export const Container = styled.View`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -14,6 +14,6 @@ export const ItemsContainer = styled.View`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 `;

@@ -1,9 +1,13 @@
 import { Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
-export const Container = styled(SafeAreaView)`
+export const Container = styled.View`
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
 export const ImgBox = styled(Image)`
