@@ -11,6 +11,11 @@ export const Container = styled(SafeAreaView).attrs({
   align-items: center;
 `;
 
+export const StyledScrollView = styled.ScrollView`
+  flex: 1;
+  width: 100%;
+`;
+
 export const TextWrapper = styled.View`
   width: 100%;
   background-color: #30db5b;
@@ -63,4 +68,15 @@ export const CategorySecondFloor = styled.View`
   justify-content: center;
   align-items: center;
   gap: 5px;
+`;
+
+export const ItemsContainer = styled.View`
+  flex: 1;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* gap: 10px; */
 `;
