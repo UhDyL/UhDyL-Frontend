@@ -9,7 +9,6 @@ export const Container = styled(SafeAreaView).attrs({
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 10px;
 `;
 
 export const TextWrapper = styled.View`
@@ -26,7 +25,7 @@ export const TextWrapper = styled.View`
 
 export const TitleText = styled.Text`
   font-family: 'TitleFont';
-  margin-top: 15;
+  margin-top: 30;
   font-size: 25px;
   font-weight: bold;
   color: white;
@@ -37,4 +36,31 @@ export const SearchBarWrapper = styled.View`
   position: absolute;
   top: 120px;
   z-index: 10;
+`;
+
+export const CategoryBox = styled.View`
+  flex: 1;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+`;
+
+export const CategoryFirstFloor = styled.View`
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const CategorySecondFloor = styled.View`
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 `;

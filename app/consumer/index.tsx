@@ -1,5 +1,5 @@
 import { Container } from './ConsumerMainScreen.styled';
-import MainHeader from '@/components/mainHeader/MainHeader';
+import MainHeader from '@/components/common/mainHeader/MainHeader';
 
 export default function ConsumerMainScreen() {
   return (
