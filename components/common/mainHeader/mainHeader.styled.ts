@@ -4,12 +4,11 @@ import styled from 'styled-components/native';
 export const Container = styled(SafeAreaView).attrs({
   edges: ['left', 'right', 'bottom'],
 })`
-  flex: 1;
+  height: 130px;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 10px;
 `;
 
 export const TextWrapper = styled.View`
@@ -26,7 +25,7 @@ export const TextWrapper = styled.View`
 
 export const TitleText = styled.Text`
   font-family: 'TitleFont';
-  margin-top: 15;
+  margin-top: 30;
   font-size: 25px;
   font-weight: bold;
   color: white;

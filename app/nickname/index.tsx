@@ -1,5 +1,7 @@
 import * as ImagePicker from 'expo-image-picker';
 
+import { Stack, useRouter } from 'expo-router';
+import React, { useState } from 'react';
 import {
   CameraWrapper,
   Container,
@@ -12,12 +14,10 @@ import {
   SubContainer,
   TitleText,
 } from './Nickname.styled';
-import React, { useState } from 'react';
-import { Stack, useRouter } from 'expo-router';
 
+import NicknameInput from '@/components/nickname/nicknameInput/NicknameInput';
 import { Camera } from 'lucide-react-native';
 import { ImageSourcePropType } from 'react-native';
-import NicknameInput from '@/components/nicknameInput/NicknameInput';
 
 export default function NicknameScreen() {
   const [nickname, setNickname] = React.useState<string>('');
@@ -46,9 +46,9 @@ export default function NicknameScreen() {
 
   const handleStart = () => {
     if (userType === 'consumer') {
-      router.push('/consumer');
+      router.replace('/consumer');
     } else {
-      router.push('/farmer');
+      router.replace('/farmer');
     }
   };
 
