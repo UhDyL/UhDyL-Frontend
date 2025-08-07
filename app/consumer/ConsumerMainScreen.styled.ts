@@ -5,4 +5,5 @@ export const Container = styled(SafeAreaView).attrs({
   edges: ['left', 'right', 'bottom'],
 })`
   flex: 1;
+  background-color: #fff;
 `;
