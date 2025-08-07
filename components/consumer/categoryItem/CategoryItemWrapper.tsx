@@ -57,7 +57,7 @@ const dummyData = [
     title: '상추 200g',
     price: '₩1,000',
     sellerName: '장채소',
-    sellerImage: 'https://example.com/sellers/jang.jpg',
+    sellerImage: '',
   },
   {
     imgUrl:
