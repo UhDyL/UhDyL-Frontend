@@ -17,7 +17,7 @@ import { Stack, useRouter } from 'expo-router';
 
 import { Camera } from 'lucide-react-native';
 import { ImageSourcePropType } from 'react-native';
-import NicknameInput from '@/components/nicknameInput/NicknameInput';
+import NicknameInput from '@/components/nickname/nicknameInput/NicknameInput';
 
 export default function NicknameScreen() {
   const [nickname, setNickname] = React.useState<string>('');
