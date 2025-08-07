@@ -13,6 +13,9 @@ export const Container = styled.View`
   background-color: transparent;
   padding-left: 20px;
   padding-right: 20px;
+  z-index: 10;
+  position: absolute;
+  top: 60px;
 `;
 
 export const LeftSection = styled.View`
