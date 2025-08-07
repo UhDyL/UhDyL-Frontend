@@ -5,12 +5,15 @@ import {
   SearchIcon,
 } from './searchBar.styled';
 
+import { useRouter } from 'expo-router';
+
 type Props = {
   value: string;
   setValue: (value: string) => void;
 };
 
 export default function SearchBar({ value, setValue }: Props) {
+  const route = useRouter();
   return (
     <Container>
       <InputBar>
@@ -19,7 +22,11 @@ export default function SearchBar({ value, setValue }: Props) {
           value={value}
           onChangeText={setValue}
         />
-        <SearchIcon />
+        <SearchIcon
+          onPress={() =>
+            route.push(`/search?query=${encodeURIComponent(value)}`)
+          }
+        />
       </InputBar>
     </Container>
   );

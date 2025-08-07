@@ -9,6 +9,7 @@ export const Container = styled(SafeAreaView).attrs({
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  z-index: 2;
 `;
 
 export const TextWrapper = styled.View`
