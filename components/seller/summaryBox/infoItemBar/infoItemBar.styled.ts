@@ -32,6 +32,6 @@ export const ValueBox = styled.View`
 `;
 
 export const ValueText = styled.Text`
-  font-weight: 700;
+  font-weight: 800;
   padding-right: 10px;
 `;
