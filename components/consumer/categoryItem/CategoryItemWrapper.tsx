@@ -4,6 +4,7 @@ import ItemComponent from '../itemComponent/ItemComponent';
 
 const dummyData = [
   {
+    id: 1,
     imgUrl:
       'https://oasisprodproduct.edge.naverncp.com/8690/detail/0_d008c40d-585e-4c69-9230-2f44cb774cb1.jpeg',
     title: '신선한 사과',
@@ -12,6 +13,7 @@ const dummyData = [
     sellerImage: '',
   },
   {
+    id: 2,
     imgUrl:
       'https://oasisprodproduct.edge.naverncp.com/8690/detail/0_d008c40d-585e-4c69-9230-2f44cb774cb1.jpeg',
     title: '유기농 양배추',
@@ -20,6 +22,7 @@ const dummyData = [
     sellerImage: '',
   },
   {
+    id: 3,
     imgUrl:
       'https://oasisprodproduct.edge.naverncp.com/8690/detail/0_d008c40d-585e-4c69-9230-2f44cb774cb1.jpeg',
     title: '햇감자 3kg',
@@ -28,6 +31,7 @@ const dummyData = [
     sellerImage: '',
   },
   {
+    id: 4,
     imgUrl:
       'https://oasisprodproduct.edge.naverncp.com/8690/detail/0_d008c40d-585e-4c69-9230-2f44cb774cb1.jpeg',
     title: '찹쌀 5kg',
@@ -36,6 +40,7 @@ const dummyData = [
     sellerImage: '',
   },
   {
+    id: 5,
     imgUrl:
       'https://oasisprodproduct.edge.naverncp.com/8690/detail/0_d008c40d-585e-4c69-9230-2f44cb774cb1.jpeg',
     title: '흠집토마토 1kg',
@@ -44,6 +49,7 @@ const dummyData = [
     sellerImage: '',
   },
   {
+    id: 6,
     imgUrl:
       'https://oasisprodproduct.edge.naverncp.com/8690/detail/0_d008c40d-585e-4c69-9230-2f44cb774cb1.jpeg',
     title: '잼용 딸기 500g',
@@ -52,6 +58,7 @@ const dummyData = [
     sellerImage: '',
   },
   {
+    id: 7,
     imgUrl:
       'https://oasisprodproduct.edge.naverncp.com/8690/detail/0_d008c40d-585e-4c69-9230-2f44cb774cb1.jpeg',
     title: '상추 200g',
@@ -60,6 +67,7 @@ const dummyData = [
     sellerImage: '',
   },
   {
+    id: 8,
     imgUrl:
       'https://oasisprodproduct.edge.naverncp.com/8690/detail/0_d008c40d-585e-4c69-9230-2f44cb774cb1.jpeg',
     title: '선물용 감귤 세트',
@@ -75,6 +83,7 @@ export default function CategoryItemWrapper() {
       <ItemsContainer>
         {dummyData.map((data, index) => (
           <ItemComponent
+            id={data.id}
             key={index}
             imgUrl={data.imgUrl}
             price={data.price}

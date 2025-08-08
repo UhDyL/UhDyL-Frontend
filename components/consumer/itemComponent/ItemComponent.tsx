@@ -9,7 +9,10 @@ import {
   TitleText,
 } from './itemComponent.styled';
 
+import { useRouter } from 'expo-router';
+
 type Props = {
+  id: number;
   imgUrl: string;
   title: string;
   price: string;
@@ -18,14 +21,16 @@ type Props = {
 };
 
 export default function ItemComponent({
+  id,
   imgUrl,
   title,
   price,
   sellerName,
   sellerImage,
 }: Props) {
+  const router = useRouter();
   return (
-    <Container>
+    <Container onPress={() => router.push(`/itemDetail/${id}`)}>
       <ImgBox
         source={
           imgUrl
