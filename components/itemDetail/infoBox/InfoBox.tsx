@@ -13,6 +13,7 @@ import {
   ViewWrapper,
 } from './infoBox.styled';
 
+import { useRouter } from 'expo-router';
 import { Star } from 'lucide-react-native';
 import { Text } from 'react-native';
 
@@ -22,6 +23,7 @@ type Props = {
   rating: string;
   title: string;
   description: string;
+  sellerId: string;
 };
 
 export default function InfoBox({
@@ -30,7 +32,10 @@ export default function InfoBox({
   rating,
   title,
   description,
+  sellerId,
 }: Props) {
+  const router = useRouter();
+
   return (
     <Container>
       <MarketProfileBox>
@@ -51,7 +56,7 @@ export default function InfoBox({
           </MarketInfoBox>
         </ViewWrapper>
 
-        <GoShopBtn>
+        <GoShopBtn onPress={() => router.push(`/seller/${sellerId}`)}>
           <Text>상점 방문하기</Text>
         </GoShopBtn>
       </MarketProfileBox>
