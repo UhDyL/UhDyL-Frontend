@@ -10,10 +10,10 @@ import {
 import { useRouter } from 'expo-router';
 
 type Props = {
-  setIsModalOn: () => void;
+  onMorePress: () => void;
 };
 
-export default function TopBar({ setIsModalOn }: Props) {
+export default function TopBar({ onMorePress }: Props) {
   const router = useRouter();
 
   return (
@@ -26,8 +26,8 @@ export default function TopBar({ setIsModalOn }: Props) {
           <StyledHomeIcon />
         </ButtonWrapper>
       </LeftSection>
-      <ButtonWrapper>
-        <StyledDotIcon onPress={() => setIsModalOn()} />
+      <ButtonWrapper onPress={onMorePress}>
+        <StyledDotIcon />
       </ButtonWrapper>
     </Container>
   );
