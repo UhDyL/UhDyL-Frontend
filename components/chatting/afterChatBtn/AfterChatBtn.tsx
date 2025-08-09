@@ -15,7 +15,7 @@ export default function AfterChatBtn({ userType, sellerId }: Props) {
       userType={userType}
       onPress={() =>
         userType === 'user'
-          ? router.push(`/addReview/${sellerId}`)
+          ? router.push(`/chatting/addReview/${sellerId}`)
           : console.log('거래완ㅋㅋ')
       }
     >
