@@ -54,7 +54,7 @@ export default function SellerScreen() {
           <ReviewsBox data={dummyReviews} />
         </Container>
       </ScrollView>
-      <TabBar />
+      <TabBar status='home' />
     </>
   );
 }

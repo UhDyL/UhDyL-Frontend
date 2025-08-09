@@ -1,14 +1,19 @@
-import { usePathname, useRouter } from 'expo-router';
-import { Home, MessageCircleMore, User } from 'lucide-react-native';
-import { useState } from 'react';
 import { Container, IconBox, Label } from './tabBar.styled';
+import { Home, MessageCircleMore, User } from 'lucide-react-native';
+import { usePathname, useRouter } from 'expo-router';
 
-export default function TabBar() {
+import { useState } from 'react';
+
+type Props = {
+  status: 'home' | 'chatting' | 'profile';
+};
+
+export default function TabBar({ status }: Props) {
   const route = useRouter();
   const pathname = usePathname();
 
   const [selected, setSelected] = useState<'home' | 'chatting' | 'profile'>(
-    'home'
+    status
   );
 
   const handlePressHomeBtn = () => {

@@ -1,9 +1,9 @@
 import { Container, StyledScrollView } from './ConsumerMainScreen.styled';
 
-import MainHeader from '@/components/common/mainHeader/MainHeader';
-import TabBar from '@/components/common/tabBar/TabBar';
 import CategoryBox from '@/components/consumer/categoryBox/CategoryBox';
 import CategoryItemWrapper from '@/components/consumer/categoryItem/CategoryItemWrapper';
+import MainHeader from '@/components/common/mainHeader/MainHeader';
+import TabBar from '@/components/common/tabBar/TabBar';
 
 export default function ConsumerMainScreen() {
   return (
@@ -15,7 +15,7 @@ export default function ConsumerMainScreen() {
           <CategoryItemWrapper />
         </Container>
       </StyledScrollView>
-      <TabBar />
+      <TabBar status='home' />
     </>
   );
 }
