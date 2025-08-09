@@ -1,6 +1,9 @@
+import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Container = styled.View<{ userType: 'user' | 'seller' }>`
+export const Container = styled(TouchableOpacity)<{
+  userType: 'user' | 'seller';
+}>`
   background-color: ${({ userType }) =>
     userType === 'user' ? '#30DB5B' : '#FFB340'};
   width: 30%;

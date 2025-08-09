@@ -56,6 +56,7 @@ const dummyChatMessages: ChatMessageResponse[] = [
 
 export default function ChattingDetailScreen() {
   const { id, name } = useLocalSearchParams();
+  const idStr = Array.isArray(id) ? id[0] : id ?? '';
   const nameStr = Array.isArray(name) ? name[0] : name ?? '';
 
   return (
@@ -68,7 +69,7 @@ export default function ChattingDetailScreen() {
         <BackAndTitle title={nameStr} />
         <ChatBox data={dummyChatMessages} />
         <BottomContainer>
-          <AfterChatBtn userType='user' />
+          <AfterChatBtn userType='user' sellerId={idStr} />
           <InputArea />
         </BottomContainer>
       </Container>
