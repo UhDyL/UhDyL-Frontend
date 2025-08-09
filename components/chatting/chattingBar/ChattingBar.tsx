@@ -31,7 +31,13 @@ export default function ChattingBar({
   const router = useRouter();
 
   return (
-    <Container onPress={() => router.push(`/chatting/${chattingId}`)}>
+    <Container
+      onPress={() =>
+        router.push(
+          `/chatting/${chattingId}?name=${encodeURIComponent(itemName)}`
+        )
+      }
+    >
       <ImageBox
         source={
           itemImage

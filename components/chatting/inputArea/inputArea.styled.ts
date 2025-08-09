@@ -11,11 +11,12 @@ export const Container = styled.View`
   background-color: #f5f5f5;
   padding: 10px;
   border-radius: 20px;
+  margin-bottom: 40px;
 `;
 
 export const Row = styled.View`
-  width: 90%;
-  height: 45px;
+  width: 100%;
+  height: 25px;
   display: flex;
   padding: 10px;
   flex-direction: row;
@@ -28,6 +29,7 @@ export const PreviewBox = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 10px;
 `;
 
 export const XWrapper = styled(TouchableOpacity)`
@@ -50,6 +52,7 @@ export const SendIconWrapper = styled(TouchableOpacity)`
 
 export const StyledTextInput = styled.TextInput`
   width: 70%;
+  height: 10px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

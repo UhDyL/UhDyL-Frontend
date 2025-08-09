@@ -74,8 +74,14 @@ export default function InputArea() {
         <StyledTextInput
           placeholder='메세지를 입력해 보세요.'
           onChangeText={setMessage}
+          value={message}
         />
-        <SendIconWrapper onPress={() => console.log(`'${message}' 전송`)}>
+        <SendIconWrapper
+          onPress={() => {
+            console.log(`'${message}' 전송`);
+            setMessage('');
+          }}
+        >
           <Send fill='#fff' color='#000' />
         </SendIconWrapper>
       </Row>
