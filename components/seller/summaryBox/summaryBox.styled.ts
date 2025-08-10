@@ -2,7 +2,6 @@ import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  margin: auto;
   width: 90%;
   height: 130px;
   border-radius: 15px;

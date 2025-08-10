@@ -3,10 +3,20 @@ import { Container, ImageBox, InfoBox, TitleText } from './summaryBox.styled';
 import InfoItemBar from './infoItemBar/InfoItemBar';
 
 type Props = {
+  name: string;
   imgUrl: string;
+  userType: 'user' | 'farmer';
+  firstValue: string;
+  secondValue: string;
 };
 
-export default function SummaryBox({ imgUrl }: Props) {
+export default function SummaryBox({
+  name,
+  imgUrl,
+  userType,
+  firstValue,
+  secondValue,
+}: Props) {
   return (
     <Container>
       <ImageBox
@@ -17,9 +27,12 @@ export default function SummaryBox({ imgUrl }: Props) {
         }
       />
       <InfoBox>
-        <TitleText>홍길동</TitleText>
-        <InfoItemBar label='판매 건수' value='0개' />
-        <InfoItemBar label='평균 별점' value='5점' />
+        <TitleText>{name}</TitleText>
+        <InfoItemBar label='판매 건수' value={firstValue} />
+        <InfoItemBar
+          label={userType === 'user' ? '평균 별점' : '판매 수익'}
+          value={secondValue}
+        />
       </InfoBox>
     </Container>
   );
