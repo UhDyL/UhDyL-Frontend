@@ -1,12 +1,12 @@
 import { Container, SummaryArea } from './seller.styled';
 
+import TabBar from '@/components/common/tabBar/TabBar';
 import { ReviewItemProps } from '@/components/seller/reviewsBox/reviewItem/ReviewItem';
 import ReviewsBox from '@/components/seller/reviewsBox/ReviewsBox';
-import { ScrollView } from 'react-native';
 import SummaryBox from '@/components/seller/summaryBox/SummaryBox';
-import TabBar from '@/components/common/tabBar/TabBar';
 import TopHeader from '@/components/seller/topHeader/TopHeader';
 import { useLocalSearchParams } from 'expo-router';
+import { ScrollView } from 'react-native';
 
 const dummyReviews: ReviewItemProps[] = [
   {
@@ -49,7 +49,13 @@ export default function SellerScreen() {
         <Container>
           <TopHeader />
           <SummaryArea>
-            <SummaryBox imgUrl='' />
+            <SummaryBox
+              imgUrl=''
+              userType='user'
+              firstValue='0개'
+              name='홍길동'
+              secondValue='5점'
+            />
           </SummaryArea>
           <ReviewsBox data={dummyReviews} />
         </Container>
