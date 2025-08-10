@@ -22,7 +22,7 @@ export default function TopBar({ onMorePress }: Props) {
         <ButtonWrapper onPress={() => router.back()}>
           <StyledBeforeIcon />
         </ButtonWrapper>
-        <ButtonWrapper onPress={() => router.replace('/consumer')}>
+        <ButtonWrapper onPress={() => router.replace('/user')}>
           <StyledHomeIcon />
         </ButtonWrapper>
       </LeftSection>

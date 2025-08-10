@@ -30,7 +30,7 @@ export default function EditProfileScreen() {
       <ImageCircleUpload image={image} setImage={setImage} />
       <NicknameInputForm nickname={nickname} setNickname={setNickname} />
       <UserTypeSelectBox selected={userType} setSelected={setUserType} />
-      <Button text='시작하기' onClick={() => router.push('/consumer')} />
+      <Button text='시작하기' onClick={() => router.push('/user')} />
     </Container>
   );
 }
