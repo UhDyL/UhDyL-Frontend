@@ -15,10 +15,11 @@ export const TitleText = styled.Text`
   font-weight: 700;
 `;
 
-export const ButtonWrapper = styled.View`
+export const ButtonWrapper = styled.View<{ userType: 'user' | 'farmer' }>`
   width: 150px;
   height: 40px;
-  background-color: #30db5b;
+  background-color: ${({ userType }) =>
+    userType === 'user' ? '#30db5b' : '#FFB340'};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
