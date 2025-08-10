@@ -3,20 +3,14 @@ import * as ImagePicker from 'expo-image-picker';
 import { Stack, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-  CameraWrapper,
   Container,
-  ImageBox,
-  PreferText,
-  PreferTextBox,
   StartButton,
   StartButtonText,
-  StyledImage,
   SubContainer,
-  TitleText,
 } from './Nickname.styled';
 
-import NicknameInput from '@/components/nickname/nicknameInput/NicknameInput';
-import { Camera } from 'lucide-react-native';
+import ImageCircleUpload from '@/components/common/imageCircleUpload/ImageCircleUpload';
+import NicknameInputForm from '@/components/nickname/nicknameInputForm/NicknameInputForm';
 import { ImageSourcePropType } from 'react-native';
 
 export default function NicknameScreen() {
@@ -56,25 +50,8 @@ export default function NicknameScreen() {
     <Container>
       <Stack.Screen options={{ title: '어글리 딜리셔스' }} />
       <SubContainer>
-        <ImageBox>
-          <StyledImage
-            source={
-              image ? image : require('../../assets/images/null_image.png')
-            }
-          />
-          <CameraWrapper onPress={pickImage}>
-            <Camera size={24} fill='white' color='#30DB5B' />
-          </CameraWrapper>
-        </ImageBox>
-        <TitleText>닉네임을 입력해주세요</TitleText>
-        <NicknameInput nickname={nickname} setNickname={setNickname} />
-        <PreferTextBox>
-          <PreferText>
-            • 다른 사람이 사용 중인 닉네임은 사용할 수 없어요.
-          </PreferText>
-          <PreferText>• 특수기호는 사용할 수 없어요.</PreferText>
-          <PreferText>• 10글자 수 이내로 입력해주세요.</PreferText>
-        </PreferTextBox>
+        <ImageCircleUpload image={image} setImage={setImage} />
+        <NicknameInputForm nickname={nickname} setNickname={setNickname} />
       </SubContainer>
 
       <StartButton onPress={handleStart}>

@@ -1,14 +1,36 @@
+import { useLocalSearchParams, useRouter } from 'expo-router';
+
+import BackAndTitle from '@/components/common/backAndTitle/BackAndTitle';
+import Button from '@/components/common/button/Button';
+import ImageCircleUpload from '@/components/common/imageCircleUpload/ImageCircleUpload';
+import NicknameInputForm from '@/components/nickname/nicknameInputForm/NicknameInputForm';
+import UserTypeSelectBox from '@/components/selectUserType/userTypeSelectBox/UserTypeSelectBox';
+import { useState } from 'react';
+import { ImageSourcePropType } from 'react-native';
 import { Container } from './editProfile.styled';
-import { Text } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
 
 export default function EditProfileScreen() {
-  const { id } = useLocalSearchParams();
+  const router = useRouter();
+  const params = useLocalSearchParams<{
+    id: string;
+    name: string;
+    userType: 'user' | 'farmer';
+    profileImgUrl: string;
+    userId: string;
+  }>();
+  const [image, setImage] = useState<ImageSourcePropType | null>(
+    params.profileImgUrl ? { uri: params.profileImgUrl } : null
+  );
+  const [nickname, setNickname] = useState<string>(params.name);
+  const [userType, setUserType] = useState<'user' | 'farmer'>(params.userType);
 
   return (
     <Container>
-      <Text>Edit Profile 페이지</Text>
-      <Text>userId : {id}</Text>
+      <BackAndTitle title='프로필 편집' />
+      <ImageCircleUpload image={image} setImage={setImage} />
+      <NicknameInputForm nickname={nickname} setNickname={setNickname} />
+      <UserTypeSelectBox selected={userType} setSelected={setUserType} />
+      <Button text='시작하기' onClick={() => router.push('/consumer')} />
     </Container>
   );
 }
