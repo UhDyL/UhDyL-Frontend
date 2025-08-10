@@ -14,7 +14,7 @@ import { useRouter } from 'expo-router';
 
 type Props = {
   name: string;
-  userType: 'consumer' | 'seller';
+  userType: 'user' | 'farmer';
   profileImgUrl: string;
   userId: string;
 };
@@ -41,11 +41,22 @@ export default function MyProfileSum({
           <MiniBox>
             <NameText>{name}</NameText>
             <UserTypeText userType={userType}>
-              {userType === 'consumer' ? '구매자' : '판매자'}
+              {userType === 'user' ? '구매자' : '판매자'}
             </UserTypeText>
           </MiniBox>
           <EditProfileButtonWrapper
-            onPress={() => router.push(`/editProfile/${userId}`)}
+            onPress={() =>
+              router.push({
+                pathname: '/editProfile/[id]',
+                params: {
+                  id: userId,
+                  name,
+                  userType,
+                  profileImgUrl,
+                  userId,
+                },
+              })
+            }
           >
             <WhiteText>프로필 편집</WhiteText>
           </EditProfileButtonWrapper>

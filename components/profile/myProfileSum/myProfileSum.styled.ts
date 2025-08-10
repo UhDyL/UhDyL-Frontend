@@ -47,10 +47,10 @@ export const NameText = styled.Text`
   font-weight: 700;
 `;
 
-export const UserTypeText = styled.Text<{ userType: 'consumer' | 'seller' }>`
+export const UserTypeText = styled.Text<{ userType: 'user' | 'farmer' }>`
   border-color: ${({ userType }) =>
-    userType === 'consumer' ? '#19A63C' : '#B07F36'};
-  color: ${({ userType }) => (userType === 'consumer' ? '#19A63C' : '#B07F36')};
+    userType === 'user' ? '#19A63C' : '#B07F36'};
+  color: ${({ userType }) => (userType === 'user' ? '#19A63C' : '#B07F36')};
   border-width: 1px;
   padding: 2px 7px;
   border-radius: 10px;
