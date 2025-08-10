@@ -1,5 +1,3 @@
-import * as ImagePicker from 'expo-image-picker';
-
 import { Stack, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
@@ -11,36 +9,18 @@ import {
 
 import ImageCircleUpload from '@/components/common/imageCircleUpload/ImageCircleUpload';
 import NicknameInputForm from '@/components/nickname/nicknameInputForm/NicknameInputForm';
+import UserTypeSelectBox from '@/components/selectUserType/userTypeSelectBox/UserTypeSelectBox';
 import { ImageSourcePropType } from 'react-native';
 
 export default function NicknameScreen() {
   const [nickname, setNickname] = React.useState<string>('');
   const [image, setImage] = useState<ImageSourcePropType | null>(null);
-  const [userType, setUserType] = useState<'farmer' | 'consumer'>('consumer');
+  const [userType, setUserType] = useState<'user' | 'farmer'>('user');
   const router = useRouter();
 
-  const pickImage = async () => {
-    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (!permission.granted) {
-      alert('사진 접근 권한이 필요합니다.');
-      return;
-    }
-
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      setImage({ uri: result.assets[0].uri });
-    }
-  };
-
   const handleStart = () => {
-    if (userType === 'consumer') {
-      router.replace('/consumer');
+    if (userType === 'user') {
+      router.replace('/user');
     } else {
       router.replace('/farmer');
     }
@@ -52,6 +32,7 @@ export default function NicknameScreen() {
       <SubContainer>
         <ImageCircleUpload image={image} setImage={setImage} />
         <NicknameInputForm nickname={nickname} setNickname={setNickname} />
+        <UserTypeSelectBox selected={userType} setSelected={setUserType} />
       </SubContainer>
 
       <StartButton onPress={handleStart}>

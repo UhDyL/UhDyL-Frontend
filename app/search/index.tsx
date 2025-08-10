@@ -7,10 +7,10 @@ import {
   SubText,
 } from './searchScreen.styled';
 
-import CategoryItemWrapper from '@/components/consumer/categoryItem/CategoryItemWrapper';
 import SortButton from '@/components/common/sortButton/SortButton';
 import SortModal from '@/components/common/sortModal/SortModal';
 import TabBar from '@/components/common/tabBar/TabBar';
+import CategoryItemWrapper from '@/components/user/categoryItem/CategoryItemWrapper';
 import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 

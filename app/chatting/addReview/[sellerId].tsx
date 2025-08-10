@@ -1,18 +1,18 @@
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import {
   ButtonText,
   Container,
   FinishButton,
   LineBar,
 } from './AddReview.styled';
-import { useLocalSearchParams, useRouter } from 'expo-router';
 
+import BackAndTitle from '@/components/common/backAndTitle/BackAndTitle';
 import AddComment from '@/components/review/addComment/AddComment';
 import AddPhotos from '@/components/review/addPhotos/AddPhotos';
 import AddRating from '@/components/review/addRating/AddRating';
-import BackAndTitle from '@/components/common/backAndTitle/BackAndTitle';
 import LikedReviewBox from '@/components/review/likedReviewBox/LikedReviewBox';
-import { ScrollView } from 'react-native';
 import { useState } from 'react';
+import { ScrollView } from 'react-native';
 
 export default function AddReviewScreen() {
   const { sellerId } = useLocalSearchParams();
@@ -42,7 +42,7 @@ export default function AddReviewScreen() {
         <AddRating rating={rating} setRating={setRating} />
         <AddComment comment={comment} setComment={setComment} />
         <AddPhotos />
-        <FinishButton onPress={() => router.replace('/consumer')}>
+        <FinishButton onPress={() => router.replace('/user')}>
           <ButtonText>작성 완료</ButtonText>
         </FinishButton>
       </Container>
