@@ -15,7 +15,12 @@ export default function ProfileScreen() {
     <Container>
       <StyledScrollView>
         <OnlyTitleHeader title='프로필' />
-        <MyProfileSum name='미누리' profileImgUrl='' userType='consumer' />
+        <MyProfileSum
+          userId='idid'
+          name='미누리'
+          profileImgUrl=''
+          userType='consumer'
+        />
         <SelectByTwoBar
           labelOne='찜 내역'
           labelTwo='리뷰 내역'
