@@ -10,15 +10,7 @@ import {
 } from './likedReviewBox.styled';
 
 import { Heart } from 'lucide-react-native';
-
-type Props = {
-  sellerImgUrl: string;
-  itemName: string;
-  price: string;
-  sellerName: string;
-  isLiked: boolean;
-  toggleLiked: () => void;
-};
+import { LikedReviewBoxProps } from '@/types/review';
 
 export default function LikedReviewBox({
   sellerImgUrl,
@@ -27,7 +19,7 @@ export default function LikedReviewBox({
   sellerName,
   isLiked,
   toggleLiked,
-}: Props) {
+}: LikedReviewBoxProps) {
   return (
     <Container>
       <LeftSection>

@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 80%;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
