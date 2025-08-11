@@ -1,20 +1,19 @@
 import { Container, SelectUserTypeBox } from './userTypeSelectBox.styled';
 
 import UserTypeBox from '../userTypeBox/UserTypeBox';
+import { useUserStore } from '@/store/userStore';
 
-type Props = {
-  selected: 'user' | 'farmer';
-  setSelected: (option: 'user' | 'farmer') => void;
-};
+export default function UserTypeSelectBox() {
+  const userType = useUserStore((state) => state.userType);
+  const setUserType = useUserStore((state) => state.setUserType);
 
-export default function UserTypeSelectBox({ selected, setSelected }: Props) {
   return (
     <Container>
-      <SelectUserTypeBox onPress={() => setSelected('user')}>
-        <UserTypeBox userType='user' selected={selected === 'user'} />
+      <SelectUserTypeBox onPress={() => setUserType('user')}>
+        <UserTypeBox userType='user' selected={userType === 'user'} />
       </SelectUserTypeBox>
-      <SelectUserTypeBox onPress={() => setSelected('farmer')}>
-        <UserTypeBox userType='farmer' selected={selected === 'farmer'} />
+      <SelectUserTypeBox onPress={() => setUserType('farmer')}>
+        <UserTypeBox userType='farmer' selected={userType === 'farmer'} />
       </SelectUserTypeBox>
     </Container>
   );

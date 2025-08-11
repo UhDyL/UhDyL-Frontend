@@ -8,6 +8,7 @@ import AfterChatBtn from '@/components/chatting/afterChatBtn/AfterChatBtn';
 import BackAndTitle from '@/components/common/backAndTitle/BackAndTitle';
 import InputArea from '@/components/chatting/inputArea/InputArea';
 import { useLocalSearchParams } from 'expo-router';
+import { useUserStore } from '@/store/userStore';
 
 const dummyChatMessages: ChatMessageResponse[] = [
   {
@@ -58,6 +59,7 @@ export default function ChattingDetailScreen() {
   const { id, name } = useLocalSearchParams();
   const idStr = Array.isArray(id) ? id[0] : id ?? '';
   const nameStr = Array.isArray(name) ? name[0] : name ?? '';
+  const userType = useUserStore((state) => state.userType);
 
   return (
     <KeyboardAvoidingView
@@ -69,7 +71,7 @@ export default function ChattingDetailScreen() {
         <BackAndTitle title={nameStr} />
         <ChatBox data={dummyChatMessages} />
         <BottomContainer>
-          <AfterChatBtn userType='user' sellerId={idStr} />
+          <AfterChatBtn userType={userType ?? 'user'} sellerId={idStr} />
           <InputArea />
         </BottomContainer>
       </Container>

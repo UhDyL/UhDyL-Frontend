@@ -2,10 +2,11 @@ import { Col, Container } from './featuresBox.styled';
 
 import BoxBlock from '../boxBlock/BoxBlock';
 import { useRouter } from 'expo-router';
+import { useUserStore } from '@/store/userStore';
 
 export default function FeaturesBox() {
   const router = useRouter();
-  const userType = 'farmer';
+  const userType = useUserStore((state) => state.userType);
 
   return (
     <Container>

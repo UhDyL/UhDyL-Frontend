@@ -1,18 +1,19 @@
 import { Container, TextWrapper } from './afterChatBtn.styled';
 
 import { useRouter } from 'expo-router';
+import { useUserStore } from '@/store/userStore';
 
 type Props = {
-  userType: 'user' | 'seller';
   sellerId: string;
 };
 
-export default function AfterChatBtn({ userType, sellerId }: Props) {
+export default function AfterChatBtn({ sellerId }: Props) {
   const router = useRouter();
+  const userType = useUserStore((state) => state.userType);
 
   return (
     <Container
-      userType={userType}
+      userType={userType ?? 'user'}
       onPress={() =>
         userType === 'user'
           ? router.push(`/chatting/addReview/${sellerId}`)

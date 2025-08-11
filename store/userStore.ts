@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 
 type UserState = {
-  userType: 'farmer' | 'seller' | null;
+  userType: 'user' | 'farmer' | null;
   name: string | null;
   setUserType: (t: UserState['userType']) => void;
   setName: (n: string | null) => void;
