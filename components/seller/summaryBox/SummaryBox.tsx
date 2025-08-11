@@ -1,11 +1,11 @@
 import { Container, ImageBox, InfoBox, TitleText } from './summaryBox.styled';
 
 import InfoItemBar from './infoItemBar/InfoItemBar';
+import { useUserStore } from '@/store/userStore';
 
 type Props = {
   name: string;
   imgUrl: string;
-  userType: 'user' | 'farmer';
   firstValue: string;
   secondValue: string;
 };
@@ -13,10 +13,11 @@ type Props = {
 export default function SummaryBox({
   name,
   imgUrl,
-  userType,
   firstValue,
   secondValue,
 }: Props) {
+  const userType = useUserStore((state) => state.userType);
+
   return (
     <Container>
       <ImageBox

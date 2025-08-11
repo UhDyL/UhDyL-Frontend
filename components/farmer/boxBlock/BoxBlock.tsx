@@ -5,11 +5,18 @@ type Props = {
   color?: string;
   titleText: string;
   subText?: string;
+  onPress: () => void;
 };
 
-export default function BoxBlock({ size, color, titleText, subText }: Props) {
+export default function BoxBlock({
+  size,
+  color,
+  titleText,
+  subText,
+  onPress,
+}: Props) {
   return (
-    <Container color={color} size={size}>
+    <Container color={color} size={size} onPress={onPress}>
       <TitleText size={size}>{titleText}</TitleText>
       {subText && <SubText size={size}>{subText}</SubText>}
     </Container>

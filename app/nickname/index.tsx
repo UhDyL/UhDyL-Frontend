@@ -1,21 +1,22 @@
-import { Stack, useRouter } from 'expo-router';
-import React, { useState } from 'react';
 import {
   Container,
   StartButton,
   StartButtonText,
   SubContainer,
 } from './Nickname.styled';
+import React, { useState } from 'react';
+import { Stack, useRouter } from 'expo-router';
 
 import ImageCircleUpload from '@/components/common/imageCircleUpload/ImageCircleUpload';
+import { ImageSourcePropType } from 'react-native';
 import NicknameInputForm from '@/components/nickname/nicknameInputForm/NicknameInputForm';
 import UserTypeSelectBox from '@/components/selectUserType/userTypeSelectBox/UserTypeSelectBox';
-import { ImageSourcePropType } from 'react-native';
+import { useUserStore } from '@/store/userStore';
 
 export default function NicknameScreen() {
   const [nickname, setNickname] = React.useState<string>('');
   const [image, setImage] = useState<ImageSourcePropType | null>(null);
-  const [userType, setUserType] = useState<'user' | 'farmer'>('user');
+  const userType = useUserStore((state) => state.userType);
   const router = useRouter();
 
   const handleStart = () => {
@@ -32,7 +33,7 @@ export default function NicknameScreen() {
       <SubContainer>
         <ImageCircleUpload image={image} setImage={setImage} />
         <NicknameInputForm nickname={nickname} setNickname={setNickname} />
-        <UserTypeSelectBox selected={userType} setSelected={setUserType} />
+        <UserTypeSelectBox />
       </SubContainer>
 
       <StartButton onPress={handleStart}>

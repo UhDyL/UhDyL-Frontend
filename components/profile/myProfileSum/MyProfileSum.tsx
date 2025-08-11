@@ -11,21 +11,17 @@ import {
 } from './myProfileSum.styled';
 
 import { useRouter } from 'expo-router';
+import { useUserStore } from '@/store/userStore';
 
 type Props = {
   name: string;
-  userType: 'user' | 'farmer';
   profileImgUrl: string;
   userId: string;
 };
 
-export default function MyProfileSum({
-  name,
-  userType,
-  profileImgUrl,
-  userId,
-}: Props) {
+export default function MyProfileSum({ name, profileImgUrl, userId }: Props) {
   const router = useRouter();
+  const userType = useUserStore((state) => state.userType);
 
   return (
     <Container>
@@ -40,7 +36,7 @@ export default function MyProfileSum({
         <Column>
           <MiniBox>
             <NameText>{name}</NameText>
-            <UserTypeText userType={userType}>
+            <UserTypeText userType={userType ?? 'user'}>
               {userType === 'user' ? '구매자' : '판매자'}
             </UserTypeText>
           </MiniBox>
