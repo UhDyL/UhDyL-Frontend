@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   height: 100px;
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: center;
