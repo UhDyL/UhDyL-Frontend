@@ -7,6 +7,7 @@ import {
   StyledHomeIcon,
 } from './topBar.styled';
 
+import { useUserStore } from '@/store/userStore';
 import { useRouter } from 'expo-router';
 
 type Props = {
@@ -15,6 +16,7 @@ type Props = {
 
 export default function TopBar({ onMorePress }: Props) {
   const router = useRouter();
+  const userType = useUserStore((state) => state.userType);
 
   return (
     <Container>
@@ -22,7 +24,11 @@ export default function TopBar({ onMorePress }: Props) {
         <ButtonWrapper onPress={() => router.back()}>
           <StyledBeforeIcon />
         </ButtonWrapper>
-        <ButtonWrapper onPress={() => router.replace('/user')}>
+        <ButtonWrapper
+          onPress={() =>
+            router.replace(userType === 'user' ? '/user' : '/farmer')
+          }
+        >
           <StyledHomeIcon />
         </ButtonWrapper>
       </LeftSection>
