@@ -17,7 +17,7 @@ export default function FeaturesBox() {
           titleText='이웃 농산물 보러가기'
         />
         <BoxBlock
-          onPress={() => console.log('농산물 판매 페이지')}
+          onPress={() => router.push('/new-item')}
           size='big'
           titleText='농산물 판매하기'
           subText='못난이 농산물을 이웃들에게 팔아 보세요'
