@@ -1,12 +1,17 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  width: 80%;
+  width: 100%;
+  padding: 30px;
   height: 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  top: 50px;
+  z-index: 2;
+  background-color: #fff;
 `;
 
 export const GoHomeButton = styled.TouchableOpacity`
