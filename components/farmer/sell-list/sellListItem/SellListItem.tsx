@@ -49,8 +49,7 @@ export default function SellListItem({
             // TODO: 완료 처리 로직
             break;
           case 1:
-            console.log('수정하기 선택됨');
-            // TODO: 수정 화면으로 이동
+            router.push(`/sell-list/${itemId}/edit`);
             break;
           case 2:
             console.log('삭제하기 선택됨');
