@@ -8,9 +8,6 @@ export const Container = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  top: 50px;
-  z-index: 2;
   background-color: #fff;
 `;
 

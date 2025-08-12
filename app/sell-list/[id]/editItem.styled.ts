@@ -9,5 +9,4 @@ export const Container = styled(SafeAreaView)`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  gap: 10px;
 `;
