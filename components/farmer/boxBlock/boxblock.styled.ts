@@ -4,10 +4,10 @@ export const Container = styled.TouchableOpacity<{
   color?: string;
   size: 'normal' | 'big';
 }>`
-  background-color: ${({ color }) => (color ? color : '#d9d9d9')};
+  background-color: ${({ color }) => (color ? color : '#f5f5f5')};
   width: 160px;
   height: ${({ size }) => (size === 'normal' ? '80px' : '160px')};
-  border-radius: 20px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
