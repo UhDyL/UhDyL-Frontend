@@ -1,8 +1,8 @@
 import { Col, Container } from './featuresBox.styled';
 
-import BoxBlock from '../boxBlock/BoxBlock';
-import { useRouter } from 'expo-router';
 import { useUserStore } from '@/store/userStore';
+import { useRouter } from 'expo-router';
+import BoxBlock from '../boxBlock/BoxBlock';
 
 export default function FeaturesBox() {
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function FeaturesBox() {
           color='#FFB340'
         />
         <BoxBlock
-          onPress={() => console.log('판매 목록 페이지 이동')}
+          onPress={() => router.push('/sell-list')}
           size='normal'
           titleText='판매 목록'
         />
