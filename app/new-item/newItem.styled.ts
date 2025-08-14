@@ -24,3 +24,18 @@ export const JustBox = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+export const PictureTextBox = styled.View`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const TitleText = styled.Text`
+  font-size: 20px;
+  font-weight: 700;
+`;
+
+export const SubText = styled.Text``;
