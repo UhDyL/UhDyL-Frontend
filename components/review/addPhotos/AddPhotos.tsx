@@ -1,5 +1,6 @@
 import * as ImagePicker from 'expo-image-picker';
 
+import { Dispatch, SetStateAction } from 'react';
 import {
   AddedImagesContainer,
   Container,
@@ -8,15 +9,17 @@ import {
   TopBar,
 } from './addPhotos.styled';
 
-import AdditionalPhotoBox from './AdditionalPhotoBox';
-import { Alert } from 'react-native';
 import { Camera } from 'lucide-react-native';
+import { Alert } from 'react-native';
+import AdditionalPhotoBox from './AdditionalPhotoBox';
 import PhotoAdded from './PhotoAdded';
-import { useState } from 'react';
 
-export default function AddPhotos() {
-  const [imagesUrl, setImagesUrl] = useState<string[]>([]);
+type Props = {
+  imagesUrl: string[];
+  setImagesUrl: Dispatch<SetStateAction<string[]>>;
+};
 
+export default function AddPhotos({ imagesUrl, setImagesUrl }: Props) {
   const pickImages = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
