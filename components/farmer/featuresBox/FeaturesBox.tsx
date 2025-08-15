@@ -1,8 +1,8 @@
 import { Col, Container } from './featuresBox.styled';
 
-import { useUserStore } from '@/store/userStore';
-import { useRouter } from 'expo-router';
 import BoxBlock from '../boxBlock/BoxBlock';
+import { useRouter } from 'expo-router';
+import { useUserStore } from '@/store/userStore';
 
 export default function FeaturesBox() {
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function FeaturesBox() {
           titleText='이웃 농산물 보러가기'
         />
         <BoxBlock
-          onPress={() => console.log('농산물 판매 페이지')}
+          onPress={() => router.push('/new-item/step1')}
           size='big'
           titleText='농산물 판매하기'
           subText='못난이 농산물을 이웃들에게 팔아 보세요'

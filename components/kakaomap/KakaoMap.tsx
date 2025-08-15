@@ -1,7 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
 import React from 'react';
-import { KAKAO_MAP_JS_KEY } from 'react-native-dotenv';
 import { WebView } from 'react-native-webview';
 
 type KakaoMapProps = {
@@ -12,6 +11,7 @@ type KakaoMapProps = {
 export default function KakaoMap({ latitude, longitude }: KakaoMapProps) {
   const lat = latitude ?? 37.5665; // 기본 좌표(서울시청)
   const lng = longitude ?? 126.978;
+  const KAKAO_MAP_JS_KEY = process.env.EXPO_PUBLIC_KAKAO_MAP_JS_KEY;
 
   const html = `
     <!DOCTYPE html>

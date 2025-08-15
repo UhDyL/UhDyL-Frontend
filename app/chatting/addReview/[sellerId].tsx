@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { ScrollView } from 'react-native';
 
 export default function AddReviewScreen() {
+  const [imagesUrl, setImagesUrl] = useState<string[]>([]);
   const { sellerId } = useLocalSearchParams();
   const [isLiked, setIsliked] = useState<boolean>(false);
   const [rating, setRating] = useState<number>(0);
@@ -41,7 +42,7 @@ export default function AddReviewScreen() {
         <LineBar></LineBar>
         <AddRating rating={rating} setRating={setRating} />
         <AddComment comment={comment} setComment={setComment} />
-        <AddPhotos />
+        <AddPhotos imagesUrl={imagesUrl} setImagesUrl={setImagesUrl} />
         <FinishButton onPress={() => router.replace('/user')}>
           <ButtonText>작성 완료</ButtonText>
         </FinishButton>
