@@ -1,9 +1,12 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.TouchableOpacity`
-  width: 80%;
+export const Container = styled.TouchableOpacity<{
+  size: 'full' | 'half';
+  color: string;
+}>`
+  width: ${({ size }) => (size === 'full' ? '80%' : '48%')};
   height: 60px;
-  background-color: #30db5b;
+  background-color: ${({ color }) => color};
   display: flex;
   flex-direction: column;
   justify-content: center;

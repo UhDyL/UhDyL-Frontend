@@ -42,6 +42,7 @@ export default function NewItemStepThreeScreen() {
 
       <JustBox>
         <Button
+          size='full'
           text='AI 작성하기'
           onClick={() => router.push('/new-item/loading')}
         />

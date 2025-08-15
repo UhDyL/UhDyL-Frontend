@@ -6,9 +6,9 @@ import {
   TitleText,
 } from './newItem.styled';
 
+import AddPhotos from '@/components/review/addPhotos/AddPhotos';
 import Button from '@/components/common/button/Button';
 import LevelAndGoHome from '@/components/farmer/levelAndGoHome/LevelAndGoHome';
-import AddPhotos from '@/components/review/addPhotos/AddPhotos';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 
@@ -25,7 +25,11 @@ export default function NewItemStepTwoScreen() {
       </TextBox>
       <AddPhotos imagesUrl={imagesUrl} setImagesUrl={setImagesUrl} />
       <JustBox>
-        <Button text='다음' onClick={() => router.push('/new-item/step3')} />
+        <Button
+          size='full'
+          text='다음'
+          onClick={() => router.push('/new-item/step3')}
+        />
       </JustBox>
     </Container>
   );

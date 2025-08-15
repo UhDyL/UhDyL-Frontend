@@ -1,11 +1,11 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import Button from '@/components/common/button/Button';
+import { Container } from './sellsListDetail.styled';
 import ImageSlideBox from '@/components/itemDetail/imageSlideBox/ImageSlideBox';
 import InfoBox from '@/components/itemDetail/infoBox/InfoBox';
 import TopBar from '@/components/itemDetail/topBar/TopBar';
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import { Container } from './sellsListDetail.styled';
 
 export default function SellsListDetail() {
   const { id } = useLocalSearchParams();
@@ -56,6 +56,7 @@ export default function SellsListDetail() {
         rating='5.0'
       />
       <Button
+        size='full'
         onClick={() => router.push(`/sell-list/${id}/edit`)}
         text='수정하기'
       />

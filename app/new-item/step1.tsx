@@ -28,7 +28,11 @@ export default function NewItemStepOneScreen() {
         setSelected={setSelectedOptions}
       />
       <JustBox>
-        <Button text='다음' onClick={() => router.push('/new-item/step2')} />
+        <Button
+          size='full'
+          text='다음'
+          onClick={() => router.push('/new-item/step2')}
+        />
       </JustBox>
     </Container>
   );

@@ -1,11 +1,11 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import Button from '@/components/common/button/Button';
-import EditItemContent from '@/components/farmer/editItemContent/EditItemContent';
-import LevelAndGoHome from '@/components/farmer/levelAndGoHome/LevelAndGoHome';
-import ImageSlideBox from '@/components/itemDetail/imageSlideBox/ImageSlideBox';
-import { useState } from 'react';
 import { Container } from './editItem.styled';
+import EditItemContent from '@/components/farmer/editItemContent/EditItemContent';
+import ImageSlideBox from '@/components/itemDetail/imageSlideBox/ImageSlideBox';
+import LevelAndGoHome from '@/components/farmer/levelAndGoHome/LevelAndGoHome';
+import { useState } from 'react';
 
 export default function EditItem() {
   const { id } = useLocalSearchParams();
@@ -23,7 +23,7 @@ export default function EditItem() {
         content={content}
         setContent={setContent}
       />
-      <Button onClick={() => router.back()} text='작성 완료' />
+      <Button size='full' onClick={() => router.back()} text='작성 완료' />
     </Container>
   );
 }
