@@ -1,12 +1,17 @@
 import { Container, TextStyled } from './goFarmerMain.styled';
+import { Dispatch, SetStateAction } from 'react';
 
 import { useRouter } from 'expo-router';
 
-export default function GoFarmerMain() {
+type Props = {
+  setIsModalOn: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function GoFarmerMain({ setIsModalOn }: Props) {
   const router = useRouter();
 
   return (
-    <Container onPress={() => router.push('/farmer')}>
+    <Container onPress={() => setIsModalOn(true)}>
       <TextStyled>판매자 관리 이동</TextStyled>
     </Container>
   );
