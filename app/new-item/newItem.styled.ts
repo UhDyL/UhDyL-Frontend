@@ -38,4 +38,30 @@ export const TitleText = styled.Text`
   font-weight: 700;
 `;
 
+export const LoadingContainer = styled(SafeAreaView).attrs({
+  edges: ['left', 'right', 'bottom'],
+})`
+  width: 100%;
+  flex: 1;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
 export const SubText = styled.Text``;
+
+export const LoadingMainText = styled.Text`
+  font-size: 25px;
+  font-weight: 700;
+  color: #30db5b;
+`;
+
+export const LoadingSubText = styled.Text`
+  font-weight: 500;
+  font-size: 16px;
+`;
+
+export const LoadingImage = styled.Image``;
