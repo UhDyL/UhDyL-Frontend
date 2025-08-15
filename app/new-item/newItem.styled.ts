@@ -25,7 +25,7 @@ export const JustBox = styled.View`
   align-items: center;
 `;
 
-export const PictureTextBox = styled.View`
+export const TextBox = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: center;

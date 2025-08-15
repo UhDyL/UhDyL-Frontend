@@ -1,8 +1,8 @@
 import {
   Container,
   JustBox,
-  PictureTextBox,
   SubText,
+  TextBox,
   TitleText,
 } from './newItem.styled';
 
@@ -19,10 +19,10 @@ export default function NewItemStepTwoScreen() {
   return (
     <Container>
       <LevelAndGoHome level={2} />
-      <PictureTextBox>
+      <TextBox>
         <TitleText>사진</TitleText>
         <SubText>최대 6장까지 첨부할 수 있어요</SubText>
-      </PictureTextBox>
+      </TextBox>
       <AddPhotos imagesUrl={imagesUrl} setImagesUrl={setImagesUrl} />
       <JustBox>
         <Button text='다음' onClick={() => router.push('/new-item/step3')} />
