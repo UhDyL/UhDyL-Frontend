@@ -13,9 +13,9 @@ import {
   ViewWrapper,
 } from './infoBox.styled';
 
-import { useRouter } from 'expo-router';
 import { Star } from 'lucide-react-native';
 import { Text } from 'react-native';
+import { useRouter } from 'expo-router';
 
 type Props = {
   imgUrl: string;

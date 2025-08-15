@@ -6,7 +6,7 @@ export const Container = styled(SafeAreaView).attrs({
 })`
   width: 100%;
   flex: 1;
-  padding-top: 40px;
+  padding-top: 50px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -65,3 +65,17 @@ export const LoadingSubText = styled.Text`
 `;
 
 export const LoadingImage = styled.Image``;
+
+export const ResultContainer = styled(SafeAreaView).attrs({
+  edges: ['right', 'left', 'bottom'],
+})`
+  width: 100%;
+  padding-top: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  background-color: #fff;
+`;

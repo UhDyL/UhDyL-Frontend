@@ -7,5 +7,5 @@ export const Container = styled.View`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  height: 100px;
+  margin-top: 30px;
 `;
