@@ -15,3 +15,14 @@ export const Container = styled(SafeAreaView).attrs({
 export const StyledScrollView = styled.ScrollView`
   flex: 1;
 `;
+
+export const GoFarmerBtn = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  position: absolute;
+  bottom: 50px;
+`;
