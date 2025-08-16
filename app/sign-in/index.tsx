@@ -5,11 +5,11 @@ import {
   KakaoLoginImg,
   TitleImg,
 } from './Signin.styles';
+import { googleLogin, kakaoLogin } from '@/api/login.api';
 
-import { Link } from 'expo-router';
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import TitleSvg from '../../assets/images/title.svg';
+import { TouchableOpacity } from 'react-native';
 
 export default function SigninScreen() {
   return (
@@ -19,23 +19,19 @@ export default function SigninScreen() {
       </TitleImg>
 
       <IconContainer>
-        <Link href='/nickname' asChild>
-          <TouchableOpacity>
-            <KakaoLoginImg
-              source={require('../../assets/images/kakao_login.png')}
-              resizeMode='contain'
-            />
-          </TouchableOpacity>
-        </Link>
+        <TouchableOpacity onPress={kakaoLogin}>
+          <KakaoLoginImg
+            source={require('../../assets/images/kakao_login.png')}
+            resizeMode='contain'
+          />
+        </TouchableOpacity>
 
-        <Link href='/nickname' asChild>
-          <TouchableOpacity>
-            <GoogleLoginImg
-              source={require('../../assets/images/google_login.png')}
-              resizeMode='contain'
-            />
-          </TouchableOpacity>
-        </Link>
+        <TouchableOpacity onPress={googleLogin}>
+          <GoogleLoginImg
+            source={require('../../assets/images/google_login.png')}
+            resizeMode='contain'
+          />
+        </TouchableOpacity>
       </IconContainer>
     </Container>
   );
