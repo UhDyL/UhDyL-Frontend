@@ -7,8 +7,8 @@ import {
   StyledHomeIcon,
 } from './topBar.styled';
 
-import { useUserStore } from '@/store/userStore';
 import { useRouter } from 'expo-router';
+import { useUserStore } from '@/store/userStore';
 
 type Props = {
   onMorePress: () => void;
@@ -16,7 +16,7 @@ type Props = {
 
 export default function TopBar({ onMorePress }: Props) {
   const router = useRouter();
-  const userType = useUserStore((state) => state.userType);
+  const userType = useUserStore((state) => state.role);
 
   return (
     <Container>

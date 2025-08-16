@@ -4,8 +4,8 @@ import UserTypeBox from '../userTypeBox/UserTypeBox';
 import { useUserStore } from '@/store/userStore';
 
 export default function UserTypeSelectBox() {
-  const userType = useUserStore((state) => state.userType);
-  const setUserType = useUserStore((state) => state.setUserType);
+  const userType = useUserStore((state) => state.role);
+  const setUserType = useUserStore((state) => state.setRole);
 
   return (
     <Container>

@@ -15,7 +15,7 @@ import { useState } from 'react';
 import { useUserStore } from '@/store/userStore';
 
 export default function UserMainScreen() {
-  const userType = useUserStore((state) => state.userType);
+  const userType = useUserStore((state) => state.role);
   const [isModalOn, setIsModalOn] = useState<boolean>(false);
   const router = useRouter();
 

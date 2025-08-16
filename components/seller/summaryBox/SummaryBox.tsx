@@ -16,7 +16,7 @@ export default function SummaryBox({
   firstValue,
   secondValue,
 }: Props) {
-  const userType = useUserStore((state) => state.userType);
+  const userType = useUserStore((state) => state.role);
 
   return (
     <Container>

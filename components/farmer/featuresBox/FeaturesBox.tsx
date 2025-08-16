@@ -6,7 +6,7 @@ import { useUserStore } from '@/store/userStore';
 
 export default function FeaturesBox() {
   const router = useRouter();
-  const userType = useUserStore((state) => state.userType);
+  const userType = useUserStore((state) => state.role);
 
   return (
     <Container>

@@ -16,7 +16,7 @@ import { useUserStore } from '@/store/userStore';
 export default function NicknameScreen() {
   const [nickname, setNickname] = React.useState<string>('');
   const [image, setImage] = useState<ImageSourcePropType | null>(null);
-  const userType = useUserStore((state) => state.userType);
+  const userType = useUserStore((state) => state.role);
   const router = useRouter();
 
   const handleStart = () => {
