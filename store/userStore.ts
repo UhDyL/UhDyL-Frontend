@@ -8,10 +8,13 @@ type UserState = {
   nickname: string;
   role: 'user' | 'farmer';
   mode: '구매자' | '판매자';
+  isLoggedIn: boolean;
+
   setProfileImageUrl: (t: string) => void;
   setNickname: (t: string) => void;
   setRole: (t: 'user' | 'farmer') => void;
   setMode: (t: '구매자' | '판매자') => void;
+  setIsLoggedIn: (b: boolean) => void;
 };
 
 export const useUserStore = create<UserState>()(
@@ -21,10 +24,13 @@ export const useUserStore = create<UserState>()(
       nickname: '',
       role: 'user',
       mode: '구매자',
+      isLoggedIn: false,
+
       setProfileImageUrl: (t) => set({ profileImageUrl: t }),
       setNickname: (t) => set({ nickname: t }),
       setRole: (t) => set({ role: t }),
       setMode: (t) => set({ mode: t }),
+      setIsLoggedIn: (b) => set({ isLoggedIn: b }),
     }),
     {
       name: 'user-storage',
