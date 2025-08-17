@@ -9,7 +9,7 @@ type UserState = {
   role: 'user' | 'farmer';
   mode: '구매자' | '판매자';
   setProfileImageUrl: (t: string) => void;
-  setNickame: (t: string) => void;
+  setNickname: (t: string) => void;
   setRole: (t: 'user' | 'farmer') => void;
   setMode: (t: '구매자' | '판매자') => void;
 };
@@ -22,7 +22,7 @@ export const useUserStore = create<UserState>()(
       role: 'user',
       mode: '구매자',
       setProfileImageUrl: (t) => set({ profileImageUrl: t }),
-      setNickame: (t) => set({ nickname: t }),
+      setNickname: (t) => set({ nickname: t }),
       setRole: (t) => set({ role: t }),
       setMode: (t) => set({ mode: t }),
     }),
