@@ -19,3 +19,29 @@ export const getUserInfo = async (): Promise<UserInfoResponseDto> => {
     throw err;
   }
 };
+
+export interface EditUserProfileInfoRequestDto {
+  profileImageUrl: string;
+  nickname: string;
+  mode: '구매자' | '판매자';
+}
+
+export const EditUserProfileInfo = async ({
+  profileImageUrl,
+  nickname,
+  mode,
+}: EditUserProfileInfoRequestDto): Promise<{
+  success: boolean;
+  data: string;
+}> => {
+  try {
+    const response = await fetcher.patch<{ success: boolean; data: string }>(
+      '/user/profile',
+      { profileImageUrl, nickname, mode }
+    );
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
