@@ -40,6 +40,7 @@ export const useUserStore = create<UserState>()(
         nickname: s.nickname,
         role: s.role,
         mode: s.mode,
+        isLoggedIn: s.isLoggedIn,
       }),
     }
   )
