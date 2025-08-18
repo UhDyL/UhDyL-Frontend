@@ -13,6 +13,7 @@ export const Container = styled.TouchableOpacity`
 export const ImgBox = styled(Image)`
   width: 100%;
   height: 150px;
+  object-fit: cover;
   overflow: hidden;
 `;
 
@@ -27,10 +28,12 @@ export const DescriptionBox = styled.View`
 `;
 
 export const TitleText = styled.Text`
+  flex: 1;
   font-weight: 800;
 `;
 
 export const InfoBox = styled.View`
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,12 +41,13 @@ export const InfoBox = styled.View`
 `;
 
 export const Price = styled.Text`
+  flex: 1;
   font-weight: 800;
 `;
 
 export const SellerImg = styled(Image)`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 `;
 
