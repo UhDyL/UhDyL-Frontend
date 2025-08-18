@@ -6,10 +6,13 @@ import {
 
 import CategoryBox from '@/components/user/categoryBox/CategoryBox';
 import CategoryItemWrapper from '@/components/user/categoryItem/CategoryItemWrapper';
+import { ErrorComponent } from '@/components/common/errorComponent/ErrorComponent';
 import GoFarmerMain from '@/components/farmer/goFarmerMain/GoFarmerMain';
+import { Loading } from '@/components/common/loading/Loading';
 import MainHeader from '@/components/common/mainHeader/MainHeader';
 import OverlayModal from '@/components/common/overlayModal/OverlayModal';
 import TabBar from '@/components/common/tabBar/TabBar';
+import { useGetProductsList } from '@/hooks/query/useGetProductsList';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { useUserStore } from '@/store/userStore';
@@ -17,7 +20,17 @@ import { useUserStore } from '@/store/userStore';
 export default function UserMainScreen() {
   const userType = useUserStore((state) => state.role);
   const [isModalOn, setIsModalOn] = useState<boolean>(false);
+  const { data, error, isError, isPending, isSuccess } = useGetProductsList();
   const router = useRouter();
+
+  let content;
+  if (isPending) {
+    content = <Loading />;
+  } else if (isError) {
+    content = <ErrorComponent error={error} />;
+  } else if (isSuccess) {
+    content = <CategoryItemWrapper data={data ?? []} />;
+  }
 
   return (
     <>
@@ -33,7 +46,7 @@ export default function UserMainScreen() {
         <Container>
           <MainHeader />
           <CategoryBox />
-          <CategoryItemWrapper />
+          {content}
         </Container>
       </StyledScrollView>
       <GoFarmerBtn>
