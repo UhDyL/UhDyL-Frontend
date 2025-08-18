@@ -12,7 +12,7 @@ import { ImageSourcePropType } from 'react-native';
 
 type Props = {
   image: ImageSourcePropType | null;
-  setImage: (image: ImageSourcePropType) => void;
+  setImage: (image: string) => void;
 };
 
 export default function ImageCircleUpload({ image, setImage }: Props) {
@@ -31,7 +31,7 @@ export default function ImageCircleUpload({ image, setImage }: Props) {
     });
 
     if (!result.canceled) {
-      setImage({ uri: result.assets[0].uri });
+      setImage(result.assets[0].uri);
     }
   };
 

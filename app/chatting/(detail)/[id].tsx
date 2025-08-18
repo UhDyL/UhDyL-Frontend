@@ -59,7 +59,7 @@ export default function ChattingDetailScreen() {
   const { id, name } = useLocalSearchParams();
   const idStr = Array.isArray(id) ? id[0] : id ?? '';
   const nameStr = Array.isArray(name) ? name[0] : name ?? '';
-  const userType = useUserStore((state) => state.userType);
+  const userType = useUserStore((state) => state.role);
 
   return (
     <KeyboardAvoidingView

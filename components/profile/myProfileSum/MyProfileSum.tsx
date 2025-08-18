@@ -21,7 +21,7 @@ type Props = {
 
 export default function MyProfileSum({ name, profileImgUrl, userId }: Props) {
   const router = useRouter();
-  const userType = useUserStore((state) => state.userType);
+  const userType = useUserStore((state) => state.role);
 
   return (
     <Container>

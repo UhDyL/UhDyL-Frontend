@@ -1,13 +1,17 @@
 import { Redirect } from 'expo-router';
+import { useUserStore } from '@/store/userStore';
 
 export default function Index() {
-  // 일단 모두 다 sign-in으로 가도록
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+  const userType = useUserStore((state) => state.mode);
 
-  // const { isLoggedIn } = useAuth();
-
-  // if (!isLoggedIn) {
-  //     return <Redirect href='/sign-in'/>
-  // }
-  // return <Redirect href='/profile'/>
-  return <Redirect href='/sign-in' />;
+  if (!isLoggedIn) {
+    return <Redirect href='/sign-in' />;
+  } else {
+    if (userType === '판매자') {
+      return <Redirect href='/farmer' />;
+    } else {
+      return <Redirect href='/user' />;
+    }
+  }
 }
