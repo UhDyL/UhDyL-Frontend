@@ -23,7 +23,6 @@ type Props = {
   rating: string;
   title: string;
   description: string;
-  sellerId: string;
 };
 
 export default function InfoBox({
@@ -32,7 +31,6 @@ export default function InfoBox({
   rating,
   title,
   description,
-  sellerId,
 }: Props) {
   const router = useRouter();
 
@@ -56,7 +54,7 @@ export default function InfoBox({
           </MarketInfoBox>
         </ViewWrapper>
 
-        <GoShopBtn onPress={() => router.push(`/seller/${sellerId}`)}>
+        <GoShopBtn onPress={() => router.push(`/seller/${marketName}`)}>
           <Text>상점 방문하기</Text>
         </GoShopBtn>
       </MarketProfileBox>
