@@ -1,0 +1,10 @@
+export enum Category {
+  NONE = '',
+  FRUIT = 'FRUIT',
+  VEGETABLE = 'VEGETABLE',
+  ROOT_VEGETABLE = 'ROOT_VEGETABLE',
+  GRAIN = 'GRAIN',
+  JUICE_JAM = 'JUICE_JAM',
+  SIDE_DISH = 'SIDE_DISH',
+  GIFT = 'GIFT',
+}
