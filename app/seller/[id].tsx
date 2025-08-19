@@ -1,9 +1,9 @@
-import { Container, SummaryArea } from './seller.styled';
-import { ScrollView, Text } from 'react-native';
+import { Container, StyledScrollView, SummaryArea } from './seller.styled';
 
 import ReviewsBox from '@/components/seller/reviewsBox/ReviewsBox';
 import SummaryBox from '@/components/seller/summaryBox/SummaryBox';
 import TabBar from '@/components/common/tabBar/TabBar';
+import { Text } from 'react-native';
 import TopHeader from '@/components/seller/topHeader/TopHeader';
 import { useGetReviewByNickname } from '@/hooks/query/useGetReviewByNickname';
 import { useLocalSearchParams } from 'expo-router';
@@ -25,22 +25,20 @@ export default function SellerScreen() {
   if (!data) return <Text>데이터 없음</Text>;
 
   return (
-    <>
-      <ScrollView>
-        <Container>
-          <TopHeader />
-          <SummaryArea>
-            <SummaryBox
-              imgUrl={picture}
-              firstValue='0개'
-              name={sellerName}
-              secondValue={rating}
-            />
-          </SummaryArea>
-          <ReviewsBox data={data ?? []} />
-        </Container>
-      </ScrollView>
+    <Container>
+      <StyledScrollView>
+        <TopHeader />
+        <SummaryArea>
+          <SummaryBox
+            imgUrl={picture}
+            firstValue='0개' // 이후 수정
+            name={sellerName}
+            secondValue={rating}
+          />
+        </SummaryArea>
+        <ReviewsBox data={data ?? []} />
+      </StyledScrollView>
       <TabBar status='home' />
-    </>
+    </Container>
   );
 }
