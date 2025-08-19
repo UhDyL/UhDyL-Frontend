@@ -34,6 +34,7 @@ export interface GetProductDetailResponseDto {
   sellerName: string;
   sellerPicture: string;
   sellerRating: number;
+  sellerSalesCount: number;
   images: string[];
   isCompleted: boolean;
   isZzimed: boolean;

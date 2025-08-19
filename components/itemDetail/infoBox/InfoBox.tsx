@@ -13,14 +13,15 @@ import {
   ViewWrapper,
 } from './infoBox.styled';
 
+import { useRouter } from 'expo-router';
 import { Star } from 'lucide-react-native';
 import { Text } from 'react-native';
-import { useRouter } from 'expo-router';
 
 type Props = {
   sellerPicture: string;
   sellerName: string;
   sellerRating: string;
+  sellerSalesCount: number;
   title: string;
   description: string;
 };
@@ -29,6 +30,7 @@ export default function InfoBox({
   sellerPicture,
   sellerName,
   sellerRating,
+  sellerSalesCount,
   title,
   description,
 }: Props) {
@@ -58,7 +60,12 @@ export default function InfoBox({
           onPress={() =>
             router.push({
               pathname: '/seller/[id]',
-              params: { id: sellerName, sellerPicture, sellerRating },
+              params: {
+                id: sellerName,
+                sellerPicture,
+                sellerRating,
+                sellerSalesCount,
+              },
             })
           }
         >

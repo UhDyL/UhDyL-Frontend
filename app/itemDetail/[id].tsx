@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import { Alert } from 'react-native';
 import BottomBar from '@/components/itemDetail/bottomBar/BottomBar';
-import { Container } from './itemDetail.styled';
 import ImageSlideBox from '@/components/itemDetail/imageSlideBox/ImageSlideBox';
 import InfoBox from '@/components/itemDetail/infoBox/InfoBox';
 import TopBar from '@/components/itemDetail/topBar/TopBar';
-import { useActionSheet } from '@expo/react-native-action-sheet';
-import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
-import { useLocalSearchParams } from 'expo-router';
 import { useToggleZzim } from '@/hooks/mutation/useToggleZzim';
+import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
+import { useActionSheet } from '@expo/react-native-action-sheet';
+import { useLocalSearchParams } from 'expo-router';
+import { Alert } from 'react-native';
+import { Container } from './itemDetail.styled';
 
 export default function ItemDetail() {
   const { id } = useLocalSearchParams();
@@ -66,6 +66,7 @@ export default function ItemDetail() {
         price={product?.price.toString() ?? ''}
       />
       <InfoBox
+        sellerSalesCount={product?.sellerSalesCount ?? 0}
         title={product?.title ?? ''}
         description={product?.description ?? ''}
         sellerPicture={product?.sellerPicture ?? ''}
