@@ -1,10 +1,10 @@
+import { SearchResponseDto } from '@/api/product.api';
 import { Container, ItemsContainer } from './categoryItemWrapper.styled';
 
-import { GetProductsResponseDto } from '@/api/product.api';
 import ItemComponent from '../itemComponent/ItemComponent';
 
 type Props = {
-  data: GetProductsResponseDto[];
+  data: SearchResponseDto[];
 };
 
 export default function CategoryItemWrapper({ data }: Props) {
