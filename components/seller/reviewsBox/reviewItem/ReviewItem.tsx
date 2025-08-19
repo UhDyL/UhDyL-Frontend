@@ -1,3 +1,4 @@
+import { Star, UserCircle } from 'lucide-react-native';
 import {
   BuyerBox,
   BuyerText,
@@ -13,7 +14,6 @@ import {
   TitleText,
   TitleWrapper,
 } from './reviewItem.styled';
-import { Star, UserCircle } from 'lucide-react-native';
 
 export type ReviewItemProps = {
   title: string;
@@ -47,8 +47,13 @@ export default function ReviewItem({
           </TitleWrapper>
           <RatingAndBuyerWrapper>
             <Rating>
-              {Array.from({ length: Math.floor(rating) }).map((_, index) => (
-                <Star key={index} size={16} color='#30DB5B' fill='#30DB5B' />
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star
+                  key={index}
+                  size={16}
+                  color='#30DB5B'
+                  fill={index < Math.floor(rating) ? '#30DB5B' : 'none'}
+                />
               ))}
             </Rating>
             <BuyerBox>
