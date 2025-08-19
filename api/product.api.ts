@@ -36,6 +36,7 @@ export interface GetProductDetailResponseDto {
   sellerRating: number;
   images: string[];
   isCompleted: boolean;
+  isZzimed: boolean;
 }
 
 export const getProductDetail = async (productId: number) => {
