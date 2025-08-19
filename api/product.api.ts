@@ -1,3 +1,4 @@
+import { Category } from '@/types/categoryType';
 import PageableDataType from '@/types/pageableDataType';
 import fetcher from './common/fetcher';
 
@@ -47,6 +48,35 @@ export const getProductDetail = async (productId: number) => {
       data: GetProductDetailResponseDto;
     }>(`/product/${productId}`);
     return response.data.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export interface SearchResponseDto {
+  id: number;
+  title: string;
+  price: number;
+  sellerName: string;
+  sellerPicture: string;
+  mainImageUrl: string;
+  isCompleted: boolean;
+}
+
+export type SortType = 'createdAt,DESC' | 'price,DESC';
+
+export const getSearchedItems = async (
+  keyword: string,
+  category: Category,
+  sort: SortType
+) => {
+  try {
+    const response = await fetcher.get<{
+      success: boolean;
+      data: PageableDataType<SearchResponseDto[]>;
+    }>(`/product/search?keyword=${keyword}&category=${category}&sort=${sort}`);
+    return response.data.data.pageContents;
   } catch (err) {
     console.error(err);
     throw err;
