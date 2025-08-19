@@ -34,6 +34,11 @@ export default function SearchScreen() {
     else return 'createdAt,DESC';
   };
 
+  const handleSetOption = (option: 'latest' | 'price') => {
+    setOption(option);
+    setIsModalOn(false);
+  };
+
   useEffect(
     () =>
       searchProducts({
@@ -97,7 +102,7 @@ export default function SearchScreen() {
       <TabBar status='home' />
       {isModalOn && (
         <Overlay onPress={() => setIsModalOn(false)}>
-          <SortModal option={option} setOption={setOption} />
+          <SortModal option={option} setOption={handleSetOption} />
         </Overlay>
       )}
     </>
