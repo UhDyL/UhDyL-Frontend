@@ -1,14 +1,19 @@
 import BottomBar from '@/components/itemDetail/bottomBar/BottomBar';
+import { Container } from './itemDetail.styled';
 import ImageSlideBox from '@/components/itemDetail/imageSlideBox/ImageSlideBox';
 import InfoBox from '@/components/itemDetail/infoBox/InfoBox';
 import TopBar from '@/components/itemDetail/topBar/TopBar';
 import { useActionSheet } from '@expo/react-native-action-sheet';
+import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
 import { useLocalSearchParams } from 'expo-router';
-import { Container } from './itemDetail.styled';
 
 export default function ItemDetial() {
   const { id } = useLocalSearchParams();
-  const sellerId = '2'; // 임의로 설정해둡니당
+
+  const productId = Array.isArray(id) ? id[0] : id;
+
+  const { data } = useGetProductDetail(Number(productId));
+
   const { showActionSheetWithOptions } = useActionSheet();
 
   const handlePress = () => {
@@ -34,14 +39,16 @@ export default function ItemDetial() {
   return (
     <Container>
       <TopBar onMorePress={handlePress} />
-      <ImageSlideBox price='₩ 19,000' />
+      <ImageSlideBox
+        images={data?.images ?? []}
+        price={data?.price.toString() ?? ''}
+      />
       <InfoBox
-        sellerId={sellerId}
-        title='제목'
-        description='설명'
-        imgUrl=''
-        marketName='홍길동'
-        rating='5.0'
+        title={data?.title ?? ''}
+        description={data?.description ?? ''}
+        imgUrl={data?.sellerPicture ?? ''}
+        marketName={data?.sellerName ?? ''}
+        rating={data?.sellerRating.toString() ?? ''}
       />
       <BottomBar />
     </Container>
