@@ -17,7 +17,6 @@ export const getReviewByNickname = async (nickname: string) => {
       success: boolean;
       data: PageableDataType<ReviewType[]>;
     }>(`/review/${encodeURIComponent(nickname)}`);
-    console.log('api 파일 결과 : ', response.data.data.pageContents);
     return response.data.data.pageContents;
   } catch (err) {
     console.error(err);
