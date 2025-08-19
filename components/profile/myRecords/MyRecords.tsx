@@ -1,15 +1,14 @@
-import ReviewItem, {
-  ReviewItemProps,
-} from '@/components/seller/reviewsBox/reviewItem/ReviewItem';
+import ReviewItem from '@/components/seller/reviewsBox/reviewItem/ReviewItem';
 import { Container, ListBox } from './myRecords.styled';
 
+import { ReviewType } from '@/api/review.api';
 import { GetMyZzimResponseDto } from '@/api/zzim.api';
 import LikedReviewBox from '@/components/review/likedReviewBox/LikedReviewBox';
 
 type Props = {
   selected: 1 | 2;
   likedData: GetMyZzimResponseDto[];
-  reviewData: ReviewItemProps[];
+  reviewData: ReviewType[];
 };
 
 export default function MyRecords({ selected, likedData, reviewData }: Props) {

@@ -15,28 +15,28 @@ import {
   TitleWrapper,
 } from './reviewItem.styled';
 
-export type ReviewItemProps = {
-  title: string;
-  rating: number;
-  createdAt: Date;
-  nickname: string;
-  content: string;
-};
+import { ReviewType } from '@/api/review.api';
 
 export default function ReviewItem({
-  title,
-  rating,
-  createdAt,
-  nickname,
+  Id,
   content,
-}: ReviewItemProps) {
+  createdAt,
+  imageUrl,
+  nickName,
+  rating,
+  title,
+}: ReviewType) {
   const reTypeDate = new Date(createdAt);
 
   return (
     <Container>
       <InfoWrapper>
         <ItemImage
-          source={require('../../../../assets/images/null_image.png')}
+          source={
+            imageUrl
+              ? imageUrl
+              : require('../../../../assets/images/null_image.png')
+          }
         />
         <TextArea>
           <DateWrapper>
@@ -58,7 +58,7 @@ export default function ReviewItem({
             </Rating>
             <BuyerBox>
               <UserCircle color='#D9D9D9' size={16} />
-              <BuyerText>{nickname}</BuyerText>
+              <BuyerText>{nickName}</BuyerText>
             </BuyerBox>
           </RatingAndBuyerWrapper>
         </TextArea>
