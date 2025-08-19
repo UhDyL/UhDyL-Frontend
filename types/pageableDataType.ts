@@ -3,6 +3,6 @@ export default interface PageableDataType<T> {
   pageSize: number;
   totalElements: number;
   totalPages: number;
-  pageStor: number;
+  pageSort: number;
   pageContents: T;
 }
