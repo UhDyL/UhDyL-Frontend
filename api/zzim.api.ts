@@ -2,7 +2,8 @@ import PageableDataType from '@/types/pageableDataType';
 import fetcher from './common/fetcher';
 
 export interface GetMyZzimResponseDto {
-  id: number;
+  zzimid: number;
+  productId: number;
   title: string;
   imageUrl: string;
   price: number;
@@ -13,9 +14,9 @@ export const getMyZzim = async () => {
   try {
     const response = await fetcher.get<{
       success: boolean;
-      data: PageableDataType<GetMyZzimResponseDto>;
+      data: PageableDataType<GetMyZzimResponseDto[]>;
     }>('/zzim');
-    return response.data.data;
+    return response.data.data.pageContents;
   } catch (err) {
     console.error(err);
     throw err;
