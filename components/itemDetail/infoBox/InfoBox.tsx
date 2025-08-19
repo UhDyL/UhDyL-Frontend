@@ -18,17 +18,17 @@ import { Text } from 'react-native';
 import { useRouter } from 'expo-router';
 
 type Props = {
-  imgUrl: string;
-  marketName: string;
-  rating: string;
+  sellerPicture: string;
+  sellerName: string;
+  sellerRating: string;
   title: string;
   description: string;
 };
 
 export default function InfoBox({
-  imgUrl,
-  marketName,
-  rating,
+  sellerPicture,
+  sellerName,
+  sellerRating,
   title,
   description,
 }: Props) {
@@ -40,21 +40,21 @@ export default function InfoBox({
         <ViewWrapper>
           <ProfileImage
             source={
-              imgUrl
-                ? { uri: imgUrl }
+              sellerPicture
+                ? { uri: sellerPicture }
                 : require('../../../assets/images/null_image.png')
             }
           />
           <MarketInfoBox>
-            <MarketName>{marketName}</MarketName>
+            <MarketName>{sellerName}</MarketName>
             <RatingBox>
               <Star size={15} fill='#30DB5B' color='#30DB5B' />
-              <RatingValue>{rating}</RatingValue>
+              <RatingValue>{sellerRating}</RatingValue>
             </RatingBox>
           </MarketInfoBox>
         </ViewWrapper>
 
-        <GoShopBtn onPress={() => router.push(`/seller/${marketName}`)}>
+        <GoShopBtn onPress={() => router.push(`/seller/${sellerName}`)}>
           <Text>상점 방문하기</Text>
         </GoShopBtn>
       </MarketProfileBox>

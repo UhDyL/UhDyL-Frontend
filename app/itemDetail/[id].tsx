@@ -68,9 +68,9 @@ export default function ItemDetail() {
       <InfoBox
         title={product?.title ?? ''}
         description={product?.description ?? ''}
-        imgUrl={product?.sellerPicture ?? ''}
-        marketName={product?.sellerName ?? ''}
-        rating={product?.sellerRating.toString() ?? ''}
+        sellerPicture={product?.sellerPicture ?? ''}
+        sellerName={product?.sellerName ?? ''}
+        sellerRating={product?.sellerRating.toString() ?? ''}
       />
       <BottomBar isLiked={isLiked} setIsLiked={handleToggleLiked} />
     </Container>
