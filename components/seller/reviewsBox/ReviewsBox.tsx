@@ -1,10 +1,11 @@
-import ReviewItem, { ReviewItemProps } from './reviewItem/ReviewItem';
 import { Container, TitleBar, TitleText } from './reviewsBox.styled';
 
+import ReviewItem from './reviewItem/ReviewItem';
+import { ReviewType } from '@/api/review.api';
 import { Text } from 'react-native';
 
 type Props = {
-  data: ReviewItemProps[];
+  data: ReviewType[];
 };
 
 export default function ReviewsBox({ data }: Props) {
@@ -15,7 +16,14 @@ export default function ReviewsBox({ data }: Props) {
         <Text>{data.length}개</Text>
       </TitleBar>
       {data.map((d, index) => (
-        <ReviewItem key={index} {...d} />
+        <ReviewItem
+          key={index}
+          nickname={d.nickName}
+          content={d.content}
+          createdAt={d.createdAt}
+          title={d.title}
+          rating={d.rating}
+        />
       ))}
     </Container>
   );

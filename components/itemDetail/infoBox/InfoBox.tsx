@@ -54,7 +54,14 @@ export default function InfoBox({
           </MarketInfoBox>
         </ViewWrapper>
 
-        <GoShopBtn onPress={() => router.push(`/seller/${sellerName}`)}>
+        <GoShopBtn
+          onPress={() =>
+            router.push({
+              pathname: '/seller/[id]',
+              params: { id: sellerName, sellerPicture, sellerRating },
+            })
+          }
+        >
           <Text>상점 방문하기</Text>
         </GoShopBtn>
       </MarketProfileBox>

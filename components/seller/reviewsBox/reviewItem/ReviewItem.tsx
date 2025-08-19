@@ -1,4 +1,3 @@
-import { Star, UserCircle } from 'lucide-react-native';
 import {
   BuyerBox,
   BuyerText,
@@ -14,22 +13,25 @@ import {
   TitleText,
   TitleWrapper,
 } from './reviewItem.styled';
+import { Star, UserCircle } from 'lucide-react-native';
 
 export type ReviewItemProps = {
-  name: string;
+  title: string;
   rating: number;
   createdAt: Date;
-  buyer: string;
+  nickname: string;
   content: string;
 };
 
 export default function ReviewItem({
-  name,
+  title,
   rating,
   createdAt,
-  buyer,
+  nickname,
   content,
 }: ReviewItemProps) {
+  const reTypeDate = new Date(createdAt);
+
   return (
     <Container>
       <InfoWrapper>
@@ -38,10 +40,10 @@ export default function ReviewItem({
         />
         <TextArea>
           <DateWrapper>
-            <DateText>{createdAt.toDateString()}</DateText>
+            <DateText>{`${reTypeDate.getMonth()}월 ${reTypeDate.getDate()}일`}</DateText>
           </DateWrapper>
           <TitleWrapper>
-            <TitleText>{name}</TitleText>
+            <TitleText>{title}</TitleText>
           </TitleWrapper>
           <RatingAndBuyerWrapper>
             <Rating>
@@ -51,7 +53,7 @@ export default function ReviewItem({
             </Rating>
             <BuyerBox>
               <UserCircle color='#D9D9D9' size={16} />
-              <BuyerText>{buyer}</BuyerText>
+              <BuyerText>{nickname}</BuyerText>
             </BuyerBox>
           </RatingAndBuyerWrapper>
         </TextArea>
