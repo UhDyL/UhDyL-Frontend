@@ -28,9 +28,14 @@ export default function ChattingBar({
         connectChat(chatRoomId, (msg) => {
           console.log('메시지 수신', msg);
         });
-        router.push(
-          `/chatting/${chatRoomId}?name=${encodeURIComponent(product.title)}`
-        );
+        router.push({
+          pathname: '/chatting/[id]',
+          params: {
+            id: chatRoomId,
+            name: product.title,
+            itemId: product.id.toString(),
+          },
+        });
       }}
     >
       <ImageBox

@@ -11,16 +11,20 @@ import AddComment from '@/components/review/addComment/AddComment';
 import AddPhotos from '@/components/review/addPhotos/AddPhotos';
 import AddRating from '@/components/review/addRating/AddRating';
 import LikedReviewBox from '@/components/review/likedReviewBox/LikedReviewBox';
+import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
 
 export default function AddReviewScreen() {
   const [imagesUrl, setImagesUrl] = useState<string[]>([]);
   const { sellerId } = useLocalSearchParams();
+
+  const sellerIdStr = Array.isArray(sellerId) ? sellerId[0] : sellerId ?? '';
   const [isLiked, setIsliked] = useState<boolean>(false);
   const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState<string>('');
   const router = useRouter();
+  const { data: itemInfo } = useGetProductDetail(+sellerIdStr);
 
   return (
     <ScrollView
@@ -32,12 +36,12 @@ export default function AddReviewScreen() {
       <Container>
         <BackAndTitle title='리뷰 작성' />
         <LikedReviewBox
-          toggleLiked={() => setIsliked(!isLiked)}
-          sellerImgUrl=''
-          isLiked={isLiked}
-          itemName='복숭아'
-          price='19,000원'
-          sellerName='복복자'
+          title={itemInfo?.title ?? ''}
+          price={itemInfo?.price ?? 0}
+          imageUrl={itemInfo?.images[0] ?? ''}
+          productId={itemInfo?.id ?? 0}
+          zzimid={itemInfo?.id ?? 0}
+          sellerName={itemInfo?.sellerName ?? ''}
         />
         <LineBar></LineBar>
         <AddRating rating={rating} setRating={setRating} />

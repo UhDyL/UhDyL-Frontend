@@ -16,13 +16,13 @@ import { useGetChatMessages } from '@/hooks/query/useGetChatMessages';
 import { useLocalSearchParams } from 'expo-router';
 
 export default function ChattingDetailScreen() {
-  const { id, name } = useLocalSearchParams();
+  const { id, name, itemId } = useLocalSearchParams();
   const idStr = Array.isArray(id) ? id[0] : id ?? '';
   const nameStr = Array.isArray(name) ? name[0] : name ?? '';
+  const itemIdStr = Array.isArray(itemId) ? itemId[0] : itemId ?? '';
   const { data: chatMessages, refetch } = useGetChatMessages(+idStr);
   const [message, setMessage] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
-  const [publicId, setPublicId] = useState<string | undefined>(undefined);
 
   const { mutate: uploadImage } = usePostChattingImage(idStr, imageUrl ?? '');
 
@@ -40,7 +40,7 @@ export default function ChattingDetailScreen() {
         <BackAndTitle title={nameStr} />
         <ChatBox data={chatMessages ?? []} />
         <BottomContainer>
-          <AfterChatBtn sellerId={idStr} />
+          <AfterChatBtn sellerId={itemIdStr} />
           <InputWrapper>
             <InputArea
               imageUrl={imageUrl ?? ''}
