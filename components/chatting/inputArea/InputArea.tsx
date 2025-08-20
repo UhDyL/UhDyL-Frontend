@@ -13,12 +13,22 @@ import {
 } from './inputArea.styled';
 
 import { Alert } from 'react-native';
-import { useState } from 'react';
 
-export default function InputArea() {
-  const [message, setMessage] = useState<string>('');
-  const [imageUri, setImageUri] = useState<string | null>(null);
+type Props = {
+  message: string;
+  setMessage: (message: string) => void;
+  imageUrl: string;
+  setImageUrl: (imageUrl: string) => void;
+  onSendPress: () => void;
+};
 
+export default function InputArea({
+  imageUrl,
+  message,
+  onSendPress,
+  setImageUrl,
+  setMessage,
+}: Props) {
   const pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
@@ -34,7 +44,7 @@ export default function InputArea() {
 
     if (!result.canceled) {
       const uri = result.assets[0].uri;
-      setImageUri(uri);
+      setImageUrl(uri);
       console.log('선택한 이미지:', uri);
       // TODO: 부모에 전달하거나 업로드 로직 연결
     }
@@ -52,17 +62,17 @@ export default function InputArea() {
     });
     if (!result.canceled) {
       const uri = result.assets[0].uri;
-      setImageUri(uri);
+      setImageUrl(uri);
       console.log('촬영한 이미지:', uri);
     }
   };
 
   return (
     <Container>
-      {imageUri && (
+      {imageUrl && (
         <PreviewBox>
-          <ImagePreview source={{ uri: imageUri }} />
-          <XWrapper onPress={() => setImageUri(null)}>
+          <ImagePreview source={{ uri: imageUrl }} />
+          <XWrapper onPress={() => setImageUrl('')}>
             <X size={20} color='#F00' />
           </XWrapper>
         </PreviewBox>
@@ -76,12 +86,7 @@ export default function InputArea() {
           onChangeText={setMessage}
           value={message}
         />
-        <SendIconWrapper
-          onPress={() => {
-            console.log(`'${message}' 전송`);
-            setMessage('');
-          }}
-        >
+        <SendIconWrapper onPress={onSendPress}>
           <Send fill='#fff' color='#000' />
         </SendIconWrapper>
       </Row>

@@ -1,6 +1,7 @@
 import { Container, MessageContainer } from './chatBox.styled';
 
 import { ChatMessageResponseDto } from '@/api/chatting.api';
+import { useUserStore } from '@/store/userStore';
 import React from 'react';
 import MyMessage from '../myMessage/MyMessage';
 import OpponentInfo from '../opponentInfo/OppenentInfo';
@@ -11,24 +12,26 @@ type Props = {
 };
 
 export default function ChatBox({ data }: Props) {
-  const userId = 1; // 나중에 본인 id로 수정
+  const userName = useUserStore((state) => state.nickname);
 
   return (
     <Container>
-      {data.map((chat, index) => {
+      {[...data].reverse().map((chat, index) => {
+        const isOpponent = chat.senderName !== userName;
+
         const isFirstOpponentMessage =
-          chat.senderId !== userId &&
-          (index === 0 || data[index - 1].senderId === userId);
+          isOpponent &&
+          (index === 0 || data[index - 1].senderName === userName);
 
         return (
           <MessageContainer key={index}>
             {isFirstOpponentMessage && (
               <OpponentInfo imgUrl={chat.senderImage} name={chat.senderName} />
             )}
-            {chat.senderId === userId ? (
-              <MyMessage text={chat.message} {...chat} />
+            {isOpponent ? (
+              <OpponentMessage {...chat} text={chat.message} />
             ) : (
-              <OpponentMessage text={chat.message} {...chat} />
+              <MyMessage {...chat} text={chat.message} />
             )}
           </MessageContainer>
         );

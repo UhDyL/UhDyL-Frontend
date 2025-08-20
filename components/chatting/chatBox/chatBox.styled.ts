@@ -8,7 +8,6 @@ export const Container = styled.View`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 10px;
 `;
 
 export const MessageContainer = styled.View`
