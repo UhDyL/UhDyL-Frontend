@@ -4,7 +4,7 @@ export interface UserInfoResponseDto {
   profileImageUrl: string;
   nickname: string;
   role: 'USER' | 'FARMER';
-  mode: '구매자' | '판매자';
+  mode: 'user' | 'farmer';
 }
 
 export const getUserInfo = async (): Promise<UserInfoResponseDto> => {

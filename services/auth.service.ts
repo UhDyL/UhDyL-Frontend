@@ -1,13 +1,13 @@
 import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
 
-import { clearTokens, getRefreshToken, saveTokens } from './token.service';
 import { exchangeCodeForToken, refreshTokenRequest } from '@/api/auth.api';
+import { clearTokens, getRefreshToken, saveTokens } from './token.service';
 
 import { getUserInfo } from '@/api/user.api';
 import { hydrateUserToStore } from '@/store/hydrateUser';
-import { router } from 'expo-router';
 import { useUserStore } from '@/store/userStore';
+import { router } from 'expo-router';
 
 function extractTokensFromUrl(url: string) {
   const { queryParams } = Linking.parse(url);
@@ -82,7 +82,7 @@ export async function logout() {
   await clearTokens();
   useUserStore.getState().setIsLoggedIn(false);
 
-  useUserStore.getState().setMode('구매자');
+  useUserStore.getState().setMode('user');
   useUserStore.getState().setNickname('');
   useUserStore.getState().setProfileImageUrl('');
   useUserStore.getState().setRole('user');
