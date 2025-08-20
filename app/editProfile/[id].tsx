@@ -5,6 +5,8 @@ import Button from '@/components/common/button/Button';
 import ImageCircleUpload from '@/components/common/imageCircleUpload/ImageCircleUpload';
 import NicknameInputForm from '@/components/nickname/nicknameInputForm/NicknameInputForm';
 import UserTypeSelectBox from '@/components/selectUserType/userTypeSelectBox/UserTypeSelectBox';
+import { useEditUserProfileInfo } from '@/hooks/mutation/useEditUserProfileInfo';
+import { useUserStore } from '@/store/userStore';
 import { useState } from 'react';
 import { Container } from './editProfile.styled';
 
@@ -21,6 +23,34 @@ export default function EditProfileScreen() {
   );
   const [nickname, setNickname] = useState<string>(params.name);
   const [userType, setUserType] = useState<'user' | 'farmer'>(params.userType);
+  const { mutate } = useEditUserProfileInfo();
+  const setUserNickname = useUserStore((state) => state.setNickname);
+  const setUserProfileImageUrl = useUserStore(
+    (state) => state.setProfileImageUrl
+  );
+  const setUserMode = useUserStore((state) => state.setMode);
+
+  const handleStart = () => {
+    mutate(
+      {
+        profileImageUrl: image,
+        mode: userType,
+        nickname,
+      },
+      {
+        onSuccess: () => {
+          setUserNickname(nickname);
+          setUserProfileImageUrl(image);
+          setUserMode(userType);
+          if (userType === 'user') {
+            router.replace('/user');
+          } else {
+            router.replace('/farmer');
+          }
+        },
+      }
+    );
+  };
 
   return (
     <Container>
@@ -28,7 +58,7 @@ export default function EditProfileScreen() {
       <ImageCircleUpload image={image} setImage={setImage} />
       <NicknameInputForm nickname={nickname} setNickname={setNickname} />
       <UserTypeSelectBox userType={userType} setUserType={setUserType} />
-      <Button text='시작하기' onClick={() => router.push('/user')} />
+      <Button text='시작하기' onClick={() => handleStart()} />
     </Container>
   );
 }
