@@ -24,7 +24,7 @@ export default function NicknameScreen() {
   const setUserMode = useUserStore((state) => state.setMode);
   const [nickname, setNickname] = React.useState<string>(userNickname);
   const [imageUrl, setImageUrl] = useState<string>(userProfileImageUrl);
-  const [mode, setMode] = useState<'구매자' | '판매자'>(userMode);
+  const [mode, setMode] = useState<'user' | 'farmer'>(userMode);
   const router = useRouter();
   const { mutate } = useEditUserProfileInfo();
 
@@ -40,7 +40,7 @@ export default function NicknameScreen() {
           setUserNickname(nickname);
           setUserProfileImageUrl(imageUrl);
           setUserMode(mode);
-          if (mode === '구매자') {
+          if (mode === 'user') {
             router.replace('/user');
           } else {
             router.replace('/farmer');
@@ -54,7 +54,7 @@ export default function NicknameScreen() {
     <Container>
       <Stack.Screen options={{ title: '어글리 딜리셔스' }} />
       <SubContainer>
-        <ImageCircleUpload image={{ uri: imageUrl }} setImage={setImageUrl} />
+        <ImageCircleUpload image={imageUrl} setImage={setImageUrl} />
         <NicknameInputForm nickname={nickname} setNickname={setNickname} />
         <UserTypeSelectBox userType={mode} setUserType={setMode} />
       </SubContainer>
