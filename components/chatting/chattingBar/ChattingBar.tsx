@@ -1,3 +1,4 @@
+import { ChatRoomResponseDto, connectChat } from '@/api/chatting.api';
 import {
   Container,
   ImageBox,
@@ -8,7 +9,6 @@ import {
   TopArea,
 } from './chattingBar.styled';
 
-import { ChatRoomResponseDto } from '@/api/chatting.api';
 import { useRouter } from 'expo-router';
 import { Text } from 'react-native';
 
@@ -24,11 +24,14 @@ export default function ChattingBar({
 
   return (
     <Container
-      onPress={() =>
+      onPress={() => {
+        connectChat(chatRoomId, (msg) => {
+          console.log('메시지 수신', msg);
+        });
         router.push(
           `/chatting/${chatRoomId}?name=${encodeURIComponent(product.title)}`
-        )
-      }
+        );
+      }}
     >
       <ImageBox
         source={
