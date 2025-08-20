@@ -1,7 +1,11 @@
 import { connectChat, sendChatMessgaes } from '@/api/chatting.api';
 import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform } from 'react-native';
-import { BottomContainer, Container } from './chattingDetail.styled';
+import {
+  BottomContainer,
+  Container,
+  InputWrapper,
+} from './chattingDetail.styled';
 
 import AfterChatBtn from '@/components/chatting/afterChatBtn/AfterChatBtn';
 import ChatBox from '@/components/chatting/chatBox/ChatBox';
@@ -37,31 +41,33 @@ export default function ChattingDetailScreen() {
         <ChatBox data={chatMessages ?? []} />
         <BottomContainer>
           <AfterChatBtn sellerId={idStr} />
-          <InputArea
-            imageUrl={imageUrl ?? ''}
-            setImageUrl={setImageUrl}
-            message={message}
-            setMessage={setMessage}
-            onSendPress={() => {
-              if (imageUrl) {
-                uploadImage(undefined, {
-                  onSuccess: (res) => {
-                    sendChatMessgaes(
-                      +idStr,
-                      message,
-                      res.imageUrl,
-                      res.publicId
-                    );
-                    setMessage('');
-                    setImageUrl('');
-                  },
-                });
-              } else {
-                sendChatMessgaes(+idStr, message, '', '');
-                setMessage('');
-              }
-            }}
-          />
+          <InputWrapper>
+            <InputArea
+              imageUrl={imageUrl ?? ''}
+              setImageUrl={setImageUrl}
+              message={message}
+              setMessage={setMessage}
+              onSendPress={() => {
+                if (imageUrl) {
+                  uploadImage(undefined, {
+                    onSuccess: (res) => {
+                      sendChatMessgaes(
+                        +idStr,
+                        message,
+                        res.imageUrl,
+                        res.publicId
+                      );
+                      setMessage('');
+                      setImageUrl('');
+                    },
+                  });
+                } else {
+                  sendChatMessgaes(+idStr, message, '', '');
+                  setMessage('');
+                }
+              }}
+            />
+          </InputWrapper>
         </BottomContainer>
       </Container>
     </KeyboardAvoidingView>

@@ -22,5 +22,15 @@ export const BottomContainer = styled.View`
   align-items: center;
   gap: 10px;
   z-index: 3;
+`;
+
+export const InputWrapper = styled.View`
+  width: 100%;
+  padding-top: 10px;
+  flex: 1;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
