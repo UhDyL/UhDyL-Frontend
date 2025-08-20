@@ -8,57 +8,48 @@ import {
   TopArea,
 } from './chattingBar.styled';
 
-import { Text } from 'react-native';
+import { ChatRoomResponseDto } from '@/api/chatting.api';
 import { useRouter } from 'expo-router';
-
-export type ChattingBarProps = {
-  chattingId: string;
-  itemImage: string;
-  itemName: string;
-  price: string;
-  lastChat: string;
-  lastAt: Date;
-};
+import { Text } from 'react-native';
 
 export default function ChattingBar({
-  chattingId,
-  itemImage,
-  itemName,
-  price,
-  lastChat,
-  lastAt,
-}: ChattingBarProps) {
+  chatRoomId,
+  chatRoomName,
+  message,
+  product,
+  timestamp,
+}: ChatRoomResponseDto) {
   const router = useRouter();
 
   return (
     <Container
       onPress={() =>
         router.push(
-          `/chatting/${chattingId}?name=${encodeURIComponent(itemName)}`
+          `/chatting/${chatRoomId}?name=${encodeURIComponent(product.title)}`
         )
       }
     >
       <ImageBox
         source={
-          itemImage
-            ? { uri: itemImage }
+          product.mainImageUrl
+            ? { uri: product.mainImageUrl }
             : require('../../../assets/images/null_image.png')
         }
       />
       <InfoBox>
         <TopArea>
-          <ItemNameText>{itemName}</ItemNameText>
+          <ItemNameText>{product.title}</ItemNameText>
           <Text>
             {' '}
-            {lastAt.toLocaleTimeString('ko-KR', {
+            {timestamp.toLocaleTimeString('ko-KR', {
               hour: '2-digit',
               minute: '2-digit',
               hour12: true,
             })}
           </Text>
         </TopArea>
-        <PriceText>{price}</PriceText>
-        <LastChatText>{lastChat}</LastChatText>
+        <PriceText>{product.price}</PriceText>
+        <LastChatText>{message}</LastChatText>
       </InfoBox>
     </Container>
   );
