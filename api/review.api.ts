@@ -37,3 +37,36 @@ export const getMyReviewList = async () => {
     throw err;
   }
 };
+
+export interface PostReviewRequestDto {
+  content: string;
+  rating: number;
+  imageUrl: string;
+  publicId: string;
+  productId: number;
+}
+
+export const postReview = async ({
+  content,
+  rating,
+  imageUrl,
+  publicId,
+  productId,
+}: PostReviewRequestDto) => {
+  try {
+    const repsonse = await fetcher.post<{ success: boolean; data: string }>(
+      '/review',
+      {
+        content,
+        rating,
+        imageUrl,
+        publicId,
+        productId,
+      }
+    );
+    return repsonse.data.success;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
