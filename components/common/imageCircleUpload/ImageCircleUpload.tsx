@@ -8,10 +8,9 @@ import {
 } from './imageCircleUpload.styled';
 
 import { Camera } from 'lucide-react-native';
-import { ImageSourcePropType } from 'react-native';
 
 type Props = {
-  image: ImageSourcePropType | null;
+  image: string;
   setImage: (image: string) => void;
 };
 
@@ -40,7 +39,9 @@ export default function ImageCircleUpload({ image, setImage }: Props) {
       <ImageBox>
         <StyledImage
           source={
-            image ? image : require('../../../assets/images/null_image.png')
+            image
+              ? { uri: image }
+              : require('../../../assets/images/null_image.png')
           }
         />
         <CameraBox onPress={pickImage}>
