@@ -16,7 +16,7 @@ import { useGetChatMessages } from '@/hooks/query/useGetChatMessages';
 import { useLocalSearchParams } from 'expo-router';
 
 export default function ChattingDetailScreen() {
-  const { id, name, itemId } = useLocalSearchParams();
+  const { id, name, itemId, isTradeCompleted } = useLocalSearchParams();
   const idStr = Array.isArray(id) ? id[0] : id ?? '';
   const nameStr = Array.isArray(name) ? name[0] : name ?? '';
   const itemIdStr = Array.isArray(itemId) ? itemId[0] : itemId ?? '';
@@ -27,6 +27,7 @@ export default function ChattingDetailScreen() {
   const { mutate: uploadImage } = usePostChattingImage(idStr, imageUrl ?? '');
 
   useEffect(() => {
+    console.log('끝? :', isTradeCompleted);
     connectChat(+idStr, () => refetch());
   }, []);
 
@@ -40,7 +41,11 @@ export default function ChattingDetailScreen() {
         <BackAndTitle title={nameStr} />
         <ChatBox data={chatMessages ?? []} />
         <BottomContainer>
-          <AfterChatBtn sellerId={itemIdStr} />
+          {isTradeCompleted === 'true' ? (
+            <AfterChatBtn sellerId={itemIdStr} />
+          ) : (
+            ''
+          )}
           <InputWrapper>
             <InputArea
               imageUrl={imageUrl ?? ''}

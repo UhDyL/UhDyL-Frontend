@@ -18,6 +18,7 @@ export default function ChattingBar({
   message,
   product,
   timestamp,
+  isTradeCompleted,
 }: ChatRoomResponseDto) {
   const router = useRouter();
   const chatDate = new Date(timestamp);
@@ -34,6 +35,7 @@ export default function ChattingBar({
             id: chatRoomId,
             name: product.title,
             itemId: product.id.toString(),
+            isTradeCompleted: isTradeCompleted.toString(),
           },
         });
       }}
