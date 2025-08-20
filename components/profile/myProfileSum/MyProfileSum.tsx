@@ -10,16 +10,15 @@ import {
   WhiteText,
 } from './myProfileSum.styled';
 
-import { useRouter } from 'expo-router';
 import { useUserStore } from '@/store/userStore';
+import { useRouter } from 'expo-router';
 
 type Props = {
   name: string;
   profileImgUrl: string;
-  userId: string;
 };
 
-export default function MyProfileSum({ name, profileImgUrl, userId }: Props) {
+export default function MyProfileSum({ name, profileImgUrl }: Props) {
   const router = useRouter();
   const userType = useUserStore((state) => state.role);
 
@@ -45,11 +44,10 @@ export default function MyProfileSum({ name, profileImgUrl, userId }: Props) {
               router.push({
                 pathname: '/editProfile/[id]',
                 params: {
-                  id: userId,
+                  id: name,
                   name,
                   userType,
                   profileImgUrl,
-                  userId,
                 },
               })
             }
