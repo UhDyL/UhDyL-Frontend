@@ -64,7 +64,10 @@ export interface SearchResponseDto {
   isCompleted: boolean;
 }
 
-export type SortType = 'createdAt,DESC' | 'price,DESC';
+export enum SortType {
+  PRICE_DESC = 'price,DESC',
+  CREATED_AT_DESC = 'createdAt,DESC',
+}
 
 export const getSearchedItems = async (
   keyword: string,
