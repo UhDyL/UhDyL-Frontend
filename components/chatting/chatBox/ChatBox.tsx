@@ -1,20 +1,13 @@
 import { Container, MessageContainer } from './chatBox.styled';
 
+import { ChatMessageResponseDto } from '@/api/chatting.api';
+import React from 'react';
 import MyMessage from '../myMessage/MyMessage';
 import OpponentInfo from '../opponentInfo/OppenentInfo';
 import OpponentMessage from '../opponetMessage/OpponentMessage';
-import React from 'react';
-
-export interface ChatMessageResponse {
-  message: string;
-  senderId: number;
-  senderName: string;
-  senderImage: string;
-  timestamp: Date;
-}
 
 type Props = {
-  data: ChatMessageResponse[];
+  data: ChatMessageResponseDto[];
 };
 
 export default function ChatBox({ data }: Props) {
