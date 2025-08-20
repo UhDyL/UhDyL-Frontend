@@ -7,6 +7,7 @@ import AfterChatBtn from '@/components/chatting/afterChatBtn/AfterChatBtn';
 import ChatBox from '@/components/chatting/chatBox/ChatBox';
 import InputArea from '@/components/chatting/inputArea/InputArea';
 import BackAndTitle from '@/components/common/backAndTitle/BackAndTitle';
+import { usePostChattingImage } from '@/hooks/mutation/usePostChattingImage';
 import { useGetChatMessages } from '@/hooks/query/useGetChatMessages';
 import { useLocalSearchParams } from 'expo-router';
 
@@ -18,6 +19,8 @@ export default function ChattingDetailScreen() {
   const [message, setMessage] = useState<string>('');
   const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
   const [publicId, setPublicId] = useState<string | undefined>(undefined);
+
+  const { mutate: uploadImage } = usePostChattingImage(idStr, imageUrl ?? '');
 
   useEffect(() => {
     connectChat(+idStr, () => refetch());
@@ -40,9 +43,23 @@ export default function ChattingDetailScreen() {
             message={message}
             setMessage={setMessage}
             onSendPress={() => {
-              sendChatMessgaes(+idStr, message, imageUrl, publicId);
-              setImageUrl('');
-              setMessage('');
+              if (imageUrl) {
+                uploadImage(undefined, {
+                  onSuccess: (res) => {
+                    sendChatMessgaes(
+                      +idStr,
+                      message,
+                      res.imageUrl,
+                      res.publicId
+                    );
+                    setMessage('');
+                    setImageUrl('');
+                  },
+                });
+              } else {
+                sendChatMessgaes(+idStr, message, '', '');
+                setMessage('');
+              }
             }}
           />
         </BottomContainer>
