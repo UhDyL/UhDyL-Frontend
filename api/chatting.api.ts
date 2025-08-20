@@ -19,6 +19,7 @@ export interface ChatRoomResponseDto {
   };
   message: string;
   timestamp: Date;
+  isTradeCompleted: boolean;
 }
 
 export const getChatRoomList = async (): Promise<ChatRoomResponseDto[]> => {
