@@ -20,6 +20,7 @@ export default function ChattingBar({
   timestamp,
 }: ChatRoomResponseDto) {
   const router = useRouter();
+  const chatDate = new Date(timestamp);
 
   return (
     <Container
@@ -41,7 +42,7 @@ export default function ChattingBar({
           <ItemNameText>{product.title}</ItemNameText>
           <Text>
             {' '}
-            {timestamp.toLocaleTimeString('ko-KR', {
+            {chatDate.toLocaleTimeString('ko-KR', {
               hour: '2-digit',
               minute: '2-digit',
               hour12: true,
@@ -49,7 +50,7 @@ export default function ChattingBar({
           </Text>
         </TopArea>
         <PriceText>{product.price}</PriceText>
-        <LastChatText>{message}</LastChatText>
+        <LastChatText>{message ?? '아직 보낸 메세지가 없어요!'}</LastChatText>
       </InfoBox>
     </Container>
   );

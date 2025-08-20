@@ -73,7 +73,11 @@ export default function ItemDetail() {
         sellerName={product?.sellerName ?? ''}
         sellerRating={product?.sellerRating.toString() ?? ''}
       />
-      <BottomBar isLiked={isLiked} setIsLiked={handleToggleLiked} />
+      <BottomBar
+        productId={product?.id.toString() ?? ''}
+        isLiked={isLiked}
+        setIsLiked={handleToggleLiked}
+      />
     </Container>
   );
 }
