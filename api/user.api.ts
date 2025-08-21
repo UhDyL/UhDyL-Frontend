@@ -45,3 +45,22 @@ export const EditUserProfileInfo = async ({
     throw err;
   }
 };
+
+export interface GetMyFieldLocationResponse {
+  location_x: number;
+  location_y: number;
+}
+
+export const getMyFieldLocation = async () => {
+  try {
+    const response = await fetcher.get<{
+      success: boolean;
+      code: string;
+      data: GetMyFieldLocationResponse;
+    }>('/user/location');
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
