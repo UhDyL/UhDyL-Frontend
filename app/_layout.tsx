@@ -2,9 +2,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SplashScreen, Stack } from 'expo-router';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Toast from 'react-native-toast-message';
 
 export default function Layout() {
   const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ export default function Layout() {
               headerShown: false,
             }}
           />
+          <Toast />
         </SafeAreaProvider>
       </ActionSheetProvider>
     </QueryClientProvider>
