@@ -1,15 +1,36 @@
+import { useEffect, useState } from 'react';
+
 import BottomBar from '@/components/itemDetail/bottomBar/BottomBar';
 import ImageSlideBox from '@/components/itemDetail/imageSlideBox/ImageSlideBox';
 import InfoBox from '@/components/itemDetail/infoBox/InfoBox';
 import TopBar from '@/components/itemDetail/topBar/TopBar';
+import { useToggleZzim } from '@/hooks/mutation/useToggleZzim';
+import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useLocalSearchParams } from 'expo-router';
+import { Alert } from 'react-native';
 import { Container } from './itemDetail.styled';
 
-export default function ItemDetial() {
+export default function ItemDetail() {
   const { id } = useLocalSearchParams();
-  const sellerId = '2'; // 임의로 설정해둡니당
+  const productId = Array.isArray(id) ? id[0] : id;
+  const { mutate } = useToggleZzim(+productId);
+  const { data: product } = useGetProductDetail(Number(productId));
+  const [isLiked, setIsLiked] = useState<boolean>(product?.isZzimed ?? false);
+
   const { showActionSheetWithOptions } = useActionSheet();
+
+  const handleToggleLiked = () => {
+    mutate(undefined, {
+      onSuccess: (data) => {
+        setIsLiked(data.isZzim);
+        console.log('찜 요청 성공 : ', data.isZzim);
+      },
+      onError: () => {
+        Alert.alert('찜 요청 실패', '다시 시도해주세요.');
+      },
+    });
+  };
 
   const handlePress = () => {
     console.log('점 세 개 아이콘 클릭됨!');
@@ -31,19 +52,32 @@ export default function ItemDetial() {
     );
   };
 
+  useEffect(() => {
+    if (product) {
+      setIsLiked(product.isZzimed);
+    }
+  }, [product]);
+
   return (
     <Container>
       <TopBar onMorePress={handlePress} />
-      <ImageSlideBox price='₩ 19,000' />
-      <InfoBox
-        sellerId={sellerId}
-        title='제목'
-        description='설명'
-        imgUrl=''
-        marketName='홍길동'
-        rating='5.0'
+      <ImageSlideBox
+        images={product?.images ?? []}
+        price={product?.price.toString() ?? ''}
       />
-      <BottomBar />
+      <InfoBox
+        sellerSalesCount={product?.sellerSalesCount ?? 0}
+        title={product?.title ?? ''}
+        description={product?.description ?? ''}
+        sellerPicture={product?.sellerPicture ?? ''}
+        sellerName={product?.sellerName ?? ''}
+        sellerRating={product?.sellerRating.toString() ?? ''}
+      />
+      <BottomBar
+        productId={product?.id.toString() ?? ''}
+        isLiked={isLiked}
+        setIsLiked={handleToggleLiked}
+      />
     </Container>
   );
 }

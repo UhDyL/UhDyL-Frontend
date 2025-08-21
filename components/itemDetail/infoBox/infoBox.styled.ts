@@ -39,6 +39,7 @@ export const ProfileImage = styled(Image)`
 `;
 
 export const RatingBox = styled.View`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

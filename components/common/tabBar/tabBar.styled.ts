@@ -9,9 +9,9 @@ export const Container = styled.View`
   justify-content: space-around;
   align-items: center;
   padding: 10px;
-  padding-bottom: 20px;
-  position: absolute;
-  bottom: 0;
+  /* padding-bottom: 20px; */
+  /* position: absolute; */
+  /* bottom: 0; */
   border-top-width: 1px;
   border-top-color: #0000001a;
   padding-bottom: 20px;

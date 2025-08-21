@@ -49,6 +49,7 @@ export const TitleText = styled.Text`
 `;
 
 export const Rating = styled.View`
+  width: 40%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

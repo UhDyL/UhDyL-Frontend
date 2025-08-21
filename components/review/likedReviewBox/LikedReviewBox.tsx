@@ -9,29 +9,39 @@ import {
   SellerNameText,
 } from './likedReviewBox.styled';
 
+import { GetMyZzimResponseDto } from '@/api/zzim.api';
+import { useToggleZzim } from '@/hooks/mutation/useToggleZzim';
 import { Heart } from 'lucide-react-native';
-import { LikedReviewBoxProps } from '@/types/review';
+import { useState } from 'react';
 
 export default function LikedReviewBox({
-  sellerImgUrl,
-  itemName,
+  zzimid,
+  productId,
+  imageUrl,
   price,
   sellerName,
-  isLiked,
-  toggleLiked,
-}: LikedReviewBoxProps) {
+  title,
+}: GetMyZzimResponseDto) {
+  const [isLiked, setIsLiked] = useState<boolean>(true);
+  const { mutate } = useToggleZzim(productId);
+  const toggleLiked = () => {
+    mutate(undefined, {
+      onSuccess: () => setIsLiked(!isLiked),
+    });
+  };
+
   return (
     <Container>
       <LeftSection>
         <ImageBox
           source={
-            sellerImgUrl
-              ? { uri: sellerImgUrl }
+            imageUrl
+              ? { uri: imageUrl }
               : require('../../../assets/images/null_image.png')
           }
         />
         <InfoBox>
-          <ItemNameText>{itemName}</ItemNameText>
+          <ItemNameText>{title}</ItemNameText>
           <PriceText>{price}</PriceText>
           <SellerNameText>{sellerName}</SellerNameText>
         </InfoBox>

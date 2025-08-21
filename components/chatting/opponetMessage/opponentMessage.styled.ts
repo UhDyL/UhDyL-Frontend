@@ -6,7 +6,7 @@ export const Container = styled.View`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin: 10px 0;
+  margin: 2px 0;
 `;
 
 export const ChatBubble = styled.Text`
@@ -16,4 +16,12 @@ export const ChatBubble = styled.Text`
   padding: 10px 15px;
   font-size: 16px;
   font-weight: 600;
+`;
+
+export const ContentBox = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 `;

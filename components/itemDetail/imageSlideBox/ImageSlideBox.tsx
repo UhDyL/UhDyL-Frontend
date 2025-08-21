@@ -1,10 +1,3 @@
-import { useRef, useState } from 'react';
-import {
-  Dimensions,
-  FlatList,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-} from 'react-native';
 import {
   BottomWrapper,
   Container,
@@ -15,19 +8,22 @@ import {
   PriceWrapper,
   SlideImage,
 } from './imageSlideBox.styled';
+import {
+  Dimensions,
+  FlatList,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+} from 'react-native';
+import { useRef, useState } from 'react';
 
 const { width } = Dimensions.get('window');
-const images = [
-  require('../../../assets/images/itemDetail/dummy_img.png'),
-  require('../../../assets/images/itemDetail/dummy_img.png'),
-  require('../../../assets/images/itemDetail/dummy_img.png'),
-];
 
 type Props = {
+  images: string[];
   price: string;
 };
 
-export default function ImageSlideBox({ price }: Props) {
+export default function ImageSlideBox({ images, price }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
 
@@ -47,7 +43,9 @@ export default function ImageSlideBox({ price }: Props) {
         onScroll={handleScroll}
         scrollEventThrottle={16}
         keyExtractor={(_, index) => index.toString()}
-        renderItem={({ item }) => <SlideImage source={item} />}
+        renderItem={({ item }) => (
+          <SlideImage source={{ uri: item as string }} resizeMode='cover' />
+        )}
       />
       <BottomWrapper>
         <PriceWrapper

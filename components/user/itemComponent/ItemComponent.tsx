@@ -15,7 +15,7 @@ type Props = {
   id: number;
   imgUrl: string;
   title: string;
-  price: string;
+  price: number;
   sellerName: string;
   sellerImage: string;
 };

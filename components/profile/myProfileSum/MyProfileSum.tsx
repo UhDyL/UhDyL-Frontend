@@ -1,3 +1,4 @@
+import { Text, TouchableOpacity } from 'react-native';
 import {
   Column,
   Container,
@@ -10,18 +11,19 @@ import {
   WhiteText,
 } from './myProfileSum.styled';
 
-import { useRouter } from 'expo-router';
+import { logout } from '@/services/auth.service';
 import { useUserStore } from '@/store/userStore';
+import { useRouter } from 'expo-router';
 
 type Props = {
   name: string;
   profileImgUrl: string;
-  userId: string;
 };
 
-export default function MyProfileSum({ name, profileImgUrl, userId }: Props) {
+export default function MyProfileSum({ name, profileImgUrl }: Props) {
   const router = useRouter();
-  const userType = useUserStore((state) => state.role);
+  const userType = useUserStore((state) => state.mode);
+  console.log(userType);
 
   return (
     <Container>
@@ -39,17 +41,24 @@ export default function MyProfileSum({ name, profileImgUrl, userId }: Props) {
             <UserTypeText userType={userType ?? 'user'}>
               {userType === 'user' ? '구매자' : '판매자'}
             </UserTypeText>
+            <TouchableOpacity
+              onPress={() => {
+                logout();
+                router.replace('/');
+              }}
+            >
+              <Text>로그아웃</Text>
+            </TouchableOpacity>
           </MiniBox>
           <EditProfileButtonWrapper
             onPress={() =>
               router.push({
                 pathname: '/editProfile/[id]',
                 params: {
-                  id: userId,
+                  id: name,
                   name,
                   userType,
                   profileImgUrl,
-                  userId,
                 },
               })
             }
