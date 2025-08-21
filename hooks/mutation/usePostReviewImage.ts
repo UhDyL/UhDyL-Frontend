@@ -1,9 +1,9 @@
 import { postReviewImage } from '@/api/image.api';
 import { useMutation } from '@tanstack/react-query';
 
-export const usePostReviewImage = (imageUrl: string) => {
+export const usePostReviewImage = () => {
   return useMutation({
     mutationKey: ['postReviewImage'],
-    mutationFn: () => postReviewImage(imageUrl),
+    mutationFn: (imageUrl: string) => postReviewImage(imageUrl),
   });
 };

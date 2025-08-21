@@ -17,9 +17,14 @@ import PhotoAdded from './PhotoAdded';
 type Props = {
   imagesUrl: string[];
   setImagesUrl: Dispatch<SetStateAction<string[]>>;
+  onAddImage?: (uris: string[]) => void;
 };
 
-export default function AddPhotos({ imagesUrl, setImagesUrl }: Props) {
+export default function AddPhotos({
+  imagesUrl,
+  setImagesUrl,
+  onAddImage,
+}: Props) {
   const pickImages = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
@@ -36,7 +41,11 @@ export default function AddPhotos({ imagesUrl, setImagesUrl }: Props) {
 
     if (!result.canceled) {
       const uris = result.assets.map((asset) => asset.uri);
-      setImagesUrl((prev) => [...prev, ...uris]);
+      if (onAddImage) {
+        onAddImage(uris);
+      } else {
+        setImagesUrl((prev) => [...prev, ...uris]);
+      }
     }
   };
 
