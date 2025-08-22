@@ -78,6 +78,15 @@ async function prefetchAndHydrateUser() {
   }
 }
 
+export async function hydrateUserAgain() {
+  try {
+    const user = await getUserInfo();
+    hydrateUserToStore(user);
+  } catch (e) {
+    console.warn('hydrate user failed:', e);
+  }
+}
+
 export async function logout() {
   await clearTokens();
   useUserStore.getState().setIsLoggedIn(false);
