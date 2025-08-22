@@ -85,3 +85,23 @@ export const getSearchedItems = async (
     throw err;
   }
 };
+
+export interface GetMySalesInfoResponseDto {
+  sellerName: string;
+  salesCount: number;
+  salesRevenue: number;
+  sellerPicture: string;
+}
+
+export const getMySalesInfo = async () => {
+  try {
+    const response = await fetcher.get<{
+      success: boolean;
+      data: GetMySalesInfoResponseDto;
+    }>('/product/sales-stats');
+    return response.data.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
