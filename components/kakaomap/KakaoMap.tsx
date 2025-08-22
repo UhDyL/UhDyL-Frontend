@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import React from 'react';
 import { WebView } from 'react-native-webview';
@@ -6,10 +6,15 @@ import { WebView } from 'react-native-webview';
 type KakaoMapProps = {
   latitude?: number;
   longitude?: number;
+  onLocationSelect?: (lat: number, lng: number) => void;
 };
 
-export default function KakaoMap({ latitude, longitude }: KakaoMapProps) {
-  const lat = latitude ?? 37.5665; // 기본 좌표(서울시청)
+export default function KakaoMap({
+  latitude,
+  longitude,
+  onLocationSelect,
+}: KakaoMapProps) {
+  const lat = latitude ?? 37.5665;
   const lng = longitude ?? 126.978;
   const KAKAO_MAP_JS_KEY = process.env.EXPO_PUBLIC_KAKAO_MAP_JS_KEY;
 
@@ -20,10 +25,9 @@ export default function KakaoMap({ latitude, longitude }: KakaoMapProps) {
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <style>
-          html, body { height:100%; margin:0; padding:0; }
+          html, body { height:100%; margin:0; padding:0; overflow:hidden; }
           #map { width:100%; height:100%; }
         </style>
-        <!-- autoload=false 로드 -->
         <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_MAP_JS_KEY}&autoload=false"></script>
       </head>
       <body>
@@ -37,7 +41,19 @@ export default function KakaoMap({ latitude, longitude }: KakaoMapProps) {
                 level: 3
               };
               var map = new kakao.maps.Map(container, options);
-              new kakao.maps.Marker({ position: new kakao.maps.LatLng(${lat}, ${lng}), map: map });
+
+              // idle 이벤트: 사용자가 지도를 이동/확대한 후 멈췄을 때 실행
+              kakao.maps.event.addListener(map, 'idle', function () {
+                var center = map.getCenter();
+                var lat = center.getLat();
+                var lng = center.getLng();
+                window.ReactNativeWebView && window.ReactNativeWebView.postMessage(JSON.stringify({
+                  type: 'LOCATION_SELECTED',
+                  lat: lat,
+                  lng: lng
+                }));
+              });
+
               window.ReactNativeWebView && window.ReactNativeWebView.postMessage('KAKAO_READY');
             } catch (e) {
               window.ReactNativeWebView && window.ReactNativeWebView.postMessage('KAKAO_ERROR:' + e.message);
@@ -52,16 +68,27 @@ export default function KakaoMap({ latitude, longitude }: KakaoMapProps) {
     <View style={styles.container}>
       <WebView
         originWhitelist={['*']}
-        source={{
-          html,
-          // ★ Kakao 콘솔에 등록한 도메인으로 교체하세요
-          baseUrl: 'https://my-app.local',
-        }}
+        source={{ html }}
         style={styles.webview}
         javaScriptEnabled
         domStorageEnabled
         mixedContentMode='always'
-        onMessage={(e) => console.log('KakaoMap:', e.nativeEvent.data)}
+        onMessage={(e) => {
+          try {
+            const data = JSON.parse(e.nativeEvent.data);
+            if (data.type === 'LOCATION_SELECTED') {
+              onLocationSelect && onLocationSelect(data.lat, data.lng);
+            } else {
+              console.log('KakaoMap:', data);
+            }
+          } catch {
+            console.log('KakaoMap:', e.nativeEvent.data);
+          }
+        }}
+      />
+      <Image
+        source={require('@/assets/images/location_marker.png')}
+        style={styles.centerMarker}
       />
     </View>
   );
@@ -79,5 +106,14 @@ const styles = StyleSheet.create({
   },
   webview: {
     flex: 1,
+  },
+  centerMarker: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    width: 32,
+    height: 32,
+    marginLeft: -16,
+    marginTop: -32,
   },
 });
