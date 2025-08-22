@@ -64,3 +64,19 @@ export const getMyFieldLocation = async () => {
     throw err;
   }
 };
+
+export const postMyFieldLocation = async (x: string, y: string) => {
+  try {
+    const response = await fetcher.post<{ success: boolean; data: string }>(
+      '/user/location',
+      {
+        location_x: x,
+        location_y: y,
+      }
+    );
+    return response.data.success;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
