@@ -80,3 +80,21 @@ export const postMyFieldLocation = async (x: string, y: string) => {
     throw err;
   }
 };
+
+export interface GetFarmerAuthResponseDto {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export const getFarmerAuth = async () => {
+  try {
+    const response = await fetcher.post<{
+      success: boolean;
+      data: GetFarmerAuthResponseDto;
+    }>('/user/complete-registration');
+    return response.data.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
