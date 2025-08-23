@@ -6,10 +6,23 @@ import {
 } from './newItem.styled';
 
 import { TouchableOpacity } from 'react-native';
+import { useEffect } from 'react';
+import { useFormStore } from '@/store/useFormStore';
+import { usePostAIGenerate } from '@/hooks/mutation/usePostAIGenerate';
 import { useRouter } from 'expo-router';
 
 export default function LoadingScreen() {
   const router = useRouter();
+  const { formData } = useFormStore();
+  const { mutate: postAIGenerate } = usePostAIGenerate();
+
+  useEffect(() => {
+    postAIGenerate(formData, {
+      onSuccess: () => {
+        router.push('/new-item/result');
+      },
+    });
+  });
 
   return (
     <LoadingContainer>
