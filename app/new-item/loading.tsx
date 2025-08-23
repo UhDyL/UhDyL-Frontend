@@ -22,7 +22,7 @@ export default function LoadingScreen() {
         router.push('/new-item/result');
       },
     });
-  });
+  }, []);
 
   return (
     <LoadingContainer>
