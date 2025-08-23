@@ -18,12 +18,22 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 
 export default function NewItemStepThreeScreen() {
+  const { formData, setFormData } = useFormStore();
   const router = useRouter();
   const [price, setPrice] = useState<string>('');
+  const reverseMappingType = (
+    tone: string
+  ): 'friendly' | 'funny' | 'like_seller' => {
+    if (tone === 'a friendly and caring tone') return 'friendly';
+    if (tone === 'a witty and cheerful tone') return 'funny';
+    if (tone === "a savvy merchant's tone, nighlighting value-for-money")
+      return 'like_seller';
+    return 'friendly';
+  };
   const [selected, setSelected] = useState<
     'friendly' | 'funny' | 'like_seller'
-  >('friendly');
-  const { setFormData } = useFormStore();
+  >(reverseMappingType(formData.tone));
+
   const mappingTypeSentences = (type: 'friendly' | 'funny' | 'like_seller') => {
     if (type === 'friendly') return 'a friendly and caring tone';
     if (type === 'funny') return 'a witty and cheerful tone';

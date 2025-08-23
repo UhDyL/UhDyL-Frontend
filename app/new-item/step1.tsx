@@ -15,9 +15,9 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 
 export default function NewItemStepTwoScreen() {
-  const [imagesUrl, setImagesUrl] = useState<string[]>([]);
-  const router = useRouter();
   const { formData, setFormData } = useFormStore();
+  const [imagesUrl, setImagesUrl] = useState<string[]>(formData.images);
+  const router = useRouter();
   const [isUploaded, setIsUploaded] = useState<boolean>(false);
 
   const { mutateAsync: uploadImage } = usePostProductImage();

@@ -11,11 +11,17 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 
 export default function NewItemStepOneScreen() {
-  const [statusAndInfo, setStatusAndInfo] = useState<string>('');
-  const [unitAndPrice, setUnitAndPrice] = useState<string>('');
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const { formData, setFormData } = useFormStore();
+  const [statusAndInfo, setStatusAndInfo] = useState<string>(
+    formData.condition
+  );
+  const [unitAndPrice, setUnitAndPrice] = useState<string>(
+    formData.pricePerWeight
+  );
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(
+    formData.categories
+  );
   const router = useRouter();
-  const { setFormData } = useFormStore();
 
   return (
     <KeyBoardSafeArea onPress={Keyboard.dismiss}>
