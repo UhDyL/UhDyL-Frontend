@@ -156,3 +156,25 @@ export const getMyItems = async () => {
     throw err;
   }
 };
+
+export interface PatchItemInfoReqeustDto {
+  title?: string;
+  description?: string;
+  price: number;
+}
+
+export const patchItemInfo = async (
+  productId: number,
+  data: PatchItemInfoReqeustDto
+) => {
+  try {
+    const response = await fetcher.patch<{ success: boolean; data: string }>(
+      `/product/${productId}`,
+      data
+    );
+    return response;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
