@@ -60,7 +60,7 @@ export const postReviewImage = async (imageUrl: string) => {
 export const postProductImage = async (imageUrl: string) => {
   const formData = new FormData();
 
-  formData.append('image', {
+  formData.append('images', {
     uri: imageUrl,
     type: 'image/jpeg',
     name: 'upload.jpg',
@@ -70,11 +70,7 @@ export const postProductImage = async (imageUrl: string) => {
     const response = await fetcher.post<{
       success: boolean;
       data: ImageUploadResponseDto;
-    }>(`/image/product`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    }>(`/image/product`, formData);
 
     return response.data.data;
   } catch (err) {
