@@ -60,7 +60,9 @@ export default function SellListItem({
       <Row>
         <OverlayImage isCompleted={isCompleted} source={mainImageUrl} />
         <Col>
-          <ItemNameText>{title}</ItemNameText>
+          <ItemNameText numberOfLines={1} ellipsizeMode='tail'>
+            {title}
+          </ItemNameText>
           <PriceText>{price}</PriceText>
           <FarmerNameText>{sellerName}</FarmerNameText>
         </Col>
