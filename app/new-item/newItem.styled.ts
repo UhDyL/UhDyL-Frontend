@@ -1,4 +1,5 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { TouchableWithoutFeedback } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled(SafeAreaView).attrs({
@@ -13,6 +14,15 @@ export const Container = styled(SafeAreaView).attrs({
   justify-content: flex-start;
   align-items: center;
   gap: 40px;
+`;
+
+export const KeyBoardSafeArea = styled(TouchableWithoutFeedback)`
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export const JustBox = styled.View`
