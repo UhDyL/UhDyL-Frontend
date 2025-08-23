@@ -7,6 +7,7 @@ import InfoBox from '@/components/itemDetail/infoBox/InfoBox';
 import Toast from 'react-native-toast-message';
 import TopBar from '@/components/itemDetail/topBar/TopBar';
 import { useActionSheet } from '@expo/react-native-action-sheet';
+import { useDeleteItem } from '@/hooks/mutation/useDeleteItem';
 import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
 import { usePatchItemComplted } from '@/hooks/mutation/usePatchItemComplted';
 
@@ -17,6 +18,7 @@ export default function SellsListDetail() {
   const idStr = Array.isArray(id) ? id[0] : id;
   const { data } = useGetProductDetail(+idStr);
   const { mutate: setCompleted } = usePatchItemComplted(+idStr);
+  const { mutate: deleteItem } = useDeleteItem(+idStr);
 
   const handlePress = () => {
     const options = ['거래완료', '수정하기', '삭제하기', '닫기'];
@@ -40,6 +42,7 @@ export default function SellsListDetail() {
                   text1: '거래 완료',
                   text2: '거래 완료 성공!',
                 });
+                router.back();
               },
             });
             break;
@@ -48,7 +51,16 @@ export default function SellsListDetail() {
             break;
           case 2:
             console.log('삭제하기 선택됨');
-            // TODO: 삭제 확인 및 실행
+            deleteItem(undefined, {
+              onSuccess: () => {
+                Toast.show({
+                  type: 'info',
+                  text1: '아이템 삭제',
+                  text2: '삭제 성공!',
+                });
+                router.back();
+              },
+            });
             break;
           default:
             break;

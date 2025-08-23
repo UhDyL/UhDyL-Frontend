@@ -12,6 +12,7 @@ import ManageButton from '../manageButton/ManageButton';
 import OverlayImage from '../overlayImage/OverlayImage';
 import Toast from 'react-native-toast-message';
 import { useActionSheet } from '@expo/react-native-action-sheet';
+import { useDeleteItem } from '@/hooks/mutation/useDeleteItem';
 import { useGetMyItems } from '@/hooks/query/useGetMyItems';
 import { usePatchItemComplted } from '@/hooks/mutation/usePatchItemComplted';
 import { useRouter } from 'expo-router';
@@ -29,6 +30,7 @@ export default function SellListItem({
   const router = useRouter();
   const { mutate: setCompleted } = usePatchItemComplted(id);
   const { refetch } = useGetMyItems();
+  const { mutate: deleteItem } = useDeleteItem(id);
 
   const handlePress = () => {
     const options = ['거래완료', '수정하기', '삭제하기', '취소'];
@@ -61,7 +63,16 @@ export default function SellListItem({
             break;
           case 2:
             console.log('삭제하기 선택됨');
-            // TODO: 삭제 확인 및 실행
+            deleteItem(undefined, {
+              onSuccess: () => {
+                Toast.show({
+                  type: 'info',
+                  text1: '아이템 삭제',
+                  text2: '삭제 성공!',
+                });
+                refetch();
+              },
+            });
             break;
           default:
             break;
@@ -82,7 +93,22 @@ export default function SellListItem({
           <FarmerNameText>{sellerName}</FarmerNameText>
         </Col>
       </Row>
-      <ManageButton isCompleted={isCompleted} onEditPress={handlePress} />
+      <ManageButton
+        isCompleted={isCompleted}
+        onEditPress={handlePress}
+        onDeletePress={() => {
+          deleteItem(undefined, {
+            onSuccess: () => {
+              Toast.show({
+                type: 'info',
+                text1: '아이템 삭제',
+                text2: '삭제 성공!',
+              });
+              refetch();
+            },
+          });
+        }}
+      />
     </Container>
   );
 }

@@ -190,3 +190,15 @@ export const patchItemCompleted = async (productId: number) => {
     throw err;
   }
 };
+
+export const deleteItem = async (productId: number) => {
+  try {
+    const response = await fetcher.delete<{ success: boolean; data: string }>(
+      `/product/${productId}`
+    );
+    return response.data.success;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
