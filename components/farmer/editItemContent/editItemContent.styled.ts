@@ -21,7 +21,7 @@ export const ContentText = styled.TextInput.attrs({
   textAlignVertical: 'top',
 })`
   width: 100%;
-  height: 200px;
+  height: 160px;
   text-align: start;
   font-size: 16px;
 `;
