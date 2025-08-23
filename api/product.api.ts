@@ -1,5 +1,6 @@
 import { Category } from '@/types/categoryType';
 import PageableDataType from '@/types/pageableDataType';
+import { WriteFormData } from '@/store/useFormStore';
 import fetcher from './common/fetcher';
 
 export interface GetProductsResponseDto {
@@ -99,6 +100,28 @@ export const getMySalesInfo = async () => {
       success: boolean;
       data: GetMySalesInfoResponseDto;
     }>('/product/sales-stats');
+    return response.data.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export interface PostAIGenerateResponseDto {
+  condition: string;
+  pricePerWeight: string;
+  categories: string[];
+  images: string[];
+  price: number;
+  tone: string;
+}
+
+export const postAIGenerate = async (formData: WriteFormData) => {
+  try {
+    const response = await fetcher.post<{
+      success: boolean;
+      data: PostAIGenerateResponseDto;
+    }>('/product/ai-generate', formData);
     return response.data.data;
   } catch (err) {
     console.error(err);
