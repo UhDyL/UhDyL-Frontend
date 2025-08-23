@@ -128,3 +128,31 @@ export const postAIGenerate = async (formData: WriteFormData) => {
     throw err;
   }
 };
+
+export interface GetMyItemsResonseDto {
+  id: number;
+  title: string;
+  price: number;
+  sellerName: string;
+  sellerPicture: string;
+  mainImageUrl: string;
+  isCompleted: boolean;
+}
+
+export const getMyItems = async () => {
+  try {
+    const response = await fetcher.get<{
+      success: boolean;
+      data: {
+        totalCount: number;
+        completedCount: number;
+        products: PageableDataType<GetMyItemsResonseDto[]>;
+      };
+    }>('/product/me');
+    console.log('data : ', response.data.data.products.pageContents);
+    return response.data.data.products.pageContents;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
