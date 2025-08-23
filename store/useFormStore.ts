@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type FormData = {
+export type WriteFormData = {
   condition: string;
   pricePerWeight: string;
   categories: string[];
@@ -10,8 +10,8 @@ type FormData = {
 };
 
 type FormStore = {
-  formData: FormData;
-  setFormData: (data: Partial<FormData>) => void;
+  formData: WriteFormData;
+  setFormData: (data: Partial<WriteFormData>) => void;
   resetForm: () => void;
 };
 
