@@ -1,14 +1,21 @@
 import { Container, Overlay, OverlayText } from './overlayImage.styled';
 
+import { Image } from 'react-native';
+
 type Props = {
-  isCompledted: boolean;
-  source: any;
+  isCompleted: boolean;
+  source: string;
 };
 
-export default function OverlayImage({ isCompledted, source }: Props) {
+export default function OverlayImage({ isCompleted, source }: Props) {
   return (
     <Container>
-      {isCompledted && (
+      <Image
+        source={{ uri: source }}
+        style={{ width: '100%', height: '100%' }}
+        resizeMode='cover'
+      />
+      {isCompleted && (
         <Overlay>
           <OverlayText>거래 완료</OverlayText>
         </Overlay>
