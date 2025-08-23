@@ -178,3 +178,15 @@ export const patchItemInfo = async (
     throw err;
   }
 };
+
+export const patchItemCompleted = async (productId: number) => {
+  try {
+    const response = await fetcher.patch<{ success: boolean; data: string }>(
+      `/product/${productId}/complete`
+    );
+    return response.data.success;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
