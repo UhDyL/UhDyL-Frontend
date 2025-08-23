@@ -18,10 +18,15 @@ export default function NewItemStepTwoScreen() {
   const [imagesUrl, setImagesUrl] = useState<string[]>([]);
   const router = useRouter();
   const { formData, setFormData } = useFormStore();
+  const [isUploaded, setIsUploaded] = useState<boolean>(false);
 
   const { mutateAsync: uploadImage } = usePostProductImage();
 
   const handleUploadImages = async () => {
+    if (isUploaded) {
+      router.push('/new-item/step2');
+      return;
+    }
     try {
       const results = await Promise.all(
         imagesUrl.map((image) => uploadImage(image))
@@ -31,7 +36,7 @@ export default function NewItemStepTwoScreen() {
       setImagesUrl(uploadedUrls);
 
       setFormData({ images: uploadedUrls });
-
+      setIsUploaded(true);
       router.push('/new-item/step2');
     } catch (error) {
       console.error('이미지 업로드 실패:', error);
