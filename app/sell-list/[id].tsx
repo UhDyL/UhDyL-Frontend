@@ -6,11 +6,14 @@ import ImageSlideBox from '@/components/itemDetail/imageSlideBox/ImageSlideBox';
 import InfoBox from '@/components/itemDetail/infoBox/InfoBox';
 import TopBar from '@/components/itemDetail/topBar/TopBar';
 import { useActionSheet } from '@expo/react-native-action-sheet';
+import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
 
 export default function SellsListDetail() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const { showActionSheetWithOptions } = useActionSheet();
+  const idStr = Array.isArray(id) ? id[0] : id;
+  const { data } = useGetProductDetail(+idStr);
 
   const handlePress = () => {
     const options = ['거래완료', '수정하기', '삭제하기', '닫기'];
@@ -46,14 +49,14 @@ export default function SellsListDetail() {
   return (
     <Container>
       <TopBar onMorePress={handlePress} />
-      <ImageSlideBox price='19000' />
+      <ImageSlideBox price='19000' images={data?.images ?? []} />
       <InfoBox
-        sellerId={'dd'}
-        title='제목'
-        description='설명'
-        imgUrl=''
-        marketName='홍길동'
-        rating='5.0'
+        title={data?.title ?? ''}
+        description={data?.description ?? ''}
+        sellerName={data?.sellerName ?? ''}
+        sellerPicture={data?.sellerPicture ?? ''}
+        sellerRating={data?.sellerRating.toString() ?? ''}
+        sellerSalesCount={data?.sellerSalesCount ?? 0}
       />
       <Button
         size='full'
