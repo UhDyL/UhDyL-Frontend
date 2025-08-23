@@ -32,7 +32,7 @@ export default function NewItemStepTwoScreen() {
         imagesUrl.map((image) => uploadImage(image))
       );
 
-      const uploadedUrls = results.map((res) => res.imageUrl);
+      const uploadedUrls = results.map((res) => res[0].imageUrl); // 에러 왜 나는지 모르겟삼
       setImagesUrl(uploadedUrls);
 
       setFormData({ images: uploadedUrls });
