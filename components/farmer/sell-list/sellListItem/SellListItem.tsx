@@ -7,28 +7,21 @@ import {
   Row,
 } from './sellListItem.styled';
 
-import { useActionSheet } from '@expo/react-native-action-sheet';
-import { useRouter } from 'expo-router';
+import { GetMyItemsResonseDto } from '@/api/product.api';
 import ManageButton from '../manageButton/ManageButton';
 import OverlayImage from '../overlayImage/OverlayImage';
-
-type Props = {
-  itemImg: string;
-  itemName: string;
-  price: string;
-  farmerName: string;
-  isCompleted: boolean;
-  itemId: string;
-};
+import { useActionSheet } from '@expo/react-native-action-sheet';
+import { useRouter } from 'expo-router';
 
 export default function SellListItem({
-  itemImg,
-  itemName,
-  price,
-  farmerName,
+  id,
   isCompleted,
-  itemId,
-}: Props) {
+  mainImageUrl,
+  price,
+  sellerName,
+  sellerPicture,
+  title,
+}: GetMyItemsResonseDto) {
   const { showActionSheetWithOptions } = useActionSheet();
   const router = useRouter();
   const handlePress = () => {
@@ -49,7 +42,7 @@ export default function SellListItem({
             // TODO: 완료 처리 로직
             break;
           case 1:
-            router.push(`/sell-list/${itemId}/edit`);
+            router.push(`/sell-list/${id}/edit`);
             break;
           case 2:
             console.log('삭제하기 선택됨');
@@ -63,13 +56,13 @@ export default function SellListItem({
   };
 
   return (
-    <Container onPress={() => router.push(`/sell-list/${itemId}`)}>
+    <Container onPress={() => router.push(`/sell-list/${id}`)}>
       <Row>
-        <OverlayImage isCompledted={isCompleted} source={itemImg} />
+        <OverlayImage isCompleted={isCompleted} source={mainImageUrl} />
         <Col>
-          <ItemNameText>{itemName}</ItemNameText>
+          <ItemNameText>{title}</ItemNameText>
           <PriceText>{price}</PriceText>
-          <FarmerNameText>{farmerName}</FarmerNameText>
+          <FarmerNameText>{sellerName}</FarmerNameText>
         </Col>
       </Row>
       <ManageButton isCompleted={isCompleted} onEditPress={handlePress} />

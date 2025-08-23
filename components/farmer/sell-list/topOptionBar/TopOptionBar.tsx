@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import OptionElement from '../optionElement/OptionElement';
 import { Container } from './topOptionBar.styled';
+import OptionElement from '../optionElement/OptionElement';
 
-export default function TopOptionBar() {
-  const [option, setOption] = useState<'numOfSells' | 'numOfComplete'>(
-    'numOfSells'
-  );
+type Props = {
+  option: 'numOfSells' | 'numOfComplete';
+  setOption: (option: 'numOfSells' | 'numOfComplete') => void;
+};
 
+export default function TopOptionBar({ option, setOption }: Props) {
   return (
     <Container>
       <OptionElement
