@@ -1,36 +1,64 @@
-import {
-  Container,
-  JustBox,
-  SubText,
-  TextBox,
-  TitleText,
-} from './newItem.styled';
+import { Container, JustBox, KeyBoardSafeArea } from './newItem.styled';
 
-import AddPhotos from '@/components/review/addPhotos/AddPhotos';
 import Button from '@/components/common/button/Button';
+import InputForm from '@/components/common/inputForm/InputForm';
+import { Keyboard } from 'react-native';
 import LevelAndGoHome from '@/components/farmer/levelAndGoHome/LevelAndGoHome';
+import SelectKeywordBox from '@/components/farmer/seleectKeywordBox/SelectKeywordBox';
+import { dummyKeywords } from '@/mocks/dummyKeywords';
+import { useFormStore } from '@/store/useFormStore';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 
-export default function NewItemStepTwoScreen() {
-  const [imagesUrl, setImagesUrl] = useState<string[]>([]);
+export default function NewItemStepOneScreen() {
+  const { formData, setFormData } = useFormStore();
+  const [statusAndInfo, setStatusAndInfo] = useState<string>(
+    formData.condition
+  );
+  const [unitAndPrice, setUnitAndPrice] = useState<string>(
+    formData.pricePerWeight
+  );
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(
+    formData.categories
+  );
   const router = useRouter();
 
   return (
-    <Container>
-      <LevelAndGoHome level={2} />
-      <TextBox>
-        <TitleText>사진</TitleText>
-        <SubText>최대 6장까지 첨부할 수 있어요</SubText>
-      </TextBox>
-      <AddPhotos imagesUrl={imagesUrl} setImagesUrl={setImagesUrl} />
-      <JustBox>
-        <Button
-          size='full'
-          text='다음'
-          onClick={() => router.push('/new-item/step3')}
+    <KeyBoardSafeArea onPress={Keyboard.dismiss}>
+      <Container>
+        <LevelAndGoHome level={2} />
+        <InputForm
+          label='못난이 상태와 정보를 입력해주세요.'
+          placeholder='예) 갈변한 5KG 사과'
+          value={statusAndInfo}
+          setValue={setStatusAndInfo}
         />
-      </JustBox>
-    </Container>
+        <InputForm
+          label='판매 단위 가격을 입력해주세요'
+          placeholder='g/kg당 판매할 가격'
+          value={unitAndPrice}
+          setValue={setUnitAndPrice}
+        />
+        <SelectKeywordBox
+          keywords={dummyKeywords}
+          selected={selectedOptions ?? []}
+          setSelected={setSelectedOptions}
+        />
+        <JustBox>
+          <Button
+            size='full'
+            text='다음'
+            onClick={() => {
+              setFormData({
+                condition: statusAndInfo,
+                pricePerWeight: unitAndPrice,
+                categories: selectedOptions,
+              });
+              router.push('/new-item/step3');
+            }}
+          />
+        </JustBox>
+      </Container>
+    </KeyBoardSafeArea>
   );
 }

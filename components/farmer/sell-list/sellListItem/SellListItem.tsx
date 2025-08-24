@@ -7,30 +7,31 @@ import {
   Row,
 } from './sellListItem.styled';
 
-import { useActionSheet } from '@expo/react-native-action-sheet';
-import { useRouter } from 'expo-router';
+import { GetMyItemsResonseDto } from '@/api/product.api';
 import ManageButton from '../manageButton/ManageButton';
 import OverlayImage from '../overlayImage/OverlayImage';
-
-type Props = {
-  itemImg: string;
-  itemName: string;
-  price: string;
-  farmerName: string;
-  isCompleted: boolean;
-  itemId: string;
-};
+import Toast from 'react-native-toast-message';
+import { useActionSheet } from '@expo/react-native-action-sheet';
+import { useDeleteItem } from '@/hooks/mutation/useDeleteItem';
+import { useGetMyItems } from '@/hooks/query/useGetMyItems';
+import { usePatchItemComplted } from '@/hooks/mutation/usePatchItemComplted';
+import { useRouter } from 'expo-router';
 
 export default function SellListItem({
-  itemImg,
-  itemName,
-  price,
-  farmerName,
+  id,
   isCompleted,
-  itemId,
-}: Props) {
+  mainImageUrl,
+  price,
+  sellerName,
+  sellerPicture,
+  title,
+}: GetMyItemsResonseDto) {
   const { showActionSheetWithOptions } = useActionSheet();
   const router = useRouter();
+  const { mutate: setCompleted } = usePatchItemComplted(id);
+  const { refetch } = useGetMyItems();
+  const { mutate: deleteItem } = useDeleteItem(id);
+
   const handlePress = () => {
     const options = ['거래완료', '수정하기', '삭제하기', '취소'];
     const destructiveButtonIndex = 2;
@@ -46,14 +47,32 @@ export default function SellListItem({
         switch (buttonIndex) {
           case 0:
             console.log('거래완료 선택됨');
-            // TODO: 완료 처리 로직
+            setCompleted(undefined, {
+              onSuccess: () => {
+                Toast.show({
+                  type: 'info',
+                  text1: '거래 완료',
+                  text2: '거래 완료 성공!',
+                });
+                refetch();
+              },
+            });
             break;
           case 1:
-            router.push(`/sell-list/${itemId}/edit`);
+            router.push(`/sell-list/${id}/edit`);
             break;
           case 2:
             console.log('삭제하기 선택됨');
-            // TODO: 삭제 확인 및 실행
+            deleteItem(undefined, {
+              onSuccess: () => {
+                Toast.show({
+                  type: 'info',
+                  text1: '아이템 삭제',
+                  text2: '삭제 성공!',
+                });
+                refetch();
+              },
+            });
             break;
           default:
             break;
@@ -63,16 +82,33 @@ export default function SellListItem({
   };
 
   return (
-    <Container onPress={() => router.push(`/sell-list/${itemId}`)}>
+    <Container onPress={() => router.push(`/sell-list/${id}`)}>
       <Row>
-        <OverlayImage isCompledted={isCompleted} source={itemImg} />
+        <OverlayImage isCompleted={isCompleted} source={mainImageUrl} />
         <Col>
-          <ItemNameText>{itemName}</ItemNameText>
+          <ItemNameText numberOfLines={1} ellipsizeMode='tail'>
+            {title}
+          </ItemNameText>
           <PriceText>{price}</PriceText>
-          <FarmerNameText>{farmerName}</FarmerNameText>
+          <FarmerNameText>{sellerName}</FarmerNameText>
         </Col>
       </Row>
-      <ManageButton isCompleted={isCompleted} onEditPress={handlePress} />
+      <ManageButton
+        isCompleted={isCompleted}
+        onEditPress={handlePress}
+        onDeletePress={() => {
+          deleteItem(undefined, {
+            onSuccess: () => {
+              Toast.show({
+                type: 'info',
+                text1: '아이템 삭제',
+                text2: '삭제 성공!',
+              });
+              refetch();
+            },
+          });
+        }}
+      />
     </Container>
   );
 }

@@ -32,6 +32,8 @@ export const ImageBox = styled(Image)<{ isCompleted: boolean }>`
 `;
 
 export const ItemNameText = styled.Text`
+  max-width: 150px;
+  width: 100%;
   font-weight: 600;
 `;
 

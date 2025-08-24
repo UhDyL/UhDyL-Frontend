@@ -1,13 +1,13 @@
 import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
 
-import { exchangeCodeForToken, refreshTokenRequest } from '@/api/auth.api';
 import { clearTokens, getRefreshToken, saveTokens } from './token.service';
+import { exchangeCodeForToken, refreshTokenRequest } from '@/api/auth.api';
 
 import { getUserInfo } from '@/api/user.api';
 import { hydrateUserToStore } from '@/store/hydrateUser';
-import { useUserStore } from '@/store/userStore';
 import { router } from 'expo-router';
+import { useUserStore } from '@/store/userStore';
 
 function extractTokensFromUrl(url: string) {
   const { queryParams } = Linking.parse(url);
@@ -75,6 +75,16 @@ async function prefetchAndHydrateUser() {
     useUserStore.getState().setIsLoggedIn(true);
   } catch (e) {
     console.warn('prefetch user failed:', e);
+  }
+}
+
+export async function hydrateUserAgain() {
+  try {
+    const user = await getUserInfo();
+    console.log(user);
+    hydrateUserToStore(user);
+  } catch (e) {
+    console.warn('hydrate user failed:', e);
   }
 }
 

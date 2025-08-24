@@ -56,3 +56,41 @@ export const postReviewImage = async (imageUrl: string) => {
     throw err;
   }
 };
+
+export const postProductImage = async (imageUrl: string) => {
+  const formData = new FormData();
+
+  formData.append('images', {
+    uri: imageUrl,
+    type: 'image/jpeg',
+    name: 'upload.jpg',
+  } as any);
+
+  try {
+    const response = await fetcher.post<{
+      success: boolean;
+      data: ImageUploadResponseDto;
+    }>(`/image/product`, formData);
+
+    return response.data.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export const getPublicId = async (
+  imageUrl: string,
+  imageType: 'USER_IMAGE' | 'PRODUCT_IMAGE' | 'CHAT_IMAGE' | 'REVIEW_IMAGE'
+) => {
+  try {
+    const response = await fetcher.get<{
+      success: boolean;
+      data: { publicId: string };
+    }>(`/image/publicId?imageUrl=${imageUrl}&imageType=${imageType}`);
+    return response.data.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};

@@ -3,8 +3,13 @@ import { Dispatch, SetStateAction } from 'react';
 
 import SelectableElement from './selectableElement/SelectableElement';
 
+type Keyword = {
+  ko: string;
+  en: string;
+};
+
 type Props = {
-  keywords: string[];
+  keywords: Keyword[];
   selected: string[];
   setSelected: Dispatch<SetStateAction<string[]>>;
 };
@@ -14,11 +19,11 @@ export default function SelectKeywordBox({
   selected,
   setSelected,
 }: Props) {
-  const handleAddSelectedArray = (option: string) => {
+  const handleToggle = (optionEn: string) => {
     setSelected((prev) =>
-      prev.includes(option)
-        ? prev.filter((w) => w !== option)
-        : [...prev, option]
+      prev.includes(optionEn)
+        ? prev.filter((w) => w !== optionEn)
+        : [...prev, optionEn]
     );
   };
 
@@ -29,9 +34,9 @@ export default function SelectKeywordBox({
         {keywords.map((word, index) => (
           <SelectableElement
             key={index}
-            text={word}
-            selected={selected.includes(word)}
-            toggleSelect={() => handleAddSelectedArray(word)}
+            text={word.ko}
+            selected={selected.includes(word.en)}
+            toggleSelect={() => handleToggle(word.en)}
           />
         ))}
       </KeywordsArea>

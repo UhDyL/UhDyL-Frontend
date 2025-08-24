@@ -1,7 +1,7 @@
 import { Container, ImageBox, InfoBox, TitleText } from './summaryBox.styled';
 
-import InfoItemBar from './infoItemBar/InfoItemBar';
 import { useUserStore } from '@/store/userStore';
+import InfoItemBar from './infoItemBar/InfoItemBar';
 
 type Props = {
   name: string;
@@ -16,7 +16,7 @@ export default function SummaryBox({
   firstValue,
   secondValue,
 }: Props) {
-  const userType = useUserStore((state) => state.role);
+  const userType = useUserStore((state) => state.mode);
 
   return (
     <Container>

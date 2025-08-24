@@ -10,7 +10,7 @@ export default function TwoButtonTopBar() {
       <Button
         size='half'
         text='AI 재작성하기'
-        onClick={() => router.push('/new-item/loading')}
+        onClick={() => router.push('/new-item/step1')}
       />
       <Button
         size='half'

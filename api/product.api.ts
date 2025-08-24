@@ -1,5 +1,6 @@
 import { Category } from '@/types/categoryType';
 import PageableDataType from '@/types/pageableDataType';
+import { WriteFormData } from '@/store/useFormStore';
 import fetcher from './common/fetcher';
 
 export interface GetProductsResponseDto {
@@ -80,6 +81,163 @@ export const getSearchedItems = async (
       data: PageableDataType<SearchResponseDto[]>;
     }>(`/product/search?keyword=${keyword}&category=${category}&sort=${sort}`);
     return response.data.data.pageContents;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export interface GetMySalesInfoResponseDto {
+  sellerName: string;
+  salesCount: number;
+  salesRevenue: number;
+  sellerPicture: string;
+}
+
+export const getMySalesInfo = async () => {
+  try {
+    const response = await fetcher.get<{
+      success: boolean;
+      data: GetMySalesInfoResponseDto;
+    }>('/product/sales-stats');
+    return response.data.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export interface PostAIGenerateResponseDto {
+  title: string;
+  description: string;
+  price: number;
+  images: string[];
+  categories: string[];
+}
+
+export const postAIGenerate = async (formData: WriteFormData) => {
+  console.log('formData : ', formData);
+  try {
+    const response = await fetcher.post<{
+      success: boolean;
+      data: PostAIGenerateResponseDto;
+    }>('/product/ai-generate', {
+      categories: formData.categories,
+      condition: formData.condition,
+      images: formData.images.map((img) => img.url),
+      price: formData.price,
+      pricePerWeight: formData.pricePerWeight,
+      tone: formData.tone,
+    });
+    console.log('AI 결과 : ', response.data.data);
+    return response.data.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export interface GetMyItemsResonseDto {
+  id: number;
+  title: string;
+  price: number;
+  sellerName: string;
+  sellerPicture: string;
+  mainImageUrl: string;
+  isCompleted: boolean;
+}
+
+export const getMyItems = async () => {
+  try {
+    const response = await fetcher.get<{
+      success: boolean;
+      data: {
+        totalCount: number;
+        completedCount: number;
+        products: PageableDataType<GetMyItemsResonseDto[]>;
+      };
+    }>('/product/me');
+    console.log('data : ', response.data.data.products.pageContents);
+    return response.data.data.products.pageContents;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export interface PatchItemInfoReqeustDto {
+  title?: string;
+  description?: string;
+  price: number;
+}
+
+export const patchItemInfo = async (
+  productId: number,
+  data: PatchItemInfoReqeustDto
+) => {
+  try {
+    const response = await fetcher.patch<{ success: boolean; data: string }>(
+      `/product/${productId}`,
+      data
+    );
+    return response;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export const patchItemCompleted = async (productId: number) => {
+  try {
+    const response = await fetcher.patch<{ success: boolean; data: string }>(
+      `/product/${productId}/complete`
+    );
+    return response.data.success;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export const deleteItem = async (productId: number) => {
+  try {
+    const response = await fetcher.delete<{ success: boolean; data: string }>(
+      `/product/${productId}`
+    );
+    return response.data.success;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export interface PostProductItemRequestDto {
+  categories: string[];
+  images: {
+    url: string;
+    publicId: string;
+  }[];
+  price: number;
+  title: string;
+  description: string;
+}
+
+export interface PostProductItemResponseDto {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  images: string[];
+  isSale: true;
+}
+
+export const postProductItem = async (data: PostProductItemRequestDto) => {
+  try {
+    const response = await fetcher.post<{
+      success: boolean;
+      data: PostProductItemResponseDto;
+    }>('/product', data);
+    return response.data.data;
   } catch (err) {
     console.error(err);
     throw err;

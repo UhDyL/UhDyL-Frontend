@@ -1,14 +1,14 @@
-import { Dispatch, SetStateAction } from 'react';
 import {
   ChattingBtn,
   Container,
   LikeBtn,
   TextWrapper,
 } from './bottomBar.styled';
+import { Dispatch, SetStateAction } from 'react';
 
+import { Heart } from 'lucide-react-native';
 import { useCreateChatRoom } from '@/hooks/mutation/useCreateChatRoom';
 import { useRouter } from 'expo-router';
-import { Heart } from 'lucide-react-native';
 
 type Props = {
   productId: string;
@@ -23,7 +23,11 @@ export default function BottomBar({ productId, isLiked, setIsLiked }: Props) {
     mutate(undefined, {
       onSuccess: () => {
         router.push(
-          `/chatting/${data?.chatRoomId}?name=${data?.product.title ?? ''}`
+          `/chatting/${data?.chatRoomId}?name=${
+            data?.product.title ?? ''
+          }&itemId=${data?.product.id}&isTradeCompleted=${
+            data?.isTradeCompleted
+          }`
         );
       },
     });
