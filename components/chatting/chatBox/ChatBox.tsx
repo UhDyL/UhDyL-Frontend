@@ -1,16 +1,15 @@
-import React, { useEffect, useRef } from 'react';
 import {
   Container,
   MessageContainer,
   StyledScrollView,
 } from './chatBox.styled';
+import React, { useEffect, useRef } from 'react';
 
 import { ChatMessageResponseDto } from '@/api/chatting.api';
-import { useUserStore } from '@/store/userStore';
-import { ScrollView } from 'react-native';
 import MyMessage from '../myMessage/MyMessage';
-import OpponentInfo from '../opponentInfo/OppenentInfo';
 import OpponentMessage from '../opponetMessage/OpponentMessage';
+import { ScrollView } from 'react-native';
+import { useUserStore } from '@/store/userStore';
 
 type Props = {
   data: ChatMessageResponseDto[];
@@ -35,18 +34,18 @@ export default function ChatBox({ data }: Props) {
         {[...data].reverse().map((chat, index) => {
           const isOpponent = chat.senderName !== userName;
 
-          const isFirstOpponentMessage =
-            isOpponent &&
-            (index === 0 || data[index - 1].senderName === userName);
+          // const isFirstOpponentMessage =
+          //   isOpponent &&
+          //   (index === 0 || data[index - 1].senderName === userName);
 
           return (
             <MessageContainer key={index}>
-              {isFirstOpponentMessage && (
+              {/* {isFirstOpponentMessage && (
                 <OpponentInfo
                   imgUrl={chat.senderImage}
                   name={chat.senderName}
                 />
-              )}
+              )} */}
               {isOpponent ? (
                 <OpponentMessage {...chat} text={chat.message} />
               ) : (

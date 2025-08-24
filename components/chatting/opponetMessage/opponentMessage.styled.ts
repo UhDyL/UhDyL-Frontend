@@ -24,4 +24,5 @@ export const ContentBox = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  gap: 10px;
 `;
