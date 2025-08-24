@@ -4,13 +4,21 @@ import Button from '@/components/common/button/Button';
 import { Container } from './sellsListDetail.styled';
 import ImageSlideBox from '@/components/itemDetail/imageSlideBox/ImageSlideBox';
 import InfoBox from '@/components/itemDetail/infoBox/InfoBox';
+import Toast from 'react-native-toast-message';
 import TopBar from '@/components/itemDetail/topBar/TopBar';
 import { useActionSheet } from '@expo/react-native-action-sheet';
+import { useDeleteItem } from '@/hooks/mutation/useDeleteItem';
+import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
+import { usePatchItemComplted } from '@/hooks/mutation/usePatchItemComplted';
 
 export default function SellsListDetail() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const { showActionSheetWithOptions } = useActionSheet();
+  const idStr = Array.isArray(id) ? id[0] : id;
+  const { data } = useGetProductDetail(+idStr);
+  const { mutate: setCompleted } = usePatchItemComplted(+idStr);
+  const { mutate: deleteItem } = useDeleteItem(+idStr);
 
   const handlePress = () => {
     const options = ['거래완료', '수정하기', '삭제하기', '닫기'];
@@ -27,14 +35,32 @@ export default function SellsListDetail() {
         switch (buttonIndex) {
           case 0:
             console.log('거래완료 선택됨');
-            // TODO: 완료 처리 로직
+            setCompleted(undefined, {
+              onSuccess: () => {
+                Toast.show({
+                  type: 'info',
+                  text1: '거래 완료',
+                  text2: '거래 완료 성공!',
+                });
+                router.back();
+              },
+            });
             break;
           case 1:
             router.push(`/sell-list/${id}/edit`);
             break;
           case 2:
             console.log('삭제하기 선택됨');
-            // TODO: 삭제 확인 및 실행
+            deleteItem(undefined, {
+              onSuccess: () => {
+                Toast.show({
+                  type: 'info',
+                  text1: '아이템 삭제',
+                  text2: '삭제 성공!',
+                });
+                router.back();
+              },
+            });
             break;
           default:
             break;
@@ -46,14 +72,14 @@ export default function SellsListDetail() {
   return (
     <Container>
       <TopBar onMorePress={handlePress} />
-      <ImageSlideBox price='19000' />
+      <ImageSlideBox price='19000' images={data?.images ?? []} />
       <InfoBox
-        sellerId={'dd'}
-        title='제목'
-        description='설명'
-        imgUrl=''
-        marketName='홍길동'
-        rating='5.0'
+        title={data?.title ?? ''}
+        description={data?.description ?? ''}
+        sellerName={data?.sellerName ?? ''}
+        sellerPicture={data?.sellerPicture ?? ''}
+        sellerRating={data?.sellerRating.toString() ?? ''}
+        sellerSalesCount={data?.sellerSalesCount ?? 0}
       />
       <Button
         size='full'

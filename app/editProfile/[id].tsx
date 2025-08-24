@@ -6,6 +6,7 @@ import ImageCircleUpload from '@/components/common/imageCircleUpload/ImageCircle
 import NicknameInputForm from '@/components/nickname/nicknameInputForm/NicknameInputForm';
 import UserTypeSelectBox from '@/components/selectUserType/userTypeSelectBox/UserTypeSelectBox';
 import { useEditUserProfileInfo } from '@/hooks/mutation/useEditUserProfileInfo';
+import { hydrateUserAgain } from '@/services/auth.service';
 import { useUserStore } from '@/store/userStore';
 import { useState } from 'react';
 import { Container } from './editProfile.styled';
@@ -42,6 +43,7 @@ export default function EditProfileScreen() {
           setUserNickname(nickname);
           setUserProfileImageUrl(image);
           setUserMode(userType);
+          hydrateUserAgain();
           if (userType === 'user') {
             router.replace('/user');
           } else {

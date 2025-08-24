@@ -1,12 +1,16 @@
-import { sellsDummyData } from '@/mocks/sells-list-mocks';
-import SellListItem from '../sellListItem/SellListItem';
 import { Container } from './sellListBox.styled';
+import { GetMyItemsResonseDto } from '@/api/product.api';
+import SellListItem from '../sellListItem/SellListItem';
 
-export default function SellListBox() {
+type Props = {
+  data: GetMyItemsResonseDto[];
+};
+
+export default function SellListBox({ data }: Props) {
   return (
     <Container>
-      {sellsDummyData.map((data, index) => (
-        <SellListItem key={index} {...data} itemId='2' />
+      {data?.map((data, index) => (
+        <SellListItem key={index} {...data} />
       ))}
     </Container>
   );

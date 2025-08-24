@@ -5,6 +5,7 @@ type Props = {
   value: string;
   setValue: (value: string) => void;
   placeholder: string;
+  numberOnly?: boolean;
 };
 
 export default function InputForm({
@@ -12,11 +13,13 @@ export default function InputForm({
   value,
   setValue,
   placeholder,
+  numberOnly,
 }: Props) {
   return (
     <Container>
       <LabelText>{label}</LabelText>
       <StyledInputText
+        keyboardType={numberOnly ? 'numeric' : 'default'}
         placeholder={placeholder}
         value={value}
         onChangeText={setValue}

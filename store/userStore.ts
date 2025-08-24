@@ -29,7 +29,8 @@ export const useUserStore = create<UserState>()(
       setProfileImageUrl: (t) => set({ profileImageUrl: t }),
       setNickname: (t) => set({ nickname: t }),
       setRole: (t) => set({ role: t }),
-      setMode: (t) => set({ mode: t }),
+      setMode: (t: 'user' | 'farmer' | 'USER' | 'FARMER') =>
+        set({ mode: t.toLowerCase() as 'user' | 'farmer' }),
       setIsLoggedIn: (b) => set({ isLoggedIn: b }),
     }),
     {

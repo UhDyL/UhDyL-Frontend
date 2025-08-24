@@ -7,9 +7,14 @@ import { useState } from 'react';
 type Props = {
   isCompleted: boolean;
   onEditPress: () => void;
+  onDeletePress: () => void;
 };
 
-export default function ManageButton({ isCompleted, onEditPress }: Props) {
+export default function ManageButton({
+  isCompleted,
+  onEditPress,
+  onDeletePress,
+}: Props) {
   const [isModalOn, setIsModalOn] = useState<boolean>(false);
 
   return (
@@ -20,7 +25,7 @@ export default function ManageButton({ isCompleted, onEditPress }: Props) {
         acceptString='삭제'
         isModalOn={isModalOn}
         setIsModalOn={setIsModalOn}
-        onAccept={() => console.log('삭제하기')}
+        onAccept={() => onDeletePress()}
       />
       <Container onPress={isCompleted ? () => setIsModalOn(true) : onEditPress}>
         {isCompleted ? (
