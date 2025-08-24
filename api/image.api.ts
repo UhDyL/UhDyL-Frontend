@@ -78,3 +78,19 @@ export const postProductImage = async (imageUrl: string) => {
     throw err;
   }
 };
+
+export const getPublicId = async (
+  imageUrl: string,
+  imageType: 'USER_IMAGE' | 'PRODUCT_IMAGE' | 'CHAT_IMAGE' | 'REVIEW_IMAGE'
+) => {
+  try {
+    const response = await fetcher.get<{
+      success: boolean;
+      data: { publicId: string };
+    }>(`/image/publicId?imageUrl=${imageUrl}&imageType=${imageType}`);
+    return response.data.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
