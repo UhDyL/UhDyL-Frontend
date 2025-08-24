@@ -55,7 +55,7 @@ export const getMyFieldLocation = async () => {
   try {
     const response = await fetcher.get<{
       success: boolean;
-      code: string;
+      code?: string;
       data: GetMyFieldLocationResponse;
     }>('/user/location');
     return response.data;
