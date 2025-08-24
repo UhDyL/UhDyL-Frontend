@@ -4,7 +4,7 @@ export type WriteFormData = {
   condition: string;
   pricePerWeight: string;
   categories: string[];
-  images: string[];
+  images: { url: string; publicId: string }[];
   price: number;
   tone: string;
 };

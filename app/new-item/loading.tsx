@@ -19,13 +19,23 @@ export default function LoadingScreen() {
   useEffect(() => {
     postAIGenerate(formData, {
       onSuccess: (result) => {
+        const aiImages: string[] = result.images;
+
+        const mergedImages = aiImages.map((url) => {
+          const found = formData.images.find((img) => img.url === url);
+          return {
+            url,
+            publicId: found ? found.publicId : '',
+          };
+        });
+
         router.push({
           pathname: '/new-item/result',
           params: {
             title: result.title,
             description: result.description,
             price: String(result.price),
-            images: JSON.stringify(result.images),
+            images: JSON.stringify(mergedImages),
             categories: JSON.stringify(result.categories),
           },
         });

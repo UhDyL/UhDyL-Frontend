@@ -116,11 +116,19 @@ export interface PostAIGenerateResponseDto {
 }
 
 export const postAIGenerate = async (formData: WriteFormData) => {
+  console.log('formData : ', formData);
   try {
     const response = await fetcher.post<{
       success: boolean;
       data: PostAIGenerateResponseDto;
-    }>('/product/ai-generate', formData);
+    }>('/product/ai-generate', {
+      categories: formData.categories,
+      condition: formData.condition,
+      images: formData.images.map((img) => img.url),
+      price: formData.price,
+      pricePerWeight: formData.pricePerWeight,
+      tone: formData.tone,
+    });
     console.log('AI 결과 : ', response.data.data);
     return response.data.data;
   } catch (err) {
