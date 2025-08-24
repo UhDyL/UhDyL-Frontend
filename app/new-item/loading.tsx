@@ -18,8 +18,17 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     postAIGenerate(formData, {
-      onSuccess: () => {
-        router.push('/new-item/result');
+      onSuccess: (result) => {
+        router.push({
+          pathname: '/new-item/result',
+          params: {
+            title: result.title,
+            description: result.description,
+            price: String(result.price),
+            images: JSON.stringify(result.images),
+            categories: JSON.stringify(result.categories),
+          },
+        });
       },
     });
   }, []);
