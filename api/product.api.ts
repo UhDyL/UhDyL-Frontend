@@ -108,12 +108,11 @@ export const getMySalesInfo = async () => {
 };
 
 export interface PostAIGenerateResponseDto {
-  condition: string;
-  pricePerWeight: string;
-  categories: string[];
-  images: string[];
+  title: string;
+  description: string;
   price: number;
-  tone: string;
+  images: string[];
+  categories: string[];
 }
 
 export const postAIGenerate = async (formData: WriteFormData) => {
@@ -122,6 +121,7 @@ export const postAIGenerate = async (formData: WriteFormData) => {
       success: boolean;
       data: PostAIGenerateResponseDto;
     }>('/product/ai-generate', formData);
+    console.log('AI 결과 : ', response.data.data);
     return response.data.data;
   } catch (err) {
     console.error(err);
@@ -197,6 +197,39 @@ export const deleteItem = async (productId: number) => {
       `/product/${productId}`
     );
     return response.data.success;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export interface PostProductItemRequestDto {
+  categories: string[];
+  images: {
+    url: string;
+    publicId: string;
+  }[];
+  price: number;
+  title: string;
+  description: string;
+}
+
+export interface PostProductItemResponseDto {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  images: string[];
+  isSale: true;
+}
+
+export const postProductItem = async (data: PostProductItemRequestDto) => {
+  try {
+    const response = await fetcher.post<{
+      success: boolean;
+      data: PostProductItemResponseDto;
+    }>('/product', data);
+    return response.data.data;
   } catch (err) {
     console.error(err);
     throw err;
