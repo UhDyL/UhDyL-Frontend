@@ -19,7 +19,7 @@ export default function OpponentMessage({
   return (
     <Container>
       <ContentBox>
-        <OpponentInfo imgUrl={senderImage} name={senderName} />
+        <OpponentInfo name={senderName} />
         {image && (
           <Image
             source={{ uri: image }}

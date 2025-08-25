@@ -47,7 +47,11 @@ export default function ChatBox({ data }: Props) {
                 />
               )} */}
               {isOpponent ? (
-                <OpponentMessage {...chat} text={chat.message} />
+                <OpponentMessage
+                  {...chat}
+                  text={chat.message}
+                  image={chat.senderImage}
+                />
               ) : (
                 <MyMessage
                   {...chat}
