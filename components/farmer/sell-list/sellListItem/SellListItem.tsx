@@ -33,7 +33,7 @@ export default function SellListItem({
   const { mutate: deleteItem } = useDeleteItem(id);
 
   const handlePress = () => {
-    const options = ['거래완료', '수정하기', '삭제하기', '취소'];
+    const options = ['품절하기', '수정하기', '삭제하기', '취소'];
     const destructiveButtonIndex = 2;
     const cancelButtonIndex = 3;
 
@@ -51,8 +51,8 @@ export default function SellListItem({
               onSuccess: () => {
                 Toast.show({
                   type: 'info',
-                  text1: '거래 완료',
-                  text2: '거래 완료 성공!',
+                  text1: '품절 요청',
+                  text2: '품절 요청 성공!',
                 });
                 refetch();
               },

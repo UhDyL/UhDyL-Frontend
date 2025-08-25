@@ -9,8 +9,9 @@ import {
   TopArea,
 } from './chattingBar.styled';
 
-import { useRouter } from 'expo-router';
 import { Text } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useUserStore } from '@/store/userStore';
 
 export default function ChattingBar({
   chatRoomId,
@@ -22,6 +23,7 @@ export default function ChattingBar({
 }: ChatRoomResponseDto) {
   const router = useRouter();
   const chatDate = new Date(timestamp);
+  const userName = useUserStore((state) => state.nickname);
 
   return (
     <Container
@@ -36,6 +38,8 @@ export default function ChattingBar({
             name: product.title,
             itemId: product.id.toString(),
             isTradeCompleted: isTradeCompleted.toString(),
+            isMyProduct: (product.sellerName === userName).toString(),
+            isCompleted: product.isCompleted.toString(),
           },
         });
       }}

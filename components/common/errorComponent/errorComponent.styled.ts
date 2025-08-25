@@ -1,3 +1,4 @@
+import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -15,6 +16,8 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+export const ErrorIcon = styled(Image)``;
 
 export const StyledText = styled.Text`
   color: #b00020;

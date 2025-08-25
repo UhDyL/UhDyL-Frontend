@@ -13,8 +13,10 @@ type UserState = {
   setProfileImageUrl: (t: string) => void;
   setNickname: (t: string) => void;
   setRole: (t: 'user' | 'farmer') => void;
-  setMode: (t: 'user' | 'farmer') => void;
+  setMode: (t: 'user' | 'farmer' | 'USER' | 'FARMER') => void;
   setIsLoggedIn: (b: boolean) => void;
+
+  logout: () => Promise<void>;
 };
 
 export const useUserStore = create<UserState>()(
@@ -29,9 +31,19 @@ export const useUserStore = create<UserState>()(
       setProfileImageUrl: (t) => set({ profileImageUrl: t }),
       setNickname: (t) => set({ nickname: t }),
       setRole: (t) => set({ role: t }),
-      setMode: (t: 'user' | 'farmer' | 'USER' | 'FARMER') =>
-        set({ mode: t.toLowerCase() as 'user' | 'farmer' }),
+      setMode: (t) => set({ mode: t.toLowerCase() as 'user' | 'farmer' }),
       setIsLoggedIn: (b) => set({ isLoggedIn: b }),
+
+      logout: async () => {
+        await AsyncStorage.removeItem('user-storage');
+        set({
+          profileImageUrl: '',
+          nickname: '',
+          role: 'user',
+          mode: 'user',
+          isLoggedIn: false,
+        });
+      },
     }),
     {
       name: 'user-storage',

@@ -21,7 +21,7 @@ export default function SellsListDetail() {
   const { mutate: deleteItem } = useDeleteItem(+idStr);
 
   const handlePress = () => {
-    const options = ['거래완료', '수정하기', '삭제하기', '닫기'];
+    const options = ['품절하기', '수정하기', '삭제하기', '닫기'];
     const destructiveButtonIndex = 2;
     const cancelButtonIndex = 3;
 
@@ -72,7 +72,10 @@ export default function SellsListDetail() {
   return (
     <Container>
       <TopBar onMorePress={handlePress} />
-      <ImageSlideBox price='19000' images={data?.images ?? []} />
+      <ImageSlideBox
+        price={data?.price.toString() ?? ''}
+        images={data?.images ?? []}
+      />
       <InfoBox
         title={data?.title ?? ''}
         description={data?.description ?? ''}

@@ -1,20 +1,12 @@
-import { Container, ImageBox, StyledName } from './opponentInfo.styled';
+import { Container, StyledName } from './opponentInfo.styled';
 
 type Props = {
-  imgUrl: string;
   name: string;
 };
 
-export default function OpponentInfo({ imgUrl, name }: Props) {
+export default function OpponentInfo({ name }: Props) {
   return (
     <Container>
-      <ImageBox
-        source={
-          imgUrl
-            ? { uri: imgUrl }
-            : require('../../../assets/images/null_image.png')
-        }
-      />
       <StyledName>{name}</StyledName>
     </Container>
   );

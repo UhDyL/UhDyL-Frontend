@@ -21,8 +21,8 @@ export const getUserInfo = async (): Promise<UserInfoResponseDto> => {
 };
 
 export interface EditUserProfileInfoRequestDto {
-  profileImageUrl: string;
-  nickname: string;
+  profileImageUrl?: string;
+  nickname?: string;
   mode: 'user' | 'farmer';
 }
 
@@ -35,9 +35,17 @@ export const EditUserProfileInfo = async ({
   data: string;
 }> => {
   try {
+    const body: any = { mode };
+    if (nickname !== undefined) {
+      body.nickname = nickname;
+    }
+    if (profileImageUrl !== undefined) {
+      body.profileImageUrl = profileImageUrl;
+    }
+
     const response = await fetcher.patch<{ success: boolean; data: string }>(
       '/user/profile',
-      { profileImageUrl, nickname, mode }
+      body
     );
     return response.data;
   } catch (err) {
