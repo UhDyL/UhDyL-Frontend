@@ -1,5 +1,6 @@
 import { Container, TextWrapper } from './afterChatBtn.styled';
 
+import { usePostComplete } from '@/hooks/mutation/usePostComplete';
 import { useRouter } from 'expo-router';
 import { useUserStore } from '@/store/userStore';
 
@@ -7,16 +8,20 @@ type Props = {
   sellerId: string;
   isTradeCompleted?: boolean;
   isMyProduct: boolean;
+  chatRoomId: number;
+  isCompleted: boolean;
 };
 
 export default function AfterChatBtn({
   sellerId,
   isTradeCompleted,
   isMyProduct,
+  chatRoomId,
+  isCompleted,
 }: Props) {
   const router = useRouter();
   const userType = useUserStore((state) => state.mode);
-  console.log('내꺼인지 ? :', isMyProduct);
+  const { mutate: postComplete } = usePostComplete();
 
   let buttonText: string | null = null;
 
@@ -25,7 +30,7 @@ export default function AfterChatBtn({
       buttonText = '리뷰 작성하기';
     }
   } else {
-    if (userType === 'farmer' && isMyProduct) {
+    if (userType === 'farmer' && isMyProduct && !isCompleted) {
       buttonText = '거래 완료';
     }
   }
@@ -40,6 +45,7 @@ export default function AfterChatBtn({
           router.push(`/chatting/addReview/${sellerId}`);
         } else if (buttonText === '거래 완료') {
           console.log('거래완ㅋㅋ');
+          postComplete(chatRoomId, { onSuccess: () => router.back() });
         }
       }}
     >

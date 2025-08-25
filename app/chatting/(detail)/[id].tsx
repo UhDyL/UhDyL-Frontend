@@ -16,7 +16,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { usePostChattingImage } from '@/hooks/mutation/usePostChattingImage';
 
 export default function ChattingDetailScreen() {
-  const { id, name, itemId, isTradeCompleted, isMyProduct } =
+  const { id, name, itemId, isTradeCompleted, isMyProduct, isCompleted } =
     useLocalSearchParams();
   const idStr = Array.isArray(id) ? id[0] : id ?? '';
   const nameStr = Array.isArray(name) ? name[0] : name ?? '';
@@ -25,6 +25,9 @@ export default function ChattingDetailScreen() {
     ? isTradeCompleted[0] === 'true'
     : isTradeCompleted === 'true';
   const isMyProductBoolean = Array.isArray(isMyProduct)
+    ? isMyProduct[0] === 'true'
+    : isMyProduct === 'true';
+  const isCompletedBoolean = Array.isArray(isMyProduct)
     ? isMyProduct[0] === 'true'
     : isMyProduct === 'true';
   const { data: chatMessages, refetch } = useGetChatMessages(+idStr);
@@ -50,6 +53,8 @@ export default function ChattingDetailScreen() {
         <ChatBox data={chatMessages ?? []} />
         <BottomContainer>
           <AfterChatBtn
+            isCompleted={isCompletedBoolean}
+            chatRoomId={+idStr}
             isMyProduct={isMyProductBoolean}
             sellerId={itemIdStr}
             isTradeCompleted={isTradeCompletedBoolean}

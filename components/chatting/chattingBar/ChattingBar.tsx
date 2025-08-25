@@ -39,6 +39,7 @@ export default function ChattingBar({
             itemId: product.id.toString(),
             isTradeCompleted: isTradeCompleted.toString(),
             isMyProduct: (product.sellerName === userName).toString(),
+            isCompleted: product.isCompleted.toString(),
           },
         });
       }}

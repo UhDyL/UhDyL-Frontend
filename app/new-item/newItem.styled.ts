@@ -18,10 +18,14 @@ export const Container = styled(SafeAreaView).attrs({
 
 export const LoadingView = styled.View`
   background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
 
 export const KeyBoardSafeArea = styled(TouchableWithoutFeedback)`

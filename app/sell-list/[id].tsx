@@ -72,7 +72,10 @@ export default function SellsListDetail() {
   return (
     <Container>
       <TopBar onMorePress={handlePress} />
-      <ImageSlideBox price='19000' images={data?.images ?? []} />
+      <ImageSlideBox
+        price={data?.price.toString() ?? ''}
+        images={data?.images ?? []}
+      />
       <InfoBox
         title={data?.title ?? ''}
         description={data?.description ?? ''}
