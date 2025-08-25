@@ -21,7 +21,7 @@ export default function SellsListDetail() {
   const { mutate: deleteItem } = useDeleteItem(+idStr);
 
   const handlePress = () => {
-    const options = ['거래완료', '수정하기', '삭제하기', '닫기'];
+    const options = ['품절하기', '수정하기', '삭제하기', '닫기'];
     const destructiveButtonIndex = 2;
     const cancelButtonIndex = 3;
 
