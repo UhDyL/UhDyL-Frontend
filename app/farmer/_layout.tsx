@@ -11,6 +11,7 @@ export default function Layout() {
           color: '#30DB5B',
           fontSize: 22,
           fontWeight: 'bold',
+          fontFamily: 'TitleFont',
         },
       }}
     />
