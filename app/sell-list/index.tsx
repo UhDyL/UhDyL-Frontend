@@ -17,7 +17,12 @@ export default function SellList() {
   return (
     <Container>
       <BackAndTitle title='판매 목록' />
-      <TopOptionBar option={option} setOption={setOption} />
+      <TopOptionBar
+        option={option}
+        setOption={setOption}
+        numOfEndedItems={filterData(data).length}
+        numOfTotalItems={data.length}
+      />
       <SellListBox
         data={option === 'numOfComplete' ? filterData(data) : data}
       />

@@ -1,5 +1,3 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
 import {
   ButtonText,
@@ -7,16 +5,19 @@ import {
   FinishButton,
   LineBar,
 } from './AddReview.styled';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 
-import BackAndTitle from '@/components/common/backAndTitle/BackAndTitle';
 import AddComment from '@/components/review/addComment/AddComment';
 import AddPhotos from '@/components/review/addPhotos/AddPhotos';
 import AddRating from '@/components/review/addRating/AddRating';
+import BackAndTitle from '@/components/common/backAndTitle/BackAndTitle';
 import LikedReviewBox from '@/components/review/likedReviewBox/LikedReviewBox';
+import Toast from 'react-native-toast-message';
+import { useGetMyChatRooms } from '@/hooks/query/useGetMyChatRooms';
+import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
 import { usePostReview } from '@/hooks/mutation/usePostReview';
 import { usePostReviewImage } from '@/hooks/mutation/usePostReviewImage';
-import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
-import Toast from 'react-native-toast-message';
+import { useState } from 'react';
 
 export default function AddReviewScreen() {
   const [imagesUrl, setImagesUrl] = useState<string[]>([]);
@@ -34,6 +35,7 @@ export default function AddReviewScreen() {
     publicId: '',
     productId: +sellerIdStr,
   });
+  const { refetch: getChatRooms } = useGetMyChatRooms();
   const { mutate: postImage } = usePostReviewImage();
 
   const handleAddImage = (newImage: string[]) => {
@@ -59,6 +61,7 @@ export default function AddReviewScreen() {
     if (allImagesUploaded) {
       mutate(undefined, {
         onSuccess: () => {
+          getChatRooms();
           router.push('/user');
         },
         onError: (err) => {
@@ -73,16 +76,6 @@ export default function AddReviewScreen() {
       Alert.alert('이미지가 아직 업로드 중입니다.');
     }
   };
-
-  useEffect(
-    () =>
-      Toast.show({
-        type: 'info',
-        text1: 'hi',
-        text2: 'welcome!',
-      }),
-    []
-  );
 
   return (
     <ScrollView

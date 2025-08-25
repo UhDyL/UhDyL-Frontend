@@ -1,11 +1,11 @@
-import { Stack, useRouter } from 'expo-router';
-import React, { useState } from 'react';
 import {
   Container,
   StartButton,
   StartButtonText,
   SubContainer,
 } from './Nickname.styled';
+import React, { useState } from 'react';
+import { Stack, useRouter } from 'expo-router';
 
 import ImageCircleUpload from '@/components/common/imageCircleUpload/ImageCircleUpload';
 import NicknameInputForm from '@/components/nickname/nicknameInputForm/NicknameInputForm';
@@ -29,25 +29,34 @@ export default function NicknameScreen() {
   const { mutate } = useEditUserProfileInfo();
 
   const handleStart = () => {
-    mutate(
-      {
-        profileImageUrl: imageUrl,
-        mode,
-        nickname,
+    const payload: {
+      mode: 'user' | 'farmer';
+      profileImageUrl?: string;
+      nickname?: string;
+    } = {
+      mode,
+    };
+
+    if (nickname !== userNickname) {
+      payload.nickname = nickname;
+    }
+    if (imageUrl !== userProfileImageUrl) {
+      payload.profileImageUrl = imageUrl;
+    }
+
+    mutate(payload, {
+      onSuccess: () => {
+        setUserNickname(nickname);
+        setUserProfileImageUrl(imageUrl);
+        setUserMode(mode);
+
+        if (mode === 'user') {
+          router.replace('/user');
+        } else {
+          router.replace('/farmer');
+        }
       },
-      {
-        onSuccess: () => {
-          setUserNickname(nickname);
-          setUserProfileImageUrl(imageUrl);
-          setUserMode(mode);
-          if (mode === 'user') {
-            router.replace('/user');
-          } else {
-            router.replace('/farmer');
-          }
-        },
-      }
-    );
+    });
   };
 
   return (

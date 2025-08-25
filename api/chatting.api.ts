@@ -1,7 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 
-import PageableDataType from '@/types/pageableDataType';
 import { Client } from '@stomp/stompjs';
+import PageableDataType from '@/types/pageableDataType';
 import SockJS from 'sockjs-client';
 import fetcher from './common/fetcher';
 
@@ -50,10 +50,10 @@ export const createChatRoom = async (
   }
 };
 
-export const postComplete = async (): Promise<boolean> => {
+export const postComplete = async (chatRoomId: number): Promise<boolean> => {
   try {
     const response = await fetcher.post<{ success: true; data: string }>(
-      `/chat/room/complete`
+      `/chat/room/complete?chatRoomId=${chatRoomId}`
     );
     return response.data.success;
   } catch (err) {
