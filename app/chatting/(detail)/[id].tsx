@@ -53,7 +53,6 @@ export default function ChattingDetailScreen() {
         <ChatBox data={chatMessages ?? []} />
         <BottomContainer>
           <AfterChatBtn
-            isCompleted={isCompletedBoolean}
             chatRoomId={+idStr}
             isMyProduct={isMyProductBoolean}
             sellerId={itemIdStr}

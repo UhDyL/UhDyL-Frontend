@@ -9,7 +9,6 @@ type Props = {
   isTradeCompleted?: boolean;
   isMyProduct: boolean;
   chatRoomId: number;
-  isCompleted: boolean;
 };
 
 export default function AfterChatBtn({
@@ -17,7 +16,6 @@ export default function AfterChatBtn({
   isTradeCompleted,
   isMyProduct,
   chatRoomId,
-  isCompleted,
 }: Props) {
   const router = useRouter();
   const userType = useUserStore((state) => state.mode);
