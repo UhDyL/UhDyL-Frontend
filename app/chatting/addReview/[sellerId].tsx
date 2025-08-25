@@ -13,6 +13,7 @@ import AddRating from '@/components/review/addRating/AddRating';
 import BackAndTitle from '@/components/common/backAndTitle/BackAndTitle';
 import LikedReviewBox from '@/components/review/likedReviewBox/LikedReviewBox';
 import Toast from 'react-native-toast-message';
+import { useGetMyChatRooms } from '@/hooks/query/useGetMyChatRooms';
 import { useGetProductDetail } from '@/hooks/query/useGetProductDetail';
 import { usePostReview } from '@/hooks/mutation/usePostReview';
 import { usePostReviewImage } from '@/hooks/mutation/usePostReviewImage';
@@ -34,6 +35,7 @@ export default function AddReviewScreen() {
     publicId: '',
     productId: +sellerIdStr,
   });
+  const { refetch: getChatRooms } = useGetMyChatRooms();
   const { mutate: postImage } = usePostReviewImage();
 
   const handleAddImage = (newImage: string[]) => {
@@ -59,6 +61,7 @@ export default function AddReviewScreen() {
     if (allImagesUploaded) {
       mutate(undefined, {
         onSuccess: () => {
+          getChatRooms();
           router.push('/user');
         },
         onError: (err) => {

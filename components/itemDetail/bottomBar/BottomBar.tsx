@@ -21,13 +21,11 @@ export default function BottomBar({ productId, isLiked, setIsLiked }: Props) {
   const router = useRouter();
   const handleGoChat = () => {
     mutate(undefined, {
-      onSuccess: () => {
+      onSuccess: (res) => {
         router.push(
-          `/chatting/${data?.chatRoomId}?name=${
-            data?.product.title ?? ''
-          }&itemId=${data?.product.id}&isTradeCompleted=${
-            data?.isTradeCompleted
-          }`
+          `/chatting/${res.chatRoomId}?name=${res.product.title ?? ''}&itemId=${
+            res.product.id
+          }&isTradeCompleted=${data?.isTradeCompleted}`
         );
       },
     });
