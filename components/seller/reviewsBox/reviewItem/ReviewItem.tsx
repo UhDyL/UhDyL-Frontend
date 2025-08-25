@@ -1,4 +1,3 @@
-import { Star, UserCircle } from 'lucide-react-native';
 import {
   BuyerBox,
   BuyerText,
@@ -14,6 +13,7 @@ import {
   TitleText,
   TitleWrapper,
 } from './reviewItem.styled';
+import { Star, UserCircle } from 'lucide-react-native';
 
 import { ReviewType } from '@/api/review.api';
 
@@ -27,6 +27,7 @@ export default function ReviewItem({
   title,
 }: ReviewType) {
   const reTypeDate = new Date(createdAt);
+  console.log('이미지!!!! :', imageUrl);
 
   return (
     <Container>
@@ -34,13 +35,15 @@ export default function ReviewItem({
         <ItemImage
           source={
             imageUrl
-              ? imageUrl
+              ? { uri: imageUrl }
               : require('../../../../assets/images/null_image.png')
           }
         />
         <TextArea>
           <DateWrapper>
-            <DateText>{`${reTypeDate.getMonth()}월 ${reTypeDate.getDate()}일`}</DateText>
+            <DateText>{`${
+              reTypeDate.getMonth() + 1
+            }월 ${reTypeDate.getDate()}일`}</DateText>
           </DateWrapper>
           <TitleWrapper>
             <TitleText>{title}</TitleText>

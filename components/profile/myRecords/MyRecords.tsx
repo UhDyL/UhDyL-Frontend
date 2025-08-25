@@ -1,9 +1,9 @@
-import ReviewItem from '@/components/seller/reviewsBox/reviewItem/ReviewItem';
 import { Container, ListBox } from './myRecords.styled';
 
-import { ReviewType } from '@/api/review.api';
 import { GetMyZzimResponseDto } from '@/api/zzim.api';
 import LikedReviewBox from '@/components/review/likedReviewBox/LikedReviewBox';
+import ReviewItem from '@/components/seller/reviewsBox/reviewItem/ReviewItem';
+import { ReviewType } from '@/api/review.api';
 
 type Props = {
   selected: 1 | 2;
