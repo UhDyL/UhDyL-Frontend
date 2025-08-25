@@ -30,7 +30,7 @@ export default function AfterChatBtn({
       buttonText = '리뷰 작성하기';
     }
   } else {
-    if (userType === 'farmer' && isMyProduct && !isCompleted) {
+    if (userType === 'farmer' && isMyProduct) {
       buttonText = '거래 완료';
     }
   }

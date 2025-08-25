@@ -27,7 +27,7 @@ export default function ChattingDetailScreen() {
   const isMyProductBoolean = Array.isArray(isMyProduct)
     ? isMyProduct[0] === 'true'
     : isMyProduct === 'true';
-  const isCompletedBoolean = Array.isArray(isMyProduct)
+  const isCompletedBoolean = Array.isArray(isCompleted)
     ? isMyProduct[0] === 'true'
     : isMyProduct === 'true';
   const { data: chatMessages, refetch } = useGetChatMessages(+idStr);
