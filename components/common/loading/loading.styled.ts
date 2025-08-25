@@ -8,7 +8,7 @@ export const Container = styled.View`
   margin: 12px 0;
   border-radius: 12px;
 
-  background-color: #f5f7fa;
+  background-color: #fff;
 
   display: flex;
   flex-direction: column;
@@ -25,5 +25,5 @@ export const StyledText = styled.Text`
 
 export const Spinner = styled(ActivityIndicator).attrs({
   size: 'large',
-  color: '#4a90e2',
+  color: '##30DB5B',
 })``;
