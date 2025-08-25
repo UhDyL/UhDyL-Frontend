@@ -9,7 +9,7 @@ type Props = {
 
 export default function AfterChatBtn({ sellerId }: Props) {
   const router = useRouter();
-  const userType = useUserStore((state) => state.role);
+  const userType = useUserStore((state) => state.mode);
 
   return (
     <Container
