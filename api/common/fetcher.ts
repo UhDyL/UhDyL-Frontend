@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const fetcher = axios.create({
   baseURL: process.env.EXPO_PUBLIC_API_URL,
-  timeout: 5000,
+  timeout: 20000,
 });
 
 fetcher.interceptors.request.use(async (config) => {
