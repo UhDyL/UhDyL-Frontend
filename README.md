@@ -8,9 +8,6 @@
 ## 📸 Screenshots
 
 앱의 주요 화면 예시입니다.
-(아래 부분에 실행 화면 캡처나 GIF를 넣어주세요.)
-<img width="1027" height="612" alt="image" src="https://github.com/user-attachments/assets/31de92e7-33cb-4432-937c-064c5632906b" />
-<img width="1022" height="599" alt="image" src="https://github.com/user-attachments/assets/a9a7c562-e3d3-4225-af79-d46e56435307" />
 
 | 홈 화면                                   | 상품 등록                                         | 채팅                                             |
 | -------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
