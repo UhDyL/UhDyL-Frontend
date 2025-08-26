@@ -9,9 +9,12 @@
 
 앱의 주요 화면 예시입니다.
 
-| 소비자 Home                                                                                                               | 판매자 Home                                                                                                               | 판매글 작성 Flow                                                                                                               |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| <img width="1280" alt="소비자 Home" src="https://github.com/user-attachments/assets/293ae196-fabb-4235-aff3-992d1bca972f" /> | <img width="1280" alt="판매자 Home" src="https://github.com/user-attachments/assets/31de92e7-33cb-4432-937c-064c5632906b" /> | <img width="1280" alt="판매글 작성 Flow" src="https://github.com/user-attachments/assets/a9a7c562-e3d3-4225-af79-d46e56435307" /> |
+| 화면 종류 | 스크린샷 |
+| -------- | -------- |
+| 소비자 Home | <img width="800" alt="소비자 Home" src="https://github.com/user-attachments/assets/293ae196-fabb-4235-aff3-992d1bca972f" /> |
+| 판매자 Home | <img width="800" alt="판매자 Home" src="https://github.com/user-attachments/assets/31de92e7-33cb-4432-937c-064c5632906b" /> |
+| 판매글 작성 Flow | <img width="800" alt="판매글 작성 Flow" src="https://github.com/user-attachments/assets/a9a7c562-e3d3-4225-af79-d46e56435307" /> |
+
 
 ---
 
