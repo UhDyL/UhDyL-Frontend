@@ -1,4 +1,4 @@
-import Button from '../common/button/Button';
+import Button from '../button/Button';
 import { Container } from './twoButtonTopBar.styled';
 import { useRouter } from 'expo-router';
 

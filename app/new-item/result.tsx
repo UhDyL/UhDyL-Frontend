@@ -5,7 +5,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import Button from '@/components/common/button/Button';
 import EditItemContent from '@/components/farmer/editItemContent/EditItemContent';
 import ImageSlideBox from '@/components/itemDetail/imageSlideBox/ImageSlideBox';
-import TwoButtonTopBar from '@/components/twoButtonTopBar/TwoButtonTopBar';
+import TwoButtonTopBar from '@/components/common/twoButtonTopBar/TwoButtonTopBar';
 import { usePostProductItem } from '@/hooks/mutation/usePostProductItem';
 
 export default function ResultScreen() {
