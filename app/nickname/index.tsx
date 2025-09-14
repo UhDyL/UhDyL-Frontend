@@ -9,7 +9,7 @@ import { Stack, useRouter } from 'expo-router';
 
 import ImageCircleUpload from '@/components/common/imageCircleUpload/ImageCircleUpload';
 import NicknameInputForm from '@/components/nickname/nicknameInputForm/NicknameInputForm';
-import UserTypeSelectBox from '@/components/selectUserType/userTypeSelectBox/UserTypeSelectBox';
+import UserTypeSelectBox from '@/components/common/selectUserType/userTypeSelectBox/UserTypeSelectBox';
 import { useEditUserProfileInfo } from '@/hooks/mutation/useEditUserProfileInfo';
 import { useUserStore } from '@/store/userStore';
 

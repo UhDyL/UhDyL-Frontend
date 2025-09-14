@@ -5,7 +5,7 @@ import Button from '@/components/common/button/Button';
 import { Container } from './editProfile.styled';
 import ImageCircleUpload from '@/components/common/imageCircleUpload/ImageCircleUpload';
 import NicknameInputForm from '@/components/nickname/nicknameInputForm/NicknameInputForm';
-import UserTypeSelectBox from '@/components/selectUserType/userTypeSelectBox/UserTypeSelectBox';
+import UserTypeSelectBox from '@/components/common/selectUserType/userTypeSelectBox/UserTypeSelectBox';
 import { hydrateUserAgain } from '@/services/auth.service';
 import { useEditUserProfileInfo } from '@/hooks/mutation/useEditUserProfileInfo';
 import { useState } from 'react';
