@@ -2,6 +2,7 @@ import {
   Container,
   ErrorIcon,
   RetryButton,
+  RetryButtonText,
   StyledText,
 } from './errorComponent.styled';
 
@@ -14,11 +15,10 @@ export const ErrorComponent = ({ error, onRetry }: Props) => {
   return (
     <Container>
       <ErrorIcon source={require('../../../assets/images/error_icon.png')} />
-      <StyledText>에러 발생!</StyledText>
-      <StyledText>{error.message}</StyledText>
+      <StyledText>정보를 불러올 수 없어요</StyledText>
       {onRetry && (
         <RetryButton onPress={onRetry}>
-          <StyledText>다시 시도</StyledText>
+          <RetryButtonText>다시 시도</RetryButtonText>
         </RetryButton>
       )}
     </Container>
