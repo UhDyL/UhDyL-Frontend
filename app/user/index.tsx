@@ -17,6 +17,7 @@ import { useGetProductsList } from '@/hooks/query/useGetProductsList';
 import { useUserStore } from '@/store/userStore';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
+import { View } from 'react-native';
 
 export default function UserMainScreen() {
   const userType = useUserStore((state) => state.mode);
@@ -46,7 +47,7 @@ export default function UserMainScreen() {
   }
 
   return (
-    <>
+    <View style={{ flex: 1 }}>
       {modal}
       <OverlayModal
         text='판매자 관리 페이지로 이동할까요?'
@@ -71,6 +72,6 @@ export default function UserMainScreen() {
         )}
       </GoFarmerBtn>
       <TabBar status='home' />
-    </>
+    </View>
   );
 }
