@@ -29,7 +29,8 @@ export const DescriptionBox = styled.View`
 
 export const TitleText = styled.Text`
   flex: 1;
-  font-weight: 800;
+  font-weight: 900;
+  font-size: 16px;
 `;
 
 export const InfoBox = styled.View`
@@ -38,17 +39,36 @@ export const InfoBox = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  gap: 4px;
 `;
 
 export const Price = styled.Text`
   flex: 1;
   font-weight: 800;
+  font-size: 18px;
+  color: #30db5b;
 `;
 
-export const SellerImg = styled(Image)`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+export const SellerName = styled.Text`
+  color: #d9d9d9;
 `;
 
-export const SellerName = styled.Text``;
+export const ReviewBox = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ReviewItem = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const ReviewText = styled.Text`
+  color: #d9d9d9;
+`;
