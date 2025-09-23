@@ -4,11 +4,12 @@ import styled from 'styled-components/native';
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
-  background-color: #30db5b;
+  background-color: #fff;
   flex-direction: column;
+  padding-top: 120px;
   align-items: center;
-  justify-content: center;
-  gap: 180px;
+  justify-content: flex-start;
+  gap: 140px;
 `;
 
 export const IconContainer = styled.View`
@@ -20,8 +21,17 @@ export const IconContainer = styled.View`
 
 export const KakaoLoginImg = styled(Image)``;
 
-export const GoogleLoginImg = styled(Image)``;
+export const GoogleLoginImg = styled(Image)`
+  border: 1px solid #f2f2f2;
+`;
 
 export const TitleImg = styled.View`
   width: 80%;
+`;
+
+export const ImageContainer = styled(Image)`
+  object-fit: contain;
+  width: 120%;
+  position: absolute;
+  bottom: -90px;
 `;
