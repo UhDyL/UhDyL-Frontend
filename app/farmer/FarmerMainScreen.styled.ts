@@ -11,7 +11,7 @@ export const Container = styled(SafeAreaView).attrs({
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  gap: 50px;
 `;
 
 export const StyledScrollView = styled.ScrollView`
