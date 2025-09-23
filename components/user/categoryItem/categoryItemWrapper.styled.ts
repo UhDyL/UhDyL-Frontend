@@ -10,7 +10,7 @@ export const Container = styled.View`
 `;
 
 export const ItemsContainer = styled.View`
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

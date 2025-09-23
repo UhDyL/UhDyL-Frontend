@@ -2,12 +2,13 @@ import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  margin: 5px;
 `;
 
 export const ImgBox = styled(Image)`
@@ -15,6 +16,7 @@ export const ImgBox = styled(Image)`
   height: 150px;
   object-fit: cover;
   overflow: hidden;
+  border-radius: 10px 10px 0 0;
 `;
 
 export const DescriptionBox = styled.View`
@@ -59,6 +61,7 @@ export const ReviewBox = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 5px;
 `;
 
 export const ReviewItem = styled.View`

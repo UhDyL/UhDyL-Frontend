@@ -1,6 +1,6 @@
+import { WriteFormData } from '@/store/useFormStore';
 import { Category } from '@/types/categoryType';
 import PageableDataType from '@/types/pageableDataType';
-import { WriteFormData } from '@/store/useFormStore';
 import fetcher from './common/fetcher';
 
 export interface GetProductsResponseDto {
@@ -12,6 +12,9 @@ export interface GetProductsResponseDto {
   sellerPicture: string;
   mainImageUrl: string;
   isCompleted: boolean;
+  zzimCount: number;
+  sellerRating: number;
+  reviewsCount: number;
 }
 
 export const getProductsList = async () => {
