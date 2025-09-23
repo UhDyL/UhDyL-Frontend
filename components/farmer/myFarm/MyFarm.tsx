@@ -1,11 +1,11 @@
-import { Container, LookMap, TitleText } from './myfarm.styled';
+import { Container, LookMap } from './myfarm.styled';
 
 import KakaoMap from '@/components/kakaomap/KakaoMap';
-import { MoveDiagonal } from 'lucide-react-native';
-import { Text } from 'react-native';
-import { useEffect } from 'react';
 import { useGetMyFieldLocation } from '@/hooks/mutation/useGetMyFieldLocation';
 import { useRouter } from 'expo-router';
+import { MoveDiagonal } from 'lucide-react-native';
+import { useEffect } from 'react';
+import { Text } from 'react-native';
 
 export default function MyFarm() {
   const { data: farmLocation, mutate: getMyFarmLocation } =
@@ -19,7 +19,6 @@ export default function MyFarm() {
 
   return (
     <Container>
-      <TitleText>내 농산물 재배 위치</TitleText>
       <KakaoMap
         latitude={farmLocation?.data.location_y}
         longitude={farmLocation?.data.location_x}
