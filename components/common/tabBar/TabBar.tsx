@@ -1,8 +1,9 @@
-import { usePathname, useRouter } from 'expo-router';
-import { Home, MessageCircleMore, User } from 'lucide-react-native';
 import { Container, IconBox, Label } from './tabBar.styled';
+import { Home, MessageCircleMore, User } from 'lucide-react-native';
+import { usePathname, useRouter } from 'expo-router';
 
 import { useState } from 'react';
+import { useUserStore } from '@/store/userStore';
 
 type Props = {
   status: 'home' | 'chatting' | 'profile';
@@ -11,6 +12,7 @@ type Props = {
 export default function TabBar({ status }: Props) {
   const route = useRouter();
   const pathname = usePathname();
+  const userType = useUserStore((state) => state.mode);
 
   const [selected, setSelected] = useState<'home' | 'chatting' | 'profile'>(
     status
@@ -20,7 +22,8 @@ export default function TabBar({ status }: Props) {
     setSelected('home');
     if (pathname !== '/user') {
       setSelected('home');
-      route.replace('/user');
+      if (userType === 'farmer') route.replace('/farmer');
+      else route.replace('/user');
     }
   };
 
