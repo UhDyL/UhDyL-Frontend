@@ -2,13 +2,12 @@ import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  width: 80%;
+  width: 90%;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  margin-top: 10px;
 `;
 
 export const InfoWrapper = styled.View`

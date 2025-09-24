@@ -2,7 +2,7 @@ import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  width: 80%;
+  width: 90%;
   padding: 10px;
   display: flex;
   flex-direction: row;

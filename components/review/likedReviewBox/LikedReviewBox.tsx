@@ -10,12 +10,11 @@ import {
 } from './likedReviewBox.styled';
 
 import { GetMyZzimResponseDto } from '@/api/zzim.api';
-import { useToggleZzim } from '@/hooks/mutation/useToggleZzim';
 import { Heart } from 'lucide-react-native';
 import { useState } from 'react';
+import { useToggleZzim } from '@/hooks/mutation/useToggleZzim';
 
 export default function LikedReviewBox({
-  zzimid,
   productId,
   imageUrl,
   price,
