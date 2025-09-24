@@ -4,16 +4,16 @@ import styled from 'styled-components/native';
 export const Container = styled.TouchableOpacity`
   flex: 1;
   display: flex;
-  height: 120px;
+  height: 100px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 `;
 
 export const StyledImg = styled(Image)`
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 `;
 
 export const Label = styled.Text`
