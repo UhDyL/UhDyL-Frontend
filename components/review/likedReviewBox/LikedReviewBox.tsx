@@ -15,7 +15,7 @@ import { useState } from 'react';
 import { useToggleZzim } from '@/hooks/mutation/useToggleZzim';
 
 interface Props extends GetMyZzimResponseDto {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export default function LikedReviewBox({

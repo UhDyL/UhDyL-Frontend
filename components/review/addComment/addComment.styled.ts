@@ -22,5 +22,6 @@ export const StyledInputTextForm = styled(TextInput)`
   width: 80%;
   height: 120px;
   text-align: left;
+  font-weight: 800;
   text-align-vertical: top;
 `;

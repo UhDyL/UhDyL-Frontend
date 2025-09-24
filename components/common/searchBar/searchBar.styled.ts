@@ -30,4 +30,6 @@ export const SearchIcon = styled(Search)`
   color: #30db5b;
 `;
 
-export const InputComponent = styled.TextInput``;
+export const InputComponent = styled.TextInput`
+  font-weight: 800;
+`;
