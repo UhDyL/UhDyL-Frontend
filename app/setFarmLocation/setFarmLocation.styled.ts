@@ -24,3 +24,13 @@ export const ButtonWrapper = styled.View`
   justify-content: center;
   background-color: transparent;
 `;
+
+export const OverlayArea = styled.View`
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 30;
+  background-color: #fff;
+  padding-top: 60px;
+  padding-bottom: 10px;
+`;

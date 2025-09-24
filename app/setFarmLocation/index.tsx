@@ -1,16 +1,21 @@
 import * as Location from 'expo-location';
 
+import {
+  ButtonWrapper,
+  Container,
+  OverlayArea,
+} from './setFarmLocation.styled';
 import { useEffect, useState } from 'react';
-import { ButtonWrapper, Container } from './setFarmLocation.styled';
 
+import BackAndTitle from '@/components/common/backAndTitle/BackAndTitle';
 import Button from '@/components/common/button/Button';
 import KakaoMap from '@/components/kakaomap/KakaoMap';
-import { useGetFarmerAuth } from '@/hooks/mutation/useGetFarmerAuth';
-import { usePostMyFieldLocation } from '@/hooks/mutation/usePostMyFieldLocation';
-import { hydrateUserAgain } from '@/services/auth.service';
-import { useRouter } from 'expo-router';
 import { Text } from 'react-native';
 import Toast from 'react-native-toast-message';
+import { hydrateUserAgain } from '@/services/auth.service';
+import { useGetFarmerAuth } from '@/hooks/mutation/useGetFarmerAuth';
+import { usePostMyFieldLocation } from '@/hooks/mutation/usePostMyFieldLocation';
+import { useRouter } from 'expo-router';
 
 export default function SetFarmLocationScreen() {
   const [location, setLocation] = useState<{
@@ -55,6 +60,10 @@ export default function SetFarmLocationScreen() {
 
   return (
     <Container>
+      <OverlayArea>
+        <BackAndTitle title='재배 위치 설정' />
+      </OverlayArea>
+
       {location ? (
         <>
           <KakaoMap
