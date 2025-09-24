@@ -13,9 +13,9 @@ import {
   ViewWrapper,
 } from './infoBox.styled';
 
-import { useRouter } from 'expo-router';
 import { Star } from 'lucide-react-native';
 import { Text } from 'react-native';
+import { useRouter } from 'expo-router';
 
 type Props = {
   sellerPicture: string;
@@ -35,6 +35,7 @@ export default function InfoBox({
   description,
 }: Props) {
   const router = useRouter();
+  const formattedRating = Number(sellerRating).toFixed(1);
 
   return (
     <Container>
@@ -51,7 +52,7 @@ export default function InfoBox({
             <MarketName>{sellerName}</MarketName>
             <RatingBox>
               <Star size={15} fill='#30DB5B' color='#30DB5B' />
-              <RatingValue>{sellerRating}</RatingValue>
+              <RatingValue>{formattedRating}</RatingValue>
             </RatingBox>
           </MarketInfoBox>
         </ViewWrapper>
@@ -63,7 +64,7 @@ export default function InfoBox({
               params: {
                 id: sellerName,
                 sellerPicture,
-                sellerRating,
+                formattedRating,
                 sellerSalesCount,
               },
             })
