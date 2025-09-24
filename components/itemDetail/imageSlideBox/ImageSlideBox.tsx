@@ -32,6 +32,10 @@ export default function ImageSlideBox({ images, price }: Props) {
     const newIndex = Math.round(offsetX / width);
     setCurrentIndex(newIndex);
   };
+
+  const numericPrice = Number(price);
+  const formattedPrice = numericPrice.toLocaleString('ko-KR');
+
   return (
     <Container>
       <ImageWrapper
@@ -52,7 +56,7 @@ export default function ImageSlideBox({ images, price }: Props) {
           source={require('../../../assets/images/itemDetail/price_box.png')}
         >
           <PriceLabel>판매가격</PriceLabel>
-          <PriceText>{price}</PriceText>
+          <PriceText>₩ {formattedPrice}</PriceText>
         </PriceWrapper>
         <Page>
           {currentIndex + 1}/{images.length}
