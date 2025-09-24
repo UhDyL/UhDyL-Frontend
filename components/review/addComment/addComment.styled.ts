@@ -15,9 +15,9 @@ export const TitleText = styled.Text`
   font-weight: 700;
 `;
 
-export const StyledInputTextForm = styled(TextInput)`
+export const StyledInputTextForm = styled(TextInput)<{ isFocused: boolean }>`
   padding: 20px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid ${({ isFocused }) => (isFocused ? '#30DB5B' : '#d9d9d9')};
   border-radius: 8px;
   width: 80%;
   height: 120px;
