@@ -9,6 +9,15 @@ export const Container = styled.View`
   align-items: center;
 `;
 
+export const Wrapper = styled.View`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 export const ItemsContainer = styled.View`
   width: 100%;
   display: flex;

@@ -4,8 +4,9 @@ import styled from 'styled-components/native';
 export const Container = styled.TouchableOpacity`
   width: 40%;
   display: flex;
+  min-height: 280px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
   margin: 5px;
@@ -13,7 +14,7 @@ export const Container = styled.TouchableOpacity`
 
 export const ImgBox = styled(Image)`
   width: 100%;
-  height: 150px;
+  height: 160px;
   object-fit: cover;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
