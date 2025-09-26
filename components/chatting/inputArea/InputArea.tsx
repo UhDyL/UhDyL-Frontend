@@ -1,9 +1,9 @@
 import * as ImagePicker from 'expo-image-picker';
 
-import { Camera, Send, X } from 'lucide-react-native';
 import {
   CameraIconWrapper,
   Container,
+  ImageBtn,
   ImagePreview,
   PreviewBox,
   Row,
@@ -13,6 +13,7 @@ import {
 } from './inputArea.styled';
 
 import { Alert } from 'react-native';
+import { X } from 'lucide-react-native';
 
 type Props = {
   message: string;
@@ -79,15 +80,22 @@ export default function InputArea({
       )}
       <Row>
         <CameraIconWrapper onPress={pickImage}>
-          <Camera fill='#d9d9d9' color='#000' />
+          <ImageBtn
+            source={require('../../../assets/images/chatting/camera_btn.png')}
+          />
         </CameraIconWrapper>
         <StyledTextInput
           placeholder='메세지를 입력해 보세요.'
           onChangeText={setMessage}
           value={message}
         />
-        <SendIconWrapper onPress={onSendPress}>
-          <Send fill='#fff' color='#000' />
+        <SendIconWrapper
+          onPress={onSendPress}
+          color={message.length === 0 ? 'inactive' : 'active'}
+        >
+          <ImageBtn
+            source={require('../../../assets/images/chatting/send_btn.png')}
+          />
         </SendIconWrapper>
       </Row>
     </Container>
