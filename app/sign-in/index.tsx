@@ -7,14 +7,21 @@ import {
   TitleImg,
 } from './Signin.styles';
 
-import React from 'react';
-import TitleSvg from '../../assets/images/title.svg';
-import { TouchableOpacity } from 'react-native';
 import { socialLogin } from '@/services/auth.service';
+import { Stack } from 'expo-router';
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import TitleSvg from '../../assets/images/title.svg';
 
 export default function SigninScreen() {
   return (
     <Container>
+      <Stack.Screen
+        options={{
+          gestureEnabled: false,
+          headerBackVisible: false,
+        }}
+      />
       <TitleImg>
         <TitleSvg width='100%' />
       </TitleImg>
