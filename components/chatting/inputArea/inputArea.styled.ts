@@ -1,27 +1,26 @@
-import { Camera } from 'lucide-react-native';
-import { TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
+
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 90%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: #f5f5f5;
-  padding: 10px;
-  border-radius: 20px;
+  border-radius: 8%;
   margin-bottom: 40px;
+  height: 52px;
 `;
 
 export const Row = styled.View`
   width: 100%;
-  height: 25px;
   display: flex;
-  padding: 10px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 2px 5px 0 15px;
 `;
 
 export const PreviewBox = styled.View`
@@ -42,12 +41,20 @@ export const ImagePreview = styled.Image`
   object-fit: cover;
 `;
 
-export const CameraIconWrapper = styled(Camera)``;
+export const CameraIconWrapper = styled(TouchableOpacity)``;
 
-export const SendIconWrapper = styled(TouchableOpacity)`
-  padding: 7px;
+export const ImageBtn = styled(Image)`
+  width: 25px;
+  height: 25px;
+`;
+
+export const SendIconWrapper = styled(TouchableOpacity)<{
+  color: 'active' | 'inactive';
+}>`
+  padding: 10px;
   border-radius: 50%;
-  background-color: #d9d9d9;
+  background-color: ${({ color }) =>
+    color === 'active' ? '#30DB5B' : '#d9d9d9'};
 `;
 
 export const StyledTextInput = styled.TextInput`

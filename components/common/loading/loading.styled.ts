@@ -24,7 +24,7 @@ export const StyledText = styled.Text`
 `;
 
 export const Spinner = styled.Image.attrs({
-  source: require('../../../assets/images/loading_circle.png'),
+  source: require('../../../assets/images/loading/loading.gif'),
 })`
   width: 40px;
   height: 40px;

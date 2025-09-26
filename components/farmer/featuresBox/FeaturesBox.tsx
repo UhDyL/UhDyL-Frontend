@@ -1,4 +1,4 @@
-import { Col, Container } from './featuresBox.styled';
+import { Container, Row } from './featuresBox.styled';
 
 import BoxBlock from '../boxBlock/BoxBlock';
 import { useRouter } from 'expo-router';
@@ -10,36 +10,47 @@ export default function FeaturesBox() {
 
   return (
     <Container>
-      <Col>
+      <Row>
         <BoxBlock
           onPress={() => router.push('/user')}
-          size='normal'
-          titleText='이웃 농산물 보러가기'
+          size='big'
+          titleText={'이웃 농산물\n보러가기'}
+          subText='주변 이웃들의 못난이를 구경해보세요'
+          imageUrl={require('../../../assets/images/farmer-main/see_neighbor_icon.png')}
         />
         <BoxBlock
           onPress={() => router.push('/new-item/step1')}
           size='big'
-          titleText='농산물 판매하기'
+          titleText={'내 농산물\n판매하기'}
           subText='못난이 농산물을 이웃들에게 팔아 보세요'
-          color='#30DB5B'
+          imageUrl={require('../../../assets/images/farmer-main/sell_mine_icon.png')}
         />
-      </Col>
-      <Col>
+      </Row>
+      <Row>
         <BoxBlock
           onPress={() =>
             router.push({ pathname: '/chatting', params: { userType } })
           }
-          size='big'
-          titleText='채팅하기'
-          subText='구매자와 대화한 내역을 확인해 볼 수 있어요'
-          color='#FFB340'
+          size='long'
+          titleText='채팅'
+          subText='주고받은 메세지를 확인해보세요'
+          imageUrl={require('../../../assets/images/farmer-main/chatting_icon.png')}
         />
+      </Row>
+      <Row>
         <BoxBlock
           onPress={() => router.push('/sell-list')}
           size='normal'
           titleText='판매 목록'
+          imageUrl={require('../../../assets/images/farmer-main/sell_list_icon.png')}
         />
-      </Col>
+        <BoxBlock
+          onPress={() => router.push('/profile')}
+          size='normal'
+          titleText='내 상점'
+          imageUrl={require('../../../assets/images/farmer-main/my_info_icon.png')}
+        />
+      </Row>
     </Container>
   );
 }

@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 export const Container = styled(SafeAreaView).attrs({
   edges: ['left', 'right', 'bottom'],
 })`
+  width: 100%;
   height: 130px;
   display: flex;
   flex-direction: column;

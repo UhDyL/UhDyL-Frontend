@@ -1,10 +1,13 @@
+import { Heart, Star } from 'lucide-react-native';
 import {
   Container,
   DescriptionBox,
   ImgBox,
   InfoBox,
   Price,
-  SellerImg,
+  ReviewBox,
+  ReviewItem,
+  ReviewText,
   SellerName,
   TitleText,
 } from './itemComponent.styled';
@@ -17,7 +20,9 @@ type Props = {
   title: string;
   price: number;
   sellerName: string;
-  sellerImage: string;
+  averageStar: number;
+  numOfReview: number;
+  numOfLiked: number;
 };
 
 export default function ItemComponent({
@@ -26,7 +31,9 @@ export default function ItemComponent({
   title,
   price,
   sellerName,
-  sellerImage,
+  averageStar,
+  numOfLiked,
+  numOfReview,
 }: Props) {
   const router = useRouter();
   return (
@@ -39,17 +46,20 @@ export default function ItemComponent({
         }
       />
       <DescriptionBox>
-        <SellerImg
-          source={
-            sellerImage
-              ? { uri: sellerImage }
-              : require('../../../assets/images/null_image.png')
-          }
-        />
         <InfoBox>
-          <TitleText>{title}</TitleText>
-          <Price>{price}</Price>
           <SellerName>{sellerName}</SellerName>
+          <TitleText>{title}</TitleText>
+          <Price>{price}원</Price>
+          <ReviewBox>
+            <ReviewItem>
+              <Star size={14} color='#d9d9d9' fill='#d9d9d9' />
+              <ReviewText>{`${averageStar}(${numOfReview})`}</ReviewText>
+            </ReviewItem>
+            <ReviewItem>
+              <Heart size={14} color='#d9d9d9' fill='#d9d9d9' />
+              <ReviewText>{numOfLiked}</ReviewText>
+            </ReviewItem>
+          </ReviewBox>
         </InfoBox>
       </DescriptionBox>
     </Container>

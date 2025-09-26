@@ -2,6 +2,7 @@ import {
   Container,
   GoogleLoginImg,
   IconContainer,
+  ImageContainer,
   KakaoLoginImg,
   TitleImg,
 } from './Signin.styles';
@@ -33,6 +34,9 @@ export default function SigninScreen() {
           />
         </TouchableOpacity>
       </IconContainer>
+      <ImageContainer
+        source={require('../../assets/images/main_picture.png')}
+      />
     </Container>
   );
 }

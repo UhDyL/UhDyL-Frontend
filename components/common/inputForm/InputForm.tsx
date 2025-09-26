@@ -1,5 +1,7 @@
 import { Container, LabelText, StyledInputText } from './inputForm.styled';
 
+import { useState } from 'react';
+
 type Props = {
   label: string;
   value: string;
@@ -15,6 +17,8 @@ export default function InputForm({
   placeholder,
   numberOnly,
 }: Props) {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
     <Container>
       <LabelText>{label}</LabelText>
@@ -23,6 +27,9 @@ export default function InputForm({
         placeholder={placeholder}
         value={value}
         onChangeText={setValue}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        isFocused={isFocused}
       />
     </Container>
   );

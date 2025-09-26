@@ -34,7 +34,7 @@ export const AddedImagesContainer = styled.View`
   width: 80%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   align-items: center;
   gap: 5px;
