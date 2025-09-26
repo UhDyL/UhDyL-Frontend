@@ -11,7 +11,6 @@ export const Container = styled.View`
   background-color: #f5f5f5;
   border-radius: 8%;
   margin-bottom: 40px;
-  height: 52px;
 `;
 
 export const Row = styled.View`
