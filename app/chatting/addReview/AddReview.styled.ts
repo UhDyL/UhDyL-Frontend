@@ -11,7 +11,7 @@ export const Container = styled(SafeAreaView)`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 40px;
+  gap: 25px;
   background-color: #fff;
 `;
 
@@ -30,6 +30,8 @@ export const FinishButton = styled.TouchableOpacity`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 40px;
 `;
 
 export const ButtonText = styled.Text`

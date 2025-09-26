@@ -1,9 +1,9 @@
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
-  width: 80%;
-  padding: 10px;
+export const Container = styled.TouchableOpacity`
+  width: 90%;
+  padding: 0 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

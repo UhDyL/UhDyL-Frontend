@@ -10,18 +10,22 @@ import {
 } from './likedReviewBox.styled';
 
 import { GetMyZzimResponseDto } from '@/api/zzim.api';
-import { useToggleZzim } from '@/hooks/mutation/useToggleZzim';
 import { Heart } from 'lucide-react-native';
 import { useState } from 'react';
+import { useToggleZzim } from '@/hooks/mutation/useToggleZzim';
+
+interface Props extends GetMyZzimResponseDto {
+  onClick?: () => void;
+}
 
 export default function LikedReviewBox({
-  zzimid,
   productId,
   imageUrl,
   price,
   sellerName,
   title,
-}: GetMyZzimResponseDto) {
+  onClick,
+}: Props) {
   const [isLiked, setIsLiked] = useState<boolean>(true);
   const { mutate } = useToggleZzim(productId);
   const toggleLiked = () => {
@@ -31,7 +35,7 @@ export default function LikedReviewBox({
   };
 
   return (
-    <Container>
+    <Container onPress={onClick}>
       <LeftSection>
         <ImageBox
           source={

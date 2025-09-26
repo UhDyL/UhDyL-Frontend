@@ -2,33 +2,41 @@ import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  width: 100%;
-  min-height: 120px;
-  padding: 16px;
-  margin: 12px 0;
-  border-radius: 12px;
+  width: 80%;
+  min-height: 200px;
+  border-radius: 15px;
 
-  background-color: #ffecec;
-  border: 1px solid #ff6b6b;
+  background-color: #fff;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 12px;
 `;
 
 export const ErrorIcon = styled(Image)``;
 
 export const StyledText = styled.Text`
-  color: #b00020;
   font-size: 14px;
+  font-weight: 800;
   text-align: center;
   margin-bottom: 6px;
 `;
 
 export const RetryButton = styled.TouchableOpacity`
-  margin-top: 10px;
-  padding: 8px 16px;
-  background-color: #ff6b6b;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #30db5b;
   border-radius: 8px;
+`;
+
+export const RetryButtonText = styled.Text`
+  font-weight: 800;
+  font-size: 16px;
+  color: white;
 `;

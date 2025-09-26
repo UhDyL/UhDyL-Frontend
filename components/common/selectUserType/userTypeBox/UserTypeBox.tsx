@@ -28,8 +28,8 @@ export default function UserTypeBox({ userType, selected }: Props) {
       <ImageBox
         source={
           userType === 'user'
-            ? require('../../../assets/images/userType/user_img.png')
-            : require('../../../assets/images/userType/farmer_img.png')
+            ? require('../../../../assets/images/userType/user_img.png')
+            : require('../../../../assets/images/userType/farmer_img.png')
         }
       />
     </Container>

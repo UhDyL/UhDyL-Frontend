@@ -1,12 +1,11 @@
-import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  width: 100%;
-  min-height: 120px;
+  width: 80%;
+  min-height: 200px;
+  border-radius: 15px;
   padding: 16px;
   margin: 12px 0;
-  border-radius: 12px;
 
   background-color: #fff;
 
@@ -14,16 +13,19 @@ export const Container = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 `;
 
 export const StyledText = styled.Text`
   color: #555;
   font-size: 14px;
   text-align: center;
-  margin-top: 8px;
+  font-weight: 800;
 `;
 
-export const Spinner = styled(ActivityIndicator).attrs({
-  size: 'large',
-  color: '##30DB5B',
-})``;
+export const Spinner = styled.Image.attrs({
+  source: require('../../../assets/images/loading/loading.gif'),
+})`
+  width: 40px;
+  height: 40px;
+`;
