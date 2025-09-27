@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
-  width: 180px;
-  height: 60px;
+  width: 140px;
+  height: 50px;
   background-color: #ffb340;
   border-radius: 30px;
   display: flex;
@@ -12,7 +12,7 @@ export const Container = styled.TouchableOpacity`
 `;
 
 export const TextStyled = styled.Text`
-  font-size: 20px;
+  font-size: 16px;
   color: #fff;
   font-weight: 800;
 `;
