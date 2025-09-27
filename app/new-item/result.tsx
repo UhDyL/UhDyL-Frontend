@@ -1,4 +1,10 @@
 import { JustBox, ResultContainer } from './newItem.styled';
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from 'react-native';
 import { useEffect, useState } from 'react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
@@ -17,6 +23,26 @@ export default function ResultScreen() {
     images,
     categories,
   } = useLocalSearchParams();
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const showEvent =
+      Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+    const hideEvent =
+      Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+
+    const showSub = Keyboard.addListener(showEvent, () =>
+      setKeyboardVisible(true)
+    );
+    const hideSub = Keyboard.addListener(hideEvent, () =>
+      setKeyboardVisible(false)
+    );
+
+    return () => {
+      showSub.remove();
+      hideSub.remove();
+    };
+  }, []);
 
   const { mutate: postProduct } = usePostProductItem();
 
@@ -60,23 +86,36 @@ export default function ResultScreen() {
   }, []);
 
   return (
-    <ResultContainer>
-      <TwoButtonTopBar />
-      <ImageSlideBox
-        price={priceNum.toString()}
-        images={imageArr.map((img) => img.url)}
-      />
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 2 : 0}
+    >
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps='handled'
+      >
+        <ResultContainer>
+          <TwoButtonTopBar />
+          <ImageSlideBox
+            price={priceNum.toString()}
+            images={imageArr.map((img) => img.url)}
+          />
 
-      <EditItemContent
-        title={title}
-        content={content}
-        setTitle={setTitle}
-        setContent={setContent}
-      />
+          <EditItemContent
+            title={title}
+            content={content}
+            setTitle={setTitle}
+            setContent={setContent}
+          />
 
-      <JustBox>
-        <Button size='full' text='작성 완료' onClick={handleSubmit} />
-      </JustBox>
-    </ResultContainer>
+          {!isKeyboardVisible && (
+            <JustBox>
+              <Button size='full' text='작성 완료' onClick={handleSubmit} />
+            </JustBox>
+          )}
+        </ResultContainer>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
