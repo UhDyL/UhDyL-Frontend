@@ -58,7 +58,6 @@ export const SendIconWrapper = styled(TouchableOpacity)<{
 
 export const StyledTextInput = styled.TextInput`
   width: 70%;
-  height: 10px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
