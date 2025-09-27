@@ -1,3 +1,4 @@
+import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
 import Button from '@/components/common/button/Button';
@@ -19,28 +20,43 @@ export default function EditItem() {
   const { mutate: editItemInfo } = usePatchItemInfo(+idStr);
 
   return (
-    <Container>
-      <LevelAndGoHome level={3} />
-      <ImageSlideBox
-        price={itemInfo?.price.toString() ?? ''}
-        images={itemInfo?.images ?? []}
-      />
-      <EditItemContent
-        title={title}
-        setTitle={setTitle}
-        content={content}
-        setContent={setContent}
-      />
-      <Button
-        size='full'
-        onClick={() => {
-          editItemInfo(
-            { title: title, description: content, price: itemInfo?.price ?? 0 },
-            { onSuccess: () => router.push('/sell-list') }
-          );
-        }}
-        text='작성 완료'
-      />
-    </Container>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 2 : 0}
+    >
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps='handled'
+      >
+        <Container>
+          <LevelAndGoHome level={3} />
+          <ImageSlideBox
+            price={itemInfo?.price.toString() ?? ''}
+            images={itemInfo?.images ?? []}
+          />
+          <EditItemContent
+            title={title}
+            setTitle={setTitle}
+            content={content}
+            setContent={setContent}
+          />
+          <Button
+            size='full'
+            onClick={() => {
+              editItemInfo(
+                {
+                  title: title,
+                  description: content,
+                  price: itemInfo?.price ?? 0,
+                },
+                { onSuccess: () => router.push('/sell-list') }
+              );
+            }}
+            text='작성 완료'
+          />
+        </Container>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
