@@ -1,4 +1,3 @@
-import { Heart, Star } from 'lucide-react-native';
 import {
   Container,
   DescriptionBox,
@@ -11,6 +10,7 @@ import {
   SellerName,
   TitleText,
 } from './itemComponent.styled';
+import { Heart, Star } from 'lucide-react-native';
 
 import { useRouter } from 'expo-router';
 
@@ -49,7 +49,7 @@ export default function ItemComponent({
         <InfoBox>
           <SellerName>{sellerName}</SellerName>
           <TitleText>{title}</TitleText>
-          <Price>{price}원</Price>
+          <Price>{price.toLocaleString()}원</Price>
           <ReviewBox>
             <ReviewItem>
               <Star size={14} color='#d9d9d9' fill='#d9d9d9' />
